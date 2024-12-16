@@ -1,0 +1,4 @@
+.env
+__pycache__
+venv
+pars_info_from_habr.py
