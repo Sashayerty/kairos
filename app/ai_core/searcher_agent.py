@@ -2,6 +2,14 @@ from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def searcher(prompt_from_llm: str) -> str:
+    """Функция для составления поискового запроса по промпту
+
+    Args:
+        prompt_from_llm (str): Промпт от llm
+
+    Returns:
+        str: Поисковой запрос dict в виде str
+    """
     json_example = """
     {
         "data": "Python курсы для начинающих"

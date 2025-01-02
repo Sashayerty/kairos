@@ -2,6 +2,14 @@ from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def plan(prompt_from_llm: str) -> str:
+    """Функция для составления плана курса по промпту от llm
+
+    Args:
+        prompt_from_llm (str): Промпт от llm
+
+    Returns:
+        str: План dict в виде str
+    """
     json_example = """
     {
         "1": "Как начать программировать",
