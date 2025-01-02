@@ -2,7 +2,7 @@ from googleapiclient.discovery import build
 
 
 def google_search(
-    query: str, api_key: str, cse_id: str, num_results: str = 10
+    query: str, api_key: str, cse_id: str, num_results: int = 10
 ) -> list:
     """Функция для поиска ссылок в гугл по query
 
@@ -17,4 +17,5 @@ def google_search(
     """
     service = build("customsearch", "v1", developerKey=api_key)
     res = service.cse().list(q=query, cx=cse_id, num=num_results).execute()
+    # return res
     return res["items"]

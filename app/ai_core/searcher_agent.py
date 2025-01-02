@@ -12,7 +12,7 @@ def searcher(prompt_from_llm: str) -> str:
     """
     json_example = """
     {
-        "data": "Python курсы для начинающих"
+        "data": "Python курсы"
     }
     """
     prompt = f"""Привет! Ты составитель поисковых запросов для поиска в google. Твоя задача составить запрос по
