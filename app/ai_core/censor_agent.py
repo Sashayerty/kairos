@@ -2,6 +2,14 @@ from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def censor(theme_from_user: str) -> str:
+    """Функция для цензуры темы пользователя.
+
+    Args:
+        theme_from_user (str): Тема пользователя
+
+    Returns:
+        str: Dict в виде str {"data": True/False(с темой хорошо/плохо)}
+    """
     json_example = """
     С темой все хорошо:
     {

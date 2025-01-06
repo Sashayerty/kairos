@@ -1,0 +1,13 @@
+/* Подключаем шрифты Noto Sans */
+
+@font-face {
+    font-display: swap;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/noto-sans-v38-cyrillic_latin-regular.woff2') format('woff2');
+}
+
+body {
+    font-family: 'Noto Sans';
+}

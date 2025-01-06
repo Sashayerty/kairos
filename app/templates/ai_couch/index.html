@@ -1,7 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-Привет
-
+<div class="main-container container">
+    <!-- <p>Kairos — это инновационный сервис, который помогает пользователям создавать курсы по интересующим их темам для
+        прокачки soft и hard skills. Мы используем передовые технологии искусственного интеллекта для составления планов
+        курсов и их создания, а также для укрепления знаний через тестирование.
+    </p> -->
+    <p class="text-center fw-medium fs-3 mt-5 pt-5">Создайте курс на любой вкус, ведь сейчас подходящий момент!</p>
+    <form class="row my-5 pt-5" action="/create-course" method="post">
+        <div class="col-10">
+            <input class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                required placeholder="Введите вашу тему" type="text" name="users_theme" id="users_theme">
+        </div>
+        <div class="col-2">
+            <button class="btn btn-warning border-2" type="submit">Создать курс</button>
+        </div>
+    </form>
+    {% if message %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
