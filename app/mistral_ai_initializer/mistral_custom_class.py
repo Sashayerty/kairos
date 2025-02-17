@@ -2,6 +2,7 @@ from mistralai import Mistral
 
 
 class ModifiedMistral(Mistral):
+    """Создал кастомный класс для того, чтобы по вызову одной функции взаимодействовать с llm."""
 
     def message(
         self,

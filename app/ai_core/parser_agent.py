@@ -2,6 +2,15 @@ from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def parser(prompt_from_llm: str) -> str:
+    """Функция для создания поискового запроса
+
+    Args:
+        prompt_from_llm (str): Промпт, по которому нужно составить поисковый запрос
+
+    Returns:
+        str: Поисковый запрос.
+
+    """
     request_example = """
     html_of_site = requests.get("https://ru.wikipedia.org/wiki/Python").text
     soup = BeautifulSoup(html_of_site, "html.parser")
