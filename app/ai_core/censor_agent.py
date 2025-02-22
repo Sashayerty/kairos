@@ -18,7 +18,8 @@ def censor(theme_from_user: str, desires: str = None) -> str:
     }
     Иначе:
     {
-        "data": False
+        "data": False,
+        "reason": "причина отказа"
     }
     """
     prompt = f"""Привет! Ты агент-цензор. Твоя задача проверять тему пользователя и его пожелания. Тема и пожелания не
@@ -27,7 +28,7 @@ def censor(theme_from_user: str, desires: str = None) -> str:
     человека действиями, химикатами и т.п. Если тема и пожелания никак не связана с перечисленным, то ты пропускаешь ее
     далее,
     иначе - не пропускаешь. Тема пользователя: {theme_from_user}. Пожелания пользователя: {desires} Пример твоего
-    ответа: {json_example}"""
+    ответа: {json_example}. Причина должна быть небольшая и учти то, что ты отвечаешь напрямую пользователю."""
     client = mistral_ai_initializer()
     response = client.message(
         messages=[

@@ -1,7 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container fs-6">
-    {{ plane | safe }}
+<div class="container my-5">
+    <h1 class="text-center mb-5">Ваш курс: {{ course.title }}</h1>
+    <div class="row">
+        {% for key, section in course.items() %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-warning">
+                    <span class="badge bg-light me-2">{{ loop.index }}</span>
+                    <h5 class="card-title mb-0">{{ section.title }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        {{ section.data | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

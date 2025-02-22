@@ -1,18 +1,20 @@
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def summarizer(text: str, theme_of_course: str) -> str:
-    """Функция для сжатия статей
+def summarizer(data: str, prompt: str, plan_of_course: str) -> str:
+    """Функция для сжатия данных
 
     Args:
-        text (str): Сама статья
-        theme_of_course (str): Тема курса
+        data (str): Сами данные
+        prompt (str): Промпт курса
+        plan_of_course (str): План курса
 
     Returns:
-        str: Сжатая статья
+        str: Сжатые данные
     """
-    prompt = f"""Ты суммаризатор. Твоя задача сжать текст с учетом темы. То есть, тебе нужно оставить только то, что
-    может пригодится по теме. Текст для сжатия: {text}. Тема: {theme_of_course}."""
+    prompt = f"""Ты суммаризатор. Твоя задача сжать текст с учетом промпта и плана курса. То есть, тебе нужно оставить
+    только то, что может пригодится по промпту и плану. В своем ответе не используй md! Текст для сжатия: {data}.
+    Промпт: {prompt}. План: {plan_of_course}"""
     client = mistral_ai_initializer()
     response = client.message(
         messages=[

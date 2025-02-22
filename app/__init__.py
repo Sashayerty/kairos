@@ -1,6 +1,7 @@
 from flask import Flask
-from .config import config
+
 from app.ai_couch.routes import ai_couch
+from app.config import config
 
 
 def create_app() -> Flask:

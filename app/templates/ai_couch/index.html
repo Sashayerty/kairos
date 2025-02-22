@@ -2,18 +2,24 @@
 
 {% block content %}
 <div class="main-container container">
-    <!-- <p>Kairos — это инновационный сервис, который помогает пользователям создавать курсы по интересующим их темам для
-        прокачки soft и hard skills. Мы используем передовые технологии искусственного интеллекта для составления планов
-        курсов и их создания, а также для укрепления знаний через тестирование.
-    </p> -->
-    <p class="text-center fw-medium fs-3 mt-5 pt-5">Создайте курс на любой вкус, ведь сейчас подходящий момент!</p>
+    <!-- <p class="text-center fw-medium fs-3 mt-5 pt-5">Создайте курс на любой вкус, ведь сейчас подходящий момент!</p> -->
+    <p class="text-center fw-medium fs-3 mt-5 pt-5">Создайте курс на любой вкус, ведь всегда есть время для обучения!
+    </p>
     <form class="row my-5 pt-5" action="/create-course" method="post">
-        <div class="col-10">
+        <div class="col-12 mb-3">
+            <label for="users_theme" class="form-label fw-medium">Тема курса*</label>
             <input class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
-                required placeholder="Введите вашу тему" type="text" name="users_theme" id="users_theme">
+                required placeholder="Например, 'Основы программирования на Python'" type="text" name="users_theme"
+                id="users_theme">
         </div>
-        <div class="col-2">
-            <button class="btn btn-warning border-2" type="submit">Создать курс</button>
+        <div class="col-12 mb-3">
+            <label for="users_desires" class="form-label fw-medium">Пожелание к курсу</label>
+            <textarea class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                placeholder="Например, 'Хочу изучить основы Python для анализа данных'" name="users_desires"
+                id="users_desires" rows="3"></textarea>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-warning border-2 w-100 py-2 fw-medium" type="submit">Создать курс</button>
         </div>
     </form>
     {% if message %}

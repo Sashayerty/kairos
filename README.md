@@ -24,6 +24,10 @@ CSE_ID=your-data
 
 ## Интересные факты
 
+### 0. [app.config](./app/config.py)
+
+Файл конфига. В нем хранятся настройки проекта, которые можно менять и Вам, в зависимости от Ваших нужд.
+
 ### 1. [app.mistral_ai_initializer.mistral_custom_class](./app/mistral_ai_initializer/mistral_custom_class.py)
 
 Это кастомный класс **Mistral**. Был он создан для того, чтобы убрать лишнюю рутинную работу. Подробнее - [тут](./app/mistral_ai_initializer/mistral_custom_class.py)

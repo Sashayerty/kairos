@@ -3,25 +3,25 @@ import json
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def analyze(data_from_internet: str, theme_of_course: str, plan: list) -> dict:
-    """Функция для анализа данных из интернета на нужность по плану.
+def analyze(data_from_internet: str, prompt: str, plan_of_course: str) -> bool:
+    """Функция для анализа данных из интернета на нужность по плану и промпту.
 
     Args:
-        data_from_internet (str): Данные, желательно из одной статьи
-        theme_of_course (str): Тема курса
-        plan (list): План курса
+        data_from_internet (str): Данные, которые нужно проанализировать.
+        prompt (str): Промпт курса.
+        plan (str): План курса.
 
     Returns:
-        dict: {"data_is_useful": True/False}
+        bool: Полезны ли данные.
     """
     json_example = """
     {
         "data_is_useful": True/False # в зависимости от твоего решения(True, если полезна, False - иначе)
     }
     """
-    prompt = f"""Привет! Ты - агент для проверки нужности статьи для применения в создании курса по плану.
-    Твоя задача посмотреть, есть ли пункты плана, где пригодятся данные из статьи. План курса: {plan}.
-    Тема курса: {theme_of_course}. Статья: {data_from_internet}. Твоя задача вернуть мне в ответ json.
+    prompt = f"""Привет! Ты - агент для проверки нужности статьи для применения в создании курса по плану и промпту.
+    Твоя задача посмотреть, есть ли пункты плана, где пригодятся данные из статьи. План курса: {plan_of_course}.
+    Промпт курса: {prompt}. Статья: {data_from_internet}. Твоя задача вернуть мне в ответ json.
     Пример с каждым случаем: {json_example}
     """
     client = mistral_ai_initializer()
@@ -37,4 +37,4 @@ def analyze(data_from_internet: str, theme_of_course: str, plan: list) -> dict:
             "type": "json_object",
         },
     )
-    return json.loads(response)
+    return json.loads(response)["data_is_useful"]
