@@ -1,6 +1,8 @@
 import json
 import time
 
+import colorama
+
 # import markdown
 from flask import Blueprint, render_template, request
 
@@ -11,6 +13,7 @@ ai_couch = Blueprint(
     __name__,
     template_folder="../templates/ai_couch",
 )
+colorama.init(autoreset=True)
 
 
 @ai_couch.route(
@@ -59,17 +62,8 @@ def create_course():
         plan_of_course: dict = json.loads(
             plan(prompt_from_llm=prompt_from_llm)
         )
-        print(" * Plan of course created successfully!")
+        print(colorama.Fore.GREEN + " * Plan of course created successfully!")
         print(plan_of_course)
-        # keys_of_plane = plane_of_course.keys()
-        # plane_as_list = []
-        # for i in keys_of_plane:
-        #     plane_as_list.append(f"{i} - {plane_of_course[i]}")
-        # plane = markdown.markdown("\n\n".join(plane_as_list))
-        # return render_template(
-        #     "course.html",
-        #     plane=plane,
-        # )
         time.sleep(1)
         course = get_theory(
             prompt_from_prompt_agent=prompt_from_llm,
@@ -77,7 +71,7 @@ def create_course():
         )
         print(" * Course function invoked successfully!")
         if course:
-            print(" * Course created successfully!")
+            print(colorama.Fore.GREEN + " * Course created successfully!")
         return render_template(
             "course.html", course=json.loads(course), title="Kairos - Курс"
         )

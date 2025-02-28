@@ -1,5 +1,6 @@
 from time import sleep
 
+import colorama
 import requests
 from bs4 import BeautifulSoup
 
@@ -40,7 +41,9 @@ def scraper(
             "lxml",
         )
         data = bs4.find_all(name=class_of_element)
-        print(f" * Data from {link} parsed successfully!")
+        print(
+            colorama.Fore.YELLOW + f" * Data from {link} parsed successfully!"
+        )
         return data
 
     list_of_processed_data = []
@@ -62,12 +65,16 @@ def scraper(
                         plan_of_course=plan_of_course,
                     )
                 )
-                print(f" * Data from {link} summarized successfully!")
+                print(
+                    colorama.Fore.GREEN
+                    + f" * Data from {link} summarized successfully!"
+                )
             else:
-                print(f" * {link} skipped.")
+                print(colorama.Fore.CYAN + f" * {link} skipped.")
         except Exception as e:
             print(
-                f" * Во время парсинга данных с {link} была вызвана ошибка: {e}"
+                colorama.Fore.RED
+                + f" * Во время парсинга данных с {link} была вызвана ошибка: {e}"
             )
-    print(" * All data is scraped successfully!")
+    print(colorama.Fore.GREEN + " * All data is scraped successfully!")
     return list_of_processed_data
