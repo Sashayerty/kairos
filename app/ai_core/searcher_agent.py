@@ -1,3 +1,5 @@
+import json
+
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
@@ -8,7 +10,7 @@ def searcher(prompt_from_llm: str) -> str:
         prompt_from_llm (str): Промпт от llm
 
     Returns:
-        str: Поисковой запрос dict в виде str
+        str: Поисковой запрос в виде строки.
     """
     json_example = """
     {
@@ -31,4 +33,4 @@ def searcher(prompt_from_llm: str) -> str:
         temperature=0.2,
         response_format={"type": "json_object"},
     )
-    return response
+    return json.loads(response)["data"]
