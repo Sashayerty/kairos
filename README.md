@@ -23,6 +23,59 @@ CSE_ID=your-data
 SECRET_KEY=your-data # Секретный ключ для корректной работы форм wtforms
 ```
 
+## Запуск проекта
+
+### 1. Копируем репо с github
+
+```bash
+git clone https://github.com/sashayerty/Kairos --depth 1
+```
+
+### 2. Переходим в скопированный репо
+
+```bash
+cd ./Kairos
+```
+
+### 3. Создаем виртуальное окружение python
+
+```bash
+#Windows
+python -m venv venv
+#Linux/MacOS
+python3 -m venv venv
+```
+
+### 4. Активируем виртуальное окружение
+
+```bash
+#Windows
+venv/Scripts/activate
+#Linux/MacOS
+source venv/bin/activate
+```
+
+### 5. Устанавливаем зависимости проекта
+
+```bash
+#Windows
+pip install -r ./requirements/prod.txt
+#Linux/MacOS
+pip3 install -r ./requirements/prod.txt
+```
+
+### 6. Запускаем локальный сервер flask
+
+```bash
+#Windows
+python run.py
+#Linux/MacOS
+python3 run.py
+```
+
+### 7. Переходим на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+
 ## Интересные факты
 
 ### 0. [app.config](./app/config.py)
