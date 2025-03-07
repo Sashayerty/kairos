@@ -2,11 +2,12 @@ import json
 import time
 
 import colorama
-
-# import markdown
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, request
+from flask_login import current_user, login_required, login_user, logout_user
 
 from app.ai_core import censor, cool_prompt, get_theory, plan
+from app.forms import LoginForm, RegistrationForm
+from app.models import CourseModel, UsersModel, create_session, global_init
 
 ai_couch = Blueprint(
     "ai_couch",
@@ -14,6 +15,8 @@ ai_couch = Blueprint(
     template_folder="../templates/ai_couch",
 )
 colorama.init(autoreset=True)
+global_init("./app/kairos.db")
+db_session = create_session()
 
 
 @ai_couch.route(
@@ -24,7 +27,11 @@ colorama.init(autoreset=True)
     ],
 )
 def index():
-    return render_template("index.html", title="Kairos - Главная")
+    return render_template(
+        "index.html",
+        title="Kairos - Главная",
+        current_user=current_user,
+    )
 
 
 @ai_couch.route(
@@ -50,7 +57,10 @@ def create_course():
     if message:
         print(message)
         return render_template(
-            "index.html", message=message, title="Kairos - Главная"
+            "index.html",
+            message=message,
+            title="Kairos - Главная",
+            current_user=current_user,
         )
     else:
         prompt_from_llm = cool_prompt(
@@ -65,24 +75,141 @@ def create_course():
         print(colorama.Fore.GREEN + " * Plan of course created successfully!")
         print(plan_of_course)
         time.sleep(1)
+        print(" * Course function invoked successfully!")
         course = get_theory(
             prompt_from_prompt_agent=prompt_from_llm,
             plan=plan_of_course,
         )
-        print(" * Course function invoked successfully!")
+
         if course:
             print(colorama.Fore.GREEN + " * Course created successfully!")
+        if current_user.is_authenticated:
+            course_model = CourseModel(
+                theme=users_theme,
+                desires_of_user=users_desires,
+                user_id=current_user.id,
+                course=json.loads(course),
+            )
+            db_session.add(course_model)
+            db_session.commit()
         return render_template(
-            "course.html", course=json.loads(course), title="Kairos - Курс"
+            "course.html",
+            course=json.loads(course),
+            title="Kairos - Курс",
+            current_user=current_user,
         )
 
 
 @ai_couch.route(
-    "/course",
+    "/courses/<int:course_id>",
     methods=[
         "POST",
         "GET",
     ],
 )
-def course():
-    pass
+def course(course_id: int):
+    course = db_session.query(CourseModel).filter_by(id=course_id).first()
+    return course.theme if course else "Нет курса с таким id!"
+
+
+@ai_couch.route(
+    "/reg",
+    methods=[
+        "POST",
+        "GET",
+    ],
+)
+def register():
+    registration_form = RegistrationForm()
+    if registration_form.validate_on_submit():
+        if (
+            registration_form.password.data
+            == registration_form.password_again.data
+        ):
+            if (
+                db_session.query(UsersModel)
+                .filter_by(name=registration_form.name.data)
+                .first()
+            ):
+                return render_template(
+                    "register.html",
+                    message="Пользователь с таким именем уже есть!",
+                    form=registration_form,
+                )
+            user = UsersModel(
+                name=registration_form.name.data,
+            )
+            user.set_password(password=registration_form.password.data)
+            db_session.add(user)
+            db_session.commit()
+            return redirect("/login")
+        else:
+            return render_template(
+                "register.html",
+                message="Пароли не совпадают.",
+                form=registration_form,
+            )
+    return render_template(
+        "register.html",
+        form=registration_form,
+        title="Kairos - Регистрация",
+    )
+
+
+@ai_couch.route(
+    "/login",
+    methods=[
+        "POST",
+        "GET",
+    ],
+)
+def login():
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        user = (
+            db_session.query(UsersModel)
+            .filter_by(name=login_form.name.data)
+            .first()
+        )
+        if user and user.check_password(login_form.password.data):
+            login_user(user, remember=login_form.remember_me.data)
+            return redirect("/")
+        else:
+            return render_template(
+                "login.html",
+                form=login_form,
+                message="Неправильный логин или пароль.",
+            )
+    return render_template(
+        "login.html",
+        form=login_form,
+        title="Kairos - Вход",
+    )
+
+
+@ai_couch.route(
+    "/logout",
+    methods=[
+        "POST",
+        "GET",
+    ],
+)
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
+
+
+@ai_couch.route("/profile", methods=["POST", "GET"])
+@login_required
+def profile():
+    return current_user.name
+
+
+@ai_couch.route("/courses", methods=["POST", "GET"])
+@login_required
+def courses():
+    courses_of_current_user = (
+        db_session.query(CourseModel).filter_by(user_id=current_user.id).all()
+    )
+    return {"data": {i.theme: i.id} for i in courses_of_current_user}

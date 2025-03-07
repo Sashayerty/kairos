@@ -1,8 +1,12 @@
+from dotenv import dotenv_values
+
+
 class Config:
     """Класс конфиг, в нем содержаться основные настройки проекта."""
 
     # Настройки сервака Flask
     DEBUG = True
+    SECRET_KEY = dotenv_values("./.env")["SECRET_KEY"]
 
     # Настройки парсера Google Custom Search
     num_of_searching_links: int = (

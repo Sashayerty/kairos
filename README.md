@@ -16,10 +16,11 @@
 
 .env-файл должен лежать в корне проекта.
 
-```bash
+```.env
 MISTRAL_AI_API_KEY=your-data
 GOOGLE_API_KEY=your-data
 CSE_ID=your-data
+SECRET_KEY=your-data # Секретный ключ для корректной работы форм wtforms
 ```
 
 ## Интересные факты
@@ -55,3 +56,8 @@ CSE_ID=your-data
 ## Схема логики приложения со стороны агентов
 
 ![Логика](logic.png)
+
+
+## App DataBase
+
+![DataBase](./kairos.png)

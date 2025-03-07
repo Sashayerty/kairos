@@ -13,10 +13,44 @@
 
 <body>
     <header>
-        <nav class="navbar">
+        <nav class="navbar navbar-expand-lg bg-body">
             <div class="container">
-                <span class="border-bottom border-3 border-warning mb-0 pb-0 h1 fs-1"><a
-                        class="text-decoration-none text-dark-emphasis" href=" /">Kairos</a></span>
+                <span class="border-bottom border-3 border-warning mb-0 pb-0 h1 fs-1">
+                    <a class="text-decoration-none text-dark-emphasis" href="/">
+                        Kairos
+                    </a>
+                </span>
+
+                {% if current_user.is_authenticated %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5" href="/courses">Мои курсы</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5" href="/profile">Профиль</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-danger fs-5" href="/logout">Выйти</a>
+                        </li>
+                    </ul>
+                </div>
+                {% else %}
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5" href="/login">Войти</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5" href="/reg">Регистрация</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
         </nav>
     </header>

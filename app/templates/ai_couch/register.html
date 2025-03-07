@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <form action="" method="post">
+        <p class="fs-1 fw-medium text-center">
+            Регистрация
+        </p>
+        {{ form.hidden_tag() }}
+        <p>{{ form.name(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Имя") }}</p>
+        <p>{{ form.password(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Пароль") }}</p>
+        <p>{{ form.password_again(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Подтвердите пароль") }}</p>
+        <p>{{ form.accept_with_terms_of_using }}{{ form.accept_with_terms_of_using.label }} условия использования.</p>
+        <p class="text-center">{{ form.submit(class="btn btn-warning") }}</p>  
+        {% if message %}
+        <p>{{ message }}</p>  
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
