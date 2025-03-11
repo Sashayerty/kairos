@@ -95,21 +95,8 @@ def create_course():
         return render_template(
             "course.html",
             course=json.loads(course),
-            title="Kairos - Курс",
             current_user=current_user,
         )
-
-
-@ai_couch.route(
-    "/courses/<int:course_id>",
-    methods=[
-        "POST",
-        "GET",
-    ],
-)
-def course(course_id: int):
-    course = db_session.query(CourseModel).filter_by(id=course_id).first()
-    return course.theme if course else "Нет курса с таким id!"
 
 
 @ai_couch.route(
@@ -203,7 +190,14 @@ def logout():
 @ai_couch.route("/profile", methods=["POST", "GET"])
 @login_required
 def profile():
-    return current_user.name
+    if request.method == "POST":
+        new_users_data = dict(request.form.items())
+        print(new_users_data)
+    return render_template(
+        "profile.html",
+        title="Kairos - Профиль",
+        current_user=current_user,
+    )
 
 
 @ai_couch.route("/courses", methods=["POST", "GET"])
@@ -212,4 +206,26 @@ def courses():
     courses_of_current_user = (
         db_session.query(CourseModel).filter_by(user_id=current_user.id).all()
     )
-    return {"data": {i.theme: i.id} for i in courses_of_current_user}
+    return render_template(
+        "courses.html",
+        title="Kairos - Мои курсы",
+        courses_of_current_user=courses_of_current_user,
+    )
+
+
+@ai_couch.route(
+    "/course/<int:course_id>",
+    methods=[
+        "POST",
+        "GET",
+    ],
+)
+@login_required
+def course(course_id: int):
+    course = db_session.query(CourseModel).filter_by(id=course_id).first()
+    return render_template(
+        "course.html",
+        title="Kairos - Курс",
+        course=course.course,
+        current_user=current_user,
+    )

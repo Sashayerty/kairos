@@ -30,6 +30,7 @@ class UsersModel(SqlAlchemyBase, UserMixin):
     description = sqlalchemy.Column(
         sqlalchemy.Text,
         nullable=True,
+        default="Нет описания",
     )
     admin = sqlalchemy.Column(
         sqlalchemy.Boolean,
