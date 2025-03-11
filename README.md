@@ -59,9 +59,9 @@ source venv/bin/activate
 
 ```bash
 #Windows
-pip install -r ./requirements/prod.txt
+pip install -r ./requirements.txt
 #Linux/MacOS
-pip3 install -r ./requirements/prod.txt
+pip3 install -r ./requirements.txt
 ```
 
 ### 6. Запускаем локальный сервер flask
@@ -74,7 +74,6 @@ python3 run.py
 ```
 
 ### 7. Переходим на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-
 
 ## Интересные факты
 
@@ -109,7 +108,6 @@ python3 run.py
 ## Схема логики приложения со стороны агентов
 
 ![Логика](logic.png)
-
 
 ## App DataBase
 
