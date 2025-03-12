@@ -192,7 +192,23 @@ def logout():
 def profile():
     if request.method == "POST":
         new_users_data = dict(request.form.items())
-        print(new_users_data)
+        user = (
+            db_session.query(UsersModel).filter_by(id=current_user.id).first()
+        )
+        data_successfully_changed = user.change_data(
+            new_name=new_users_data["name"],
+            new_description=new_users_data["description"],
+            new_password=new_users_data["password"],
+            confirm_new_password=new_users_data["confirm_password"],
+        )
+        if data_successfully_changed[0]:
+            db_session.commit()
+        return render_template(
+            "profile.html",
+            title="Kairos - Профиль",
+            current_user=current_user,
+            message=data_successfully_changed[1],
+        )
     return render_template(
         "profile.html",
         title="Kairos - Профиль",
@@ -229,3 +245,12 @@ def course(course_id: int):
         course=course.course,
         current_user=current_user,
     )
+
+
+@ai_couch.route("/delete-course/<int:course_id>", methods=["POST", "GET"])
+@login_required
+def delete_course(course_id: int):
+    course = db_session.query(CourseModel).filter_by(id=course_id).first()
+    db_session.delete(course) if course else None
+    db_session.commit()
+    return redirect("/courses")

@@ -12,9 +12,22 @@
     <div class="row row-cols-1 row-cols-md-2 g-4">
         {% for course in courses_of_current_user %}
         <div class="col">
-            <a href="{{ url_for('ai_couch.course', course_id=course.id) }}" 
-               class="text-decoration-none text-dark">
-                <div class="card h-100 ">
+            <div class="card h-100" style="position: relative;">
+                <form 
+                    action="{{ url_for('ai_couch.delete_course', course_id=course.id) }}" 
+                    method="POST" 
+                    style="position: absolute; top: 10px; right: 10px; z-index: 1;"
+                >
+                    <button 
+                        type="submit" 
+                        class="btn btn-warning" 
+                        onclick="return confirm('Удалить курс {{ course.theme }}?')"
+                    >
+                        Удалить
+                    </button>
+                </form>
+                <a href="{{ url_for('ai_couch.course', course_id=course.id) }}" 
+                   class="text-decoration-none text-dark">
                     <div class="card-body">
                         <h5 class="card-title mb-3">
                             {{ course.theme }}
@@ -29,8 +42,8 @@
                     <div class="card-footer bg-transparent">
                         <small class="text-muted">ID курса: {{ course.id }}</small>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
         {% endfor %}
     </div>

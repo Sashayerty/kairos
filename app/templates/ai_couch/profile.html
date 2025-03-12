@@ -24,7 +24,7 @@
                                 id="name" 
                                 name="name"
                                 value="{{ current_user.name }}"
-                                required>
+                                required autocomplete="off">
                         </div>
                         <div class="col-12">
                             <label for="description" class="form-label">Описание</label>
@@ -56,9 +56,10 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
-                    <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
+                    <button type="reset" class="btn btn-outline-secondary">Сбросить форму</button>
                     <button type="submit" class="btn btn-warning">Обновить данные</button>
                 </div>
+                <p>{{ message }}</p>
             </form>
         </div>
     </div>
