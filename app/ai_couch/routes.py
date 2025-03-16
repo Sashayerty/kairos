@@ -51,7 +51,7 @@ def create_course():
         censor(theme_from_user=users_theme, desires=users_desires)
     )
     is_theme_are_good = answer_from_censor["data"]
-    print(f" * User's theme is good: {is_theme_are_good}")
+    print(f" * User's theme and desires is good: {is_theme_are_good}")
     time.sleep(1)
     message = answer_from_censor["reason"] if not is_theme_are_good else None
     if message:

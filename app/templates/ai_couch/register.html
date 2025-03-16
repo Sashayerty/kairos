@@ -1,19 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <form action="" method="post">
-        <p class="fs-1 fw-medium text-center">
-            Регистрация
-        </p>
-        {{ form.hidden_tag() }}
-        <p>{{ form.name(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Имя") }}</p>
-        <p>{{ form.password(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Пароль") }}</p>
-        <p>{{ form.password_again(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Подтвердите пароль") }}</p>
-        <p>{{ form.accept_with_terms_of_using }}{{ form.accept_with_terms_of_using.label }} условия использования.</p>
-        <p class="text-center">{{ form.submit(class="btn btn-warning") }}</p>  
-        {% if message %}
-        <p>{{ message }}</p>  
-        {% endif %}
-    </form>
+<div class="login container d-grid align-items-center justify-content-center">
+    <div class="login-container border border-2 rounded-4 p-5">
+        <h1 class="login-title fs-2 fw-bold text-body mb-5">Зарегистрировать аккаунт</h1>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Имя") }}<br>
+                {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+            </p>
+            <p>
+                {{ form.password(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Пароль") }}<br>
+                {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+            <p>
+                {{ form.password_again(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Подтвердите пароль") }}<br>
+                {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+            <p class="mb-4">{{ form.accept_with_terms_of_using }}{{ form.accept_with_terms_of_using.label }} <a
+                class="text-decoration-none link-warning" href="/terms">условия использования</a>
+            </p>
+            <p class="d-grid gap-2">{{ form.submit(type="submit", class="btn btn-warning") }}</p>
+            <p class="text-center">Уже есть аккаунт?<br><a class="text-decoration-none link-warning" href="/login">Войти</a>
+            </p>
+            {{message}}
+        </form>
+    </div>
 </div>
 {% endblock %}

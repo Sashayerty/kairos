@@ -40,7 +40,8 @@ def get_theory(
     """
     client = mistral_ai_initializer()
     prompt = f"""{prompt_from_prompt_agent}.
-    План: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}"""
+    План: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}.
+    Пиши data не в markdown, а в html!"""
     result = client.message(
         messages=[
             {

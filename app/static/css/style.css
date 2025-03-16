@@ -49,3 +49,18 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
+
+pre {
+    border-radius: 5px;
+    border: 2px solid rgb(175, 175, 175);
+    padding: 4px;    
+}
+
+.login {
+    height: 80vh;
+  }
+  
+  .login-container {
+    border-radius: 20px;
+    height: auto;
+  }
