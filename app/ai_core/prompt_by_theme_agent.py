@@ -1,12 +1,17 @@
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def cool_prompt(users_theme: str, desires: str = None) -> str:
+def cool_prompt(
+    users_theme: str,
+    desires: str = None,
+    description_of_user: str = None,
+) -> str:
     """Функция для обогащения темы юзера до промпта
 
     Args:
         users_theme (str): Тема пользователя
         desires (str, optional): Пожелания пользователя. Defaults to None.
+        description_of_user (str): Описание пользователя. Defaults to None.
 
     Returns:
         str: Промпт
@@ -21,6 +26,7 @@ def cool_prompt(users_theme: str, desires: str = None) -> str:
     2. Уточнить, что курс должен быть максимально детализированным.(Теоретическое объяснение, советы и рекомендации,
     возможные ошибки и как их избежать.)
     3. Учесть пожелания пользователя: "{desires}".
+    4. Учесть описание пользователя {description_of_user}(Его может не быть).
 
     Не создавай план (нумерации), пояснений, примеров в этой сфере и т.п. Не назначай практические задания! Этим
     занимается другой агент.

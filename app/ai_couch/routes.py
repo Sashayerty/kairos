@@ -2,7 +2,7 @@ import json
 import time
 
 import colorama
-from flask import Blueprint, redirect, render_template, request
+from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.ai_core import censor, cool_prompt, get_theory, plan
@@ -66,6 +66,11 @@ def create_course():
         prompt_from_llm = cool_prompt(
             users_theme=users_theme,
             desires=users_desires,
+            description_of_user=(
+                current_user.description
+                if current_user.is_authenticated
+                else None
+            ),
         )
         print(prompt_from_llm)
         time.sleep(1)
@@ -96,6 +101,7 @@ def create_course():
             "course.html",
             course=json.loads(course),
             current_user=current_user,
+            title="Kairos - Курс",
         )
 
 
@@ -254,3 +260,8 @@ def delete_course(course_id: int):
     db_session.delete(course) if course else None
     db_session.commit()
     return redirect("/courses")
+
+
+@ai_couch.route("/terms", methods=["GET"])
+def terms_of_using_kairos():
+    return send_file("./static/terms/terms_of_using.pdf")
