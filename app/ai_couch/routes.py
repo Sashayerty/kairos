@@ -5,7 +5,7 @@ import colorama
 from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
-from app.ai_core import censor, cool_prompt, get_theory, plan
+from app.ai_core import censor, cool_prompt, edit_course, get_theory, plan
 from app.forms import LoginForm, RegistrationForm
 from app.models import CourseModel, UsersModel, create_session, global_init
 
@@ -51,7 +51,10 @@ def create_course():
         censor(theme_from_user=users_theme, desires=users_desires)
     )
     is_theme_are_good = answer_from_censor["data"]
-    print(f" * User's theme and desires is good: {is_theme_are_good}")
+    print(
+        f" * User's theme and desires is good:"
+        f" {colorama.Fore.GREEN if is_theme_are_good else colorama.Fore.RED}{is_theme_are_good}"
+    )
     time.sleep(1)
     message = answer_from_censor["reason"] if not is_theme_are_good else None
     if message:
@@ -85,7 +88,6 @@ def create_course():
             prompt_from_prompt_agent=prompt_from_llm,
             plan=plan_of_course,
         )
-
         if course:
             print(colorama.Fore.GREEN + " * Course created successfully!")
         if current_user.is_authenticated:
@@ -265,3 +267,28 @@ def delete_course(course_id: int):
 @ai_couch.route("/terms", methods=["GET"])
 def terms_of_using_kairos():
     return send_file("./static/terms/terms_of_using.pdf")
+
+
+@ai_couch.route(
+    "/edit-course/<int:course_id>",
+    methods=["POST", "GET"],
+)
+@login_required
+def edit_course_view(course_id: int):
+    course = db_session.query(CourseModel).filter_by(id=course_id).first()
+    user_edits = request.args.get("user_edits", type=str)
+    course.course = edit_course(
+        course=course.course,
+        user_edits=user_edits,
+    )
+    db_session.commit()
+    return redirect(f"/course/{course_id}")
+
+
+@ai_couch.route("/favorites/<int:course_id>", methods=["POST", "GET"])
+@login_required
+def favorites(course_id: int):
+    course = db_session.query(CourseModel).filter_by(id=course_id).first()
+    course.is_favorite = True if not course.is_favorite else False
+    db_session.commit()
+    return redirect("/courses")

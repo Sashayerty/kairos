@@ -10,31 +10,34 @@
 
     {% if courses_of_current_user %}
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        {% for course in courses_of_current_user %}
+        {% for course in courses_of_current_user|sort(attribute='is_favorite', reverse=True) %}
         <div class="col">
             <div class="card h-100" style="position: relative;">
-                <form 
-                    action="{{ url_for('ai_couch.delete_course', course_id=course.id) }}" 
-                    method="POST" 
-                    style="position: absolute; top: 10px; right: 10px; z-index: 1;"
-                >
-                    <button 
-                        type="submit" 
-                        class="btn btn-warning" 
-                        onclick="return confirm('Удалить курс {{ course.theme }}?')"
-                    >
-                        Удалить
-                    </button>
-                </form>
-                <a href="{{ url_for('ai_couch.course', course_id=course.id) }}" 
-                   class="text-decoration-none text-dark">
+                <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 1;">
+                    <!-- Кнопка избранного -->
+                    <form action="{{ url_for('ai_couch.favorites', course_id=course.id) }}" method="POST">
+                        <button type="submit"
+                            class="btn btn-sm {% if course.is_favorite %}btn-warning border-2{% else %}btn-outline-warning border-2{% endif %}"
+                            title="{% if course.is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}">
+                            <i class="bi {% if course.is_favorite %}bi-star-fill{% else %}bi-star{% endif %}"></i>
+                        </button>
+                    </form>
+
+                    <!-- Кнопка удаления -->
+                    <form action="{{ url_for('ai_couch.delete_course', course_id=course.id) }}" method="POST">
+                        <button type="submit" class="btn btn-warning btn-sm border-2"
+                            onclick="return confirm('Удалить курс {{ course.theme }}?')">
+                            Удалить
+                        </button>
+                    </form>
+                </div>
+                <a href="{{ url_for('ai_couch.course', course_id=course.id) }}" class="text-decoration-none text-dark">
                     <div class="card-body">
                         <h5 class="card-title mb-3">
                             {{ course.theme }}
                         </h5>
                         {% if course.desires_of_user %}
                         <p class="card-text text-muted small">
-                            <i class="bi bi-lightbulb"></i> 
                             {{ course.desires_of_user|truncate(100) }}
                         </p>
                         {% endif %}

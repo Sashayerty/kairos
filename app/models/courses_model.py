@@ -28,3 +28,8 @@ class CourseModel(SqlAlchemyBase):
         sqlalchemy.JSON,
         nullable=False,
     )
+    is_favorite = sqlalchemy.Column(
+        sqlalchemy.BOOLEAN,
+        default=False,
+        nullable=False,
+    )
