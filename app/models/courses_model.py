@@ -1,6 +1,7 @@
 import sqlalchemy
 
 from app.models.db_session import SqlAlchemyBase
+from app.models.users_model import UsersModel
 
 
 class CourseModel(SqlAlchemyBase):
@@ -21,7 +22,10 @@ class CourseModel(SqlAlchemyBase):
         nullable=True,
     )
     user_id = sqlalchemy.Column(
-        sqlalchemy.Integer,
+        sqlalchemy.ForeignKey(
+            UsersModel.id,
+            ondelete="CASCADE",
+        ),
         nullable=False,
     )
     course = sqlalchemy.Column(
