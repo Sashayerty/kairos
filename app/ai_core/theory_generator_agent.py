@@ -51,5 +51,6 @@ def get_theory(
         ],
         temperature=0.2,
         response_format={"type": "json_object"},
+        timeout_ms=180000,
     )
     return result

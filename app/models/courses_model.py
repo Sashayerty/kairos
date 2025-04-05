@@ -22,6 +22,7 @@ class CourseModel(SqlAlchemyBase):
         nullable=True,
     )
     user_id = sqlalchemy.Column(
+        sqlalchemy.Integer,
         sqlalchemy.ForeignKey(
             UsersModel.id,
             ondelete="CASCADE",
@@ -37,3 +38,13 @@ class CourseModel(SqlAlchemyBase):
         default=False,
         nullable=False,
     )
+
+    user = sqlalchemy.orm.relationship(
+        UsersModel,
+        back_populates="courses",
+    )
+
+
+UsersModel.courses = sqlalchemy.orm.relationship(
+    CourseModel, order_by=CourseModel.id, back_populates="user"
+)

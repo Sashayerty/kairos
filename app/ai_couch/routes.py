@@ -55,7 +55,7 @@ def create_course():
         f" * User's theme and desires is good:"
         f" {colorama.Fore.GREEN if is_theme_are_good else colorama.Fore.RED}{is_theme_are_good}"
     )
-    time.sleep(1)
+    time.sleep(1.5)
     message = answer_from_censor["reason"] if not is_theme_are_good else None
     if message:
         print(message)
@@ -227,9 +227,7 @@ def profile():
 @ai_couch.route("/courses", methods=["POST", "GET"])
 @login_required
 def courses():
-    courses_of_current_user = (
-        db_session.query(CourseModel).filter_by(user_id=current_user.id).all()
-    )
+    courses_of_current_user = current_user.courses
     return render_template(
         "courses.html",
         title="Kairos - Мои курсы",

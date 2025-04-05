@@ -10,7 +10,6 @@ dependencies = [
     "flask-login==0.6.3",
     "flask-wtf==1.2.2",
     "google-api-python-client==2.156.0",
-    "markdown==3.7",
     "mistralai==1.2.5",
     "python-dotenv==1.0.1",
     "sqlalchemy==2.0.38",
