@@ -1,13 +1,12 @@
 # Kairos [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) [![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![GitHub commits](https://badgen.net/github/commits/Sashayerty/Kairos?color=orange)](https://GitHub.com/Sashayerty/Kairos/commits/)
 
-
 Простой проект для создания индивидуального плана обучения с помощью ИИ. Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов.
 
 ## Содержание
 
 1. [Required credentials](#required-credentials)
 2. [Пример .env-файла](#пример-env-файла)
-3. [Запуск проекта](#запуск-проекта)
+3. [Установка](#установка)
     * [pip](#с-помощью-pip)
     * [uv](#с-помощью-uv-рекомендуемое)
 4. [Интересные факты](#интересные-факты)
@@ -17,11 +16,11 @@
 
 ## Required credentials
 
-### 1. Google Custom Search API
+#### 1. Google Custom Search API
 
 Начнем с поиска данных в интернете. Для работы поиска нам понадобится CSE id и Google Search API Key. [Инструкция](https://developers.google.com/custom-search/v1/overview?hl=ru) по получению. При создании API ключа стоит учитывать, что вы можете указать список сайтов, которые будут парситься при API, что делает поиск более конкретным, узконаправленным и специфичным. Создать поисковый сервис в Google [тут](https://programmablesearchengine.google.com/controlpanel/all).
 
-### 2. Mistral AI API
+#### 2. Mistral AI API
 
 Теперь, главная составляющая проекта - ИИ. Получить API ключ можно на официальном [сайте Mistral](https://console.mistral.ai/api-keys/).
 
@@ -36,23 +35,18 @@ CSE_ID=your-data
 SECRET_KEY=your-data # Секретный ключ для корректной работы форм wtforms
 ```
 
-## Запуск проекта
+## Установка
 
-### 1. Копируем репо с github
-
-```bash
-git clone https://github.com/sashayerty/Kairos --depth 1
-```
-
-### 2. Переходим в скопированный репо
+### Клонируем
 
 ```bash
+git clone https://github.com/sashayerty/Kairos --depth 1 # --depth 1 - клонируем последний коммит
 cd ./Kairos
 ```
 
 ### С помощью pip
 
-#### 3. Создаем виртуальное окружение python
+#### 1. Создаем виртуальное окружение python
 
 ```bash
 #Windows
@@ -61,7 +55,7 @@ python -m venv venv
 python3 -m venv venv
 ```
 
-#### 4. Активируем виртуальное окружение
+#### 2. Активируем виртуальное окружение
 
 ```bash
 #Windows
@@ -70,7 +64,7 @@ venv/Scripts/activate
 source venv/bin/activate
 ```
 
-#### 5. Устанавливаем зависимости проекта
+#### 3. Устанавливаем зависимости проекта
 
 ```bash
 #Windows
@@ -79,7 +73,7 @@ pip install -r ./requirements.txt
 pip3 install -r ./requirements.txt
 ```
 
-#### 6. Запускаем локальный сервер flask
+#### 4. Запускаем локальный сервер flask
 
 ```bash
 #Windows
@@ -90,13 +84,13 @@ python3 run.py
 
 ### С помощью uv (рекомендуемое)
 
-#### 3. Подтягиваем зависимости
+#### 1. Подтягиваем зависимости
 
 ```bash
 uv sync # .venv создается автоматически
 ```
 
-#### 4. Запускаем проект
+#### 2. Запускаем проект
 
 ```bash
 uv run run.py
