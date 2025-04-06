@@ -1,4 +1,4 @@
-# Kairos [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) [![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![GitHub commits](https://badgen.net/github/commits/Sashayerty/Kairos?color=orange)](https://GitHub.com/Sashayerty/Kairos/commits/)
+# Kairos [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) [![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![GitHub commits](https://badgen.net/github/commits/Sashayerty/Kairos?color=orange)](https://GitHub.com/Sashayerty/Kairos/commits/) [![Powered by Flask Manager](https://shields.io/badge/Powered_by-Flask_Manager-orange)](https://github.com/Sashayerty/flask_manager)
 
 Простой проект для создания индивидуального плана обучения с помощью ИИ. Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов.
 
