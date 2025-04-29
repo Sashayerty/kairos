@@ -11,6 +11,7 @@ class ModifiedMistral(Mistral):
         timeout_ms: int = None,
         response_format: dict = None,
         model: str = "mistral-large-latest",
+        timeout: int = 300000,
     ) -> str:
         """Send message to model
 
@@ -21,6 +22,7 @@ class ModifiedMistral(Mistral):
             response_format (dict, optional): Format of response. May be json or else. Defaults to None.
             model (str, optional): Model to use. Defaults to "mistral-large-latest".
 
+
         Returns:
             str: Response from model.
         """
@@ -29,5 +31,6 @@ class ModifiedMistral(Mistral):
             response_format=response_format,
             temperature=temperature,
             messages=messages,
+            timeout_ms=timeout,
         )
         return self.result.choices[0].message.content
