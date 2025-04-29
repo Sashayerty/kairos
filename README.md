@@ -112,17 +112,17 @@ uv run run.py
 
 Директория с основным функционалом и взаимодействиями с ИИ. Возможно, сделаю нумерацию или табличку для удобной навигации, но это неточно. Представлено 9 агентов.
 
-|В [схеме](#схема-логики-приложения-со-стороны-агентов)|Файл|Назначение агента|
-| --- | --- | --- |
-|[1]|[app.ai_core.censor_agent](./app/ai_core/censor_agent.py)|Агент для цензуры темы пользователя.|
-|[2]|[app.ai_core.prompt_by_theme_agent](./app/ai_core/prompt_by_theme_agent.py)|Агент для обогащения темы пользователя до промпта для llm.|
-|[3]|[app.ai_core.searcher_agent](./app/ai_core/searcher_agent.py)|Агент для составления поискового запроса по промпту.|
-|[4]|[app.ai_core.check_need_test](./app/ai_core/check_need_test.py)|Агент для проверки нужности тестов в курсе.|
-|[5]|[app.ai_core.plan_by_prompt_agent](./app/ai_core/plan_by_prompt_agent.py)|Агент для составления плана курса по промпту от llm.|
-|[6]|[app.ai_core.analyzer_agent](./app/ai_core/analyzer_agent.py)|Агент для анализа данных из интернета на нужность по плану.|
-|[7]|[app.ai_core.test_maker](./app/ai_core/test_maker_agent.py)|Агент для создания тестов для курсов.|
-|[8]|[app.ai_core.summarizer_agent](./app/ai_core/summarizer_agent.py)|Агент для сжатия статей из интернета.|
-|[9]|[app.ai_core.theory_generator_agent](./app/ai_core/theory_generator_agent.py)|Агент для генерации итогового результата.|
+|В [схеме](#схема-логики-приложения-со-стороны-агентов)|Файл|Назначение агента|Работает|
+| --- | --- | --- | --- |
+|[1]|[app.ai_core.censor_agent](./app/ai_core/censor_agent.py)|Агент для цензуры темы пользователя.|+|
+|[2]|[app.ai_core.prompt_by_theme_agent](./app/ai_core/prompt_by_theme_agent.py)|Агент для обогащения темы пользователя до промпта для llm.|+|
+|[3]|[app.ai_core.searcher_agent](./app/ai_core/searcher_agent.py)|Агент для составления поискового запроса по промпту.|+|
+|[4]|[app.ai_core.check_need_test](./app/ai_core/check_need_test.py)|Агент для проверки нужности тестов в курсе.|-|
+|[5]|[app.ai_core.plan_by_prompt_agent](./app/ai_core/plan_by_prompt_agent.py)|Агент для составления плана курса по промпту от llm.|+|
+|[6]|[app.ai_core.analyzer_agent](./app/ai_core/analyzer_agent.py)|Агент для анализа данных из интернета на нужность по плану.|+|
+|[7]|[app.ai_core.test_maker](./app/ai_core/test_maker_agent.py)|Агент для создания тестов для курсов.|-|
+|[8]|[app.ai_core.summarizer_agent](./app/ai_core/summarizer_agent.py)|Агент для сжатия статей из интернета.|+|
+|[9]|[app.ai_core.theory_generator_agent](./app/ai_core/theory_generator_agent.py)|Агент для генерации итогового результата.|+|
 
 ### 4. [app.google_custom_search.search_function](./app/google_custom_search/search_function.py)
 
