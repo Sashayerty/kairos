@@ -1,6 +1,6 @@
 # Kairos [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) [![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![GitHub commits](https://badgen.net/github/commits/Sashayerty/Kairos?color=orange)](https://GitHub.com/Sashayerty/Kairos/commits/) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker) [![Powered by Flask Manager](https://shields.io/badge/Powered_by-Flask_Manager-orange)](https://github.com/Sashayerty/flask_manager)
 
-Простой проект для создания индивидуального плана обучения с помощью ИИ. Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов.
+Простой проект для создания индивидуального курса с помощью ИИ. Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов.
 
 ## Содержание
 
@@ -16,7 +16,7 @@
 
 ## Required credentials
 
-#### 1. Google Custom Search API
+#### 1. Google Custom Search API (сделана только функция, без интеграции)
 
 Начнем с поиска данных в интернете. Для работы поиска нам понадобится CSE id и Google Search API Key. [Инструкция](https://developers.google.com/custom-search/v1/overview?hl=ru) по получению. При создании API ключа стоит учитывать, что вы можете указать список сайтов, которые будут парситься при API, что делает поиск более конкретным, узконаправленным и специфичным. Создать поисковый сервис в Google [тут](https://programmablesearchengine.google.com/controlpanel/all).
 
