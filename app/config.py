@@ -4,7 +4,7 @@ from dotenv import dotenv_values
 class Config:
     """Класс конфиг, в нем содержаться основные настройки проекта."""
 
-    # Настройки сервака Flask
+    # Настройки сервера Flask
     DEBUG = True
     SECRET_KEY = dotenv_values("./.env")["SECRET_KEY"]
 
