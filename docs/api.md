@@ -72,6 +72,6 @@ curl -X POST http://127.0.0.1:5000/api/gen -H "Content-Type: application/json" -
     },
     "prompt_from_llm": ...,
     "plan_of_course": {...},
-    "course": "{...}"
+    "course": {...}
 }
 ```
