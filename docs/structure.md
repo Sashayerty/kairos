@@ -5,6 +5,7 @@ Kairos/
 ├── app/                                # Директория проекта
 │   ├── ai_core/                        # Функционал ИИ-агентов
 │   ├── ai_couch/                       # Приложение ai_couch, в нем функции и эндпоинты
+│   ├── api/                            # API проекта
 │   ├── forms/                          # Формы wtforms
 │   ├── google_custom_search/           # Google Custom Search функция
 │   ├── mistral_ai_initializer/         # Инициализатор кастомного класса MistralAI
