@@ -1,0 +1,77 @@
+# Kairos API docs
+
+## Проверить тему пользователя и пожелания
+
+```bash
+POST /api/check
+```
+
+Проверяет тему пользователя и пожелания на наличие нецензурного содержания.
+
+### Параметры
+
+- `theme`: (required) Тема курса для проверки
+- `desires`: (optional) Пожелания к курсу
+
+### Пример
+
+Запрос:
+
+```bash
+curl -X POST http://127.0.0.1:5000/api/check -H "Content-Type: application/json" -d '{
+  "theme": "Learning Python",
+  "desires": "Understand the basics of Python programming"
+}'
+```
+
+Ответ:
+
+```bash
+{
+    "message": "Theme is good",
+    "theme_is_good": true
+}
+```
+
+
+## Сгенерировать курс
+
+```bash
+POST /api/gen
+```
+
+Генерирует курс по теме, пожеланию и описанию пользователя.
+
+### Параметры
+
+- `theme`: (required) Тема курса для проверки
+- `desires`: (optional) Пожелания к курсу
+- `description_of_user`: (optional) Описание пользователя
+
+### Пример
+
+Запрос:
+
+```bash
+curl -X POST http://127.0.0.1:5000/api/gen -H "Content-Type: application/json" -d '{
+    "theme": "Learning Python",
+    "desires": "Understand the basics of Python programming",
+    "description_of_user": "Beginner in programming"
+  }'
+```
+
+Ответ:
+
+```bash
+{
+    "theme": "Learning Python",
+    "desires": "Understand the basics of Python programming",
+    "description_of_user": "Beginner in programming",
+    "answer_from_censor": {
+        "data": true
+    },
+    "prompt_from_llm": ...,
+    "plan_of_course": {...},
+    "course": "{...}"
+}
+```
