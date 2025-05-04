@@ -15,6 +15,8 @@ POST /api/check
 
 ### Пример
 
+#### Status `200`
+
 Запрос:
 
 ```bash
@@ -33,6 +35,25 @@ curl -X POST http://127.0.0.1:5000/api/check -H "Content-Type: application/json"
 }
 ```
 
+#### Status `400`
+
+Запрос:
+
+```bash
+curl -X POST http://127.0.0.1:5000/api/check -H "Content-Type: application/json" -d '{
+  "theme": "Что-то незаконное",
+  "desires": "Что-то незаконное"
+}'
+```
+
+Ответ:
+
+```bash
+{
+    "message": "Тема пользователя связана с чем-то незаконным.",
+    "theme_is_good": false
+}
+```
 
 ## Сгенерировать курс
 
@@ -49,6 +70,8 @@ POST /api/gen
 - `description_of_user`: (optional) Описание пользователя
 
 ### Пример
+
+#### Status `200`
 
 Запрос:
 
@@ -73,5 +96,25 @@ curl -X POST http://127.0.0.1:5000/api/gen -H "Content-Type: application/json" -
     "prompt_from_llm": ...,
     "plan_of_course": {...},
     "course": {...}
+}
+```
+
+#### Status `400`
+
+Запрос:
+
+```bash
+curl -X POST http://127.0.0.1:5000/api/gen -H "Content-Type: application/json" -d '{
+    "theme": "Что-то незаконное",
+    "desires": "Что-то незаконное"
+  }'
+```
+
+Ответ:
+
+```bash
+{
+    "message": "Тема пользователя связана с чем-то незаконным.",
+    "theme_is_good": false
 }
 ```

@@ -42,6 +42,7 @@ class GenerateCourse(Resource):
         if not is_theme_are_good:
             return {
                 "message": message,
+                "theme_is_good": False,
             }, 400
         prompt_from_llm = cool_prompt(
             users_theme=users_theme,
