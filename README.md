@@ -124,6 +124,12 @@ uv run run.py
 |[8]|[app.ai_core.summarizer_agent](./app/ai_core/summarizer_agent.py)|Агент для сжатия статей из интернета.|+|
 |[9]|[app.ai_core.theory_generator_agent](./app/ai_core/theory_generator_agent.py)|Агент для генерации итогового результата.|+|
 
+Пока не в схеме:
+
+|Файл|Назначение агента|Работает|
+|---|---|:-:|
+|[app.ai_core.editor_agent](./app/ai_core/editor_agent.py)|Правка курса с учетом пожеланий|+|
+
 ### 4. [app.google_custom_search.search_function](./app/google_custom_search/search_function.py)
 
 Функция для поиска в Google Custom Search. Подробнее [тут](#1-google-custom-search-api)

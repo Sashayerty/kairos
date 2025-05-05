@@ -33,8 +33,8 @@
                 </div>
                 <a href="{{ url_for('ai_couch.course', course_id=course.id) }}" class="text-decoration-none text-dark">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">
-                            {{ course.theme }}
+                        <h5 class="card-title mb-3" title="{{ course.theme }}">
+                            {{ course.theme | truncate(40) }}
                         </h5>
                         {% if course.desires_of_user %}
                         <p class="card-text text-muted small">
