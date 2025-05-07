@@ -1,4 +1,4 @@
-# Kairos API docs
+# Kairos Flask-RESTful API docs
 
 ## Endpoints
 
