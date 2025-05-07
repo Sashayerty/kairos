@@ -1,13 +1,13 @@
 from googleapiclient.discovery import build
 
-from app.config import config
+# from app.config import config
 
 
 def google_search(
     query: str,
     api_key: str,
     cse_id: str,
-    num_results: int = config.num_of_searching_links,
+    num_results: int #  = config.num_of_searching_links,
 ) -> list:
     """Функция для поиска ссылок в гугл по query
 
@@ -15,7 +15,7 @@ def google_search(
         query (str): Тема поиска
         api_key (str): API-ключ
         cse_id (str): CSE-ключ
-        num_results (str, optional): Количество резов. Defaults to config.num_of_searching_links.
+        num_results (str, optional): Количество резов.
 
     Returns:
         list: Список словарей найденных ссылок. Для извлечения ссылки проходим по списку. Ключи: link, title

@@ -5,8 +5,8 @@ def create_course(
     prompt_from_prompt_agent: str,
     plan: str,
     part_of_plan: str,
-    ready_part_of_course: str = None,
-    theory: str = None,
+    ready_part_of_course: str | None = None,
+    theory: str | None = None,
 ) -> str:
     """Функция для итеративной генерации итогового результата.
 

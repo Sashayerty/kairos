@@ -23,14 +23,14 @@ def scraper(
     """
 
     def pars_data(
-        link: str, class_of_element: str = config.class_of_element
+        link: str, class_of_element: str
     ) -> str:
         # flake8: noqa
         """Функция для парсинга данных
 
         Args:
             link (str): Ссылка, которую нужно пропарсить.
-            class_of_element (str, optional): Элемент, из которого извлекать данные на странице. Defaults to config.class_of_element.
+            class_of_element (str, optional): Элемент, из которого извлекать данные на странице.
 
         Returns:
             str: Данные с страницы.
@@ -51,6 +51,7 @@ def scraper(
         try:
             data = pars_data(
                 link=link,
+                class_of_element=config.class_of_element,
             )
             if analyze(
                 data_from_internet=data,

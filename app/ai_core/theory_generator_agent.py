@@ -2,13 +2,13 @@ from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def get_theory(
-    prompt_from_prompt_agent: str, plan: str, theory: str = None
+    prompt_from_prompt_agent: str, plan: dict, theory: str | None = None
 ) -> str:
     """Функция для генерации итогового результата.
 
     Args:
         prompt_from_prompt_agent (str): Промпт, по которому нужно сделать курс.
-        plan (str): План курса.
+        plan (dict): План курса.
         theory (str, optional): Теория, которая должна быть обязательно включена в курс. Defaults to None.
 
     Returns:

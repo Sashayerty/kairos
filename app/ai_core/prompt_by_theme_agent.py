@@ -3,8 +3,8 @@ from app.mistral_ai_initializer import mistral_ai_initializer
 
 def cool_prompt(
     users_theme: str,
-    desires: str = None,
-    description_of_user: str = None,
+    desires: str | None = None,
+    description_of_user: str | None = None,
 ) -> str:
     """Функция для обогащения темы юзера до промпта
 
