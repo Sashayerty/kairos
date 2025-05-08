@@ -5,19 +5,15 @@ class Config:
     """Класс конфиг, в нем содержаться основные настройки проекта."""
 
     # Настройки сервера Flask
-    DEBUG = True
-    SECRET_KEY = dotenv_values("./.env")["SECRET_KEY"]
-    DATABASE_PATH = "./database/kairos.db"
+    DEBUG: bool = True
+    SECRET_KEY: str = dotenv_values("./.env")["SECRET_KEY"]
+    DATABASE_PATH: str = "./database/kairos.db"
 
     # Настройки парсера Google Custom Search
-    num_of_searching_links: int = (
-        5  # Количество ссылок, которое будет в ответе от app.google_custom_search.google_search
-    )
+    COUNT_OF_LINKS: int = 5  # Количество ссылок от Google Custom Search
 
     # Настройки bs4
-    class_of_element: str = (
-        "p"  # Класс элемента, который будет парсится на странице
-    )
+    BS4_CLASS: str = "p"  # Класс элемента, который будет парсится на странице
 
 
 config = Config()

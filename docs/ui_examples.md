@@ -1,41 +1,32 @@
-# Примеры UI Kairos
+# Примеры UI
 
-
-1. [Главная страница](#1-главная-страница-)
-2. [Вход](#2-вход-login)
-3. [Главная страница (выполнен вход)](#3-главная-страница-выполнен-вход-)
-4. [Список курсов](#4-список-курсов-courses)
-5. [Профиль](#5-профиль-profile)
-6. [Создаем курс](#6-создаем-курс-)
-7. [Созданный курс](#7-созданный-курс-coursecourse_id)
-
----
+UI сделан с использованием Bootstrap.
 
 ## 1. Главная страница `/`
 
-![Главная](/docs/img/main_page.png)
+![Главная](./img/main_page.png)
 
 ## 2. Вход `/login`
 
-![Вход](/docs/img/login.png)
+![Вход](./img/login.png)
 
 ## 3. Главная страница (выполнен вход) `/`
 
-![Главная-вход](/docs/img/logined.png)
+![Главная-вход](./img/logined.png)
 
 ## 4. Список курсов `/courses`
 
-![Список](/docs/img/list_of_courses.png)
+![Список](./img/list_of_courses.png)
 
 ## 5. Профиль `/profile`
 
-![Профиль](/docs/img/profile.png)
+![Профиль](./img/profile.png)
 
 ## 6. Создаем курс `/`
 
-![Создаём](/docs/img/create_course.png)
+![Создаём](./img/create_course.png)
 
 ## 7. Созданный курс `/course/{course_id}`
 
-![Курс](/docs/img/created_course.png)
+![Курс](./img/created_course.png)
 

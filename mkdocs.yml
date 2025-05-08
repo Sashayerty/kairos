@@ -1,0 +1,47 @@
+site_name: Kairos
+repo_url: https://github.com/sashayerty/kairos
+repo_name: sashayerty/kairos
+nav:
+  - Главная: README.md
+  - 'Настройки конфигурации': config_settings.md
+  - 'Переменные .env': dotenv_variables.md
+  - 'Развертывание с mkdocs': mkdocs.md
+  - 'RestAPI Docs': api.md
+  - 'Структура проекта': structure.md
+  - 'Примеры UI': ui_examples.md
+theme:
+  language: ru
+  name: material
+  palette:
+    - media: "(prefers-color-scheme)"
+      primary: green
+      accent: green
+      toggle:
+        icon: material/link
+        name: Переключить на светлую тему
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: green
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Переключить на темную тему
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: green
+      toggle:
+        icon: material/toggle-switch
+        name: Переключить на системную тему
+# plugins:
+#   - offline
+markdown_extensions:
+  # Python Markdown
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.highlight
+  - pymdownx.superfences

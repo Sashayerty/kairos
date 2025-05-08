@@ -22,15 +22,13 @@ def scraper(
         list[str]: Список обработанных данных по каждой ссылке.
     """
 
-    def pars_data(
-        link: str, class_of_element: str
-    ) -> str:
+    def pars_data(link: str, BS4_CLASS: str) -> str:
         # flake8: noqa
         """Функция для парсинга данных
 
         Args:
             link (str): Ссылка, которую нужно пропарсить.
-            class_of_element (str, optional): Элемент, из которого извлекать данные на странице.
+            BS4_CLASS (str, optional): Элемент, из которого извлекать данные на странице.
 
         Returns:
             str: Данные с страницы.
@@ -40,7 +38,7 @@ def scraper(
             row_data.text,
             "lxml",
         )
-        data = bs4.find_all(name=class_of_element)
+        data = bs4.find_all(name=BS4_CLASS)
         print(
             colorama.Fore.YELLOW + f" * Data from {link} parsed successfully!"
         )
@@ -51,7 +49,7 @@ def scraper(
         try:
             data = pars_data(
                 link=link,
-                class_of_element=config.class_of_element,
+                BS4_CLASS=config.BS4_CLASS,
             )
             if analyze(
                 data_from_internet=data,

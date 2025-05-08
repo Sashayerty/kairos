@@ -1,8 +1,11 @@
-# Kairos docs
+# Главная
 
-Документация для **Kairos**. Ниже представлены модули:
+Документация для **Kairos** Присутствует возможность развертывания с помощью [mkdocs](https://www.mkdocs.org/getting-started/). Ниже представлены модули:
 
-- [Документация Kairos API](./api.md)
-- [Настройки конфига](./config_settings.md)
-- [Переменные `.env`](./dotenv_variables.md)
+- [Настройки конфигурации](./config_settings.md)
+- [Переменные .env](./dotenv_variables.md)
+- [Развертывание с mkdocs](./mkdocs.md)
+- [RestAPI Docs](./api.md)
 - [Структура проекта](./structure.md)
+- [Разворачиваем документацию с помощью mkdocs](./mkdocs.md)
+- [Примеры UI](./ui_examples.md)

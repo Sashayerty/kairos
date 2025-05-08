@@ -7,7 +7,7 @@ def google_search(
     query: str,
     api_key: str,
     cse_id: str,
-    num_results: int #  = config.num_of_searching_links,
+    num_results: int,  #  = config.COUNT_OF_LINKS,
 ) -> list:
     """Функция для поиска ссылок в гугл по query
 
