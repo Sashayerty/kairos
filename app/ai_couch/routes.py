@@ -6,6 +6,7 @@ from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.ai_core import censor, cool_prompt, edit_course, get_theory, plan
+from app.config import config
 from app.forms import LoginForm, RegistrationForm
 from app.models import CourseModel, UsersModel, create_session, global_init
 
@@ -15,7 +16,7 @@ ai_couch = Blueprint(
     template_folder="../templates/ai_couch",
 )
 colorama.init(autoreset=True)
-global_init("./app/kairos.db")
+global_init(config.DATABASE_PATH)
 db_session = create_session()
 
 

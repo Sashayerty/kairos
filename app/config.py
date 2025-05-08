@@ -7,6 +7,7 @@ class Config:
     # Настройки сервера Flask
     DEBUG = True
     SECRET_KEY = dotenv_values("./.env")["SECRET_KEY"]
+    DATABASE_PATH = "./database/kairos.db"
 
     # Настройки парсера Google Custom Search
     num_of_searching_links: int = (

@@ -17,7 +17,6 @@ def create_app() -> Flask:
     api = Api(app=app, prefix="/api")
     api.add_resource(GenerateCourse, "/gen")
     api.add_resource(Check, "/check")
-    global_init("./app/kairos.db")
     app.config.from_object(config)
     login_manager.init_app(app)
     app.register_blueprint(ai_couch)
