@@ -1,120 +1,104 @@
-# RestAPI Docs
+# :sparkles: API проекта
 
-## Проверить тему пользователя и пожелания
+В данном блоке описан весь функционал проекта, написанный мной. От агентов до поиска в Google.
 
-```bash
-POST /api/check
+## Агенты
+
+|Функция|Назначение агента|Работает|
+| --- | --- | :-: |
+|analyze|Агент для анализа данных из интернета на нужность по плану.|:white_check_mark:|
+|check|Агент для цензуры темы и пожеланий пользователя.|:white_check_mark:|
+|check_is_need_test|Агент для проверки нужности тестов в курсе.|:bricks:|
+|gen_course|Агент для генерации итогового результата.|:white_check_mark:|
+|edit_course|Агент для изменения курса по корректировкам пользователя|:white_check_mark:|
+|create_course|Агент для итеративной генерации курса.|:white_check_mark:|
+|gen_plan|Агент для составления плана курса по промпту.|:white_check_mark:|
+|gen_prompt|Агент для создания промпта по теме, пожеланиям и описанию пользователя.|:white_check_mark:|
+|searcher|Агент для составления поискового запроса по промпту.|:white_check_mark:|
+|summarizer|Агент для сжатия статей из интернета.|:white_check_mark:|
+|test|Агент для создания тестов для курсов.|:bricks:|
+
+Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих `.py` файлах. Для того, чтобы импортировать агента из `app.ai_couch` пишем:
+
+```python
+from app.ai_couch import {название функции из таблицы}
 ```
 
-Проверяет тему пользователя и пожелания на наличие нецензурного содержания.
+## Web scraper
 
-### Параметры
+Web scraper - функция для парсинга и комплексной обработки данных из Интернета. Данные обрабатываются по следующему алгоритму:
 
-- `theme`: (required) Тема курса для проверки
-- `desires`: (optional) Пожелания к курсу
-
-### Пример
-
-#### Status `200`
-
-Запрос:
-
-```bash
-curl -X POST http://127.0.0.1:5000/api/check -H "Content-Type: application/json" -d '{
-  "theme": "Learning Python",
-  "desires": "Understand the basics of Python programming"
-}'
+```mermaid
+flowchart LR
+a("Список ссылок")
+b("Парсинг каждой")
+c("Проверка на нужность")
+d("Сжатие")
+a --> b
+b -->|Данные| c
+c -->|Нужны| d
 ```
 
-Ответ:
+Пример использования:
 
-```bash
-{
-    "message": "Theme is good",
-    "theme_is_good": true
-}
+```python
+from app.ai_core import gen_plan, gen_prompt
+from app.ai_couch import scraper
+
+theme = "LLM в жизни человека"
+
+prompt = gen_prompt(theme=theme)
+plan = gen_plan(prompt=prompt)
+
+data = scraper(
+    list_of_links=[
+        "https://habr.com/ru/articles/775870/",
+        "https://habr.com/ru/articles/775842/",
+        "https://habr.com/ru/articles/835342/",
+        "https://habr.com/ru/articles/768844/",
+    ],
+    prompt=prompt,
+    plan=plan,
+)
+
+print(data)
+
 ```
 
-#### Status `400`
+## ModifiedMistral
 
-Запрос:
+Дочерний класс `Mistral`. Создан для удобства взаимодействия с моделью в рамках приложения. Есть функция `message`, есть инициализатор экземпляра класса. Пример использования:
 
-```bash
-curl -X POST http://127.0.0.1:5000/api/check -H "Content-Type: application/json" -d '{
-  "theme": "Что-то незаконное",
-  "desires": "Что-то незаконное"
-}'
+```python
+from app.mistral_ai_initializer import ModifiedMistral, mistral_ai_initializer
+
+instance1 = ModifiedMistral(api_key="api_key")
+instance2 = mistral_ai_initializer()  # Автоматически получает API ключ из .env
+
+print(instance1.message(messages=[{"role": "user", "content": "Привет!"}]))
+print(instance2.message(messages=[{"role": "user", "content": "Привет!"}]))
+
+> Привет! Как я могу помочь?
+> Привет! Как я могу помочь?
 ```
 
-Ответ:
+## Google search
 
-```bash
-{
-    "message": "Тема пользователя связана с чем-то незаконным.",
-    "theme_is_good": false
-}
-```
+Функция для поиска ссылок с статьями по запросу. Пример использования:
 
-## Сгенерировать курс
+```python
+from app.google_custom_search import google_search
 
-```bash
-POST /api/gen
-```
-
-Генерирует курс по теме, пожеланию и описанию пользователя.
-
-### Параметры
-
-- `theme`: (required) Тема курса для проверки
-- `desires`: (optional) Пожелания к курсу
-- `description_of_user`: (optional) Описание пользователя
-
-### Пример
-
-#### Status `200`
-
-Запрос:
-
-```bash
-curl -X POST http://127.0.0.1:5000/api/gen -H "Content-Type: application/json" -d '{
-    "theme": "Learning Python",
-    "desires": "Understand the basics of Python programming",
-    "description_of_user": "Beginner in programming"
-  }'
-```
-
-Ответ:
-
-```bash
-{
-    "theme": "Learning Python",
-    "desires": "Understand the basics of Python programming",
-    "description_of_user": "Beginner in programming",
-    "answer_from_censor": {
-        "data": true
-    },
-    "prompt_from_llm": ...,
-    "plan_of_course": {...},
-    "course": {...}
-}
-```
-
-#### Status `400`
-
-Запрос:
-
-```bash
-curl -X POST http://127.0.0.1:5000/api/gen -H "Content-Type: application/json" -d '{
-    "theme": "Что-то незаконное",
-    "desires": "Что-то незаконное"
-  }'
-```
-
-Ответ:
-
-```bash
-{
-    "message": "Тема пользователя связана с чем-то незаконным.",
-    "theme_is_good": false
-}
+print(
+    *[
+        i["link"]
+        for i in google_search(
+            "Что такое LLM?",
+            api_key="api-key",
+            cse_id="cse_id",
+            num_results=4,
+        )
+    ]
+)
+> https://habr.com/ru/articles/775870/ https://habr.com/ru/articles/775842/ https://habr.com/ru/articles/835342/ https://habr.com/ru/articles/768844/
 ```

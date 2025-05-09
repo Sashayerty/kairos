@@ -15,5 +15,10 @@ class Config:
     # Настройки bs4
     BS4_CLASS: str = "p"  # Класс элемента, который будет парсится на странице
 
+    # Настройки MistralAI
+    MODEL_NAME: str = (
+        "mistral-large-latest"  # https://docs.mistral.ai/getting-started/models/
+    )
+
 
 config = Config()

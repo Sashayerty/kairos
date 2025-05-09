@@ -1,9 +1,13 @@
 import json
 
+from app.config import config
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def edit_course(course: dict, user_edits: str) -> dict:
+def edit_course(
+    course: dict,
+    user_edits: str,
+) -> dict:
     json_example = """
     {
         "1":{
@@ -27,15 +31,16 @@ def edit_course(course: dict, user_edits: str) -> dict:
             },
     }
     """
-    prompt = f"""Привет! Ты редактор курсов по пожеланию пользователя. Твоя задача сделать с курсом именно то, что
-    просит пользователь. Курс: {json.dumps(course)} Правки пользователя: {user_edits}. Вернуть нужно такой же по
+    prompt_to_llm = f"""Привет! Ты редактор курсов по пожеланию пользователя. Твоя задача сделать с курсом именно то,
+    что просит пользователь. Курс: {json.dumps(course)} Правки пользователя: {user_edits}. Вернуть нужно такой же по
     структуре курс, но с правками пользователя. Пример структуры курса: {json_example}"""
     client = mistral_ai_initializer()
     response = client.message(
+        model=config.MODEL_NAME,
         messages=[
             {
                 "role": "user",
-                "content": prompt,
+                "content": prompt_to_llm,
             }
         ],
         temperature=0.1,

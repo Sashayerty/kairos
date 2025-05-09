@@ -2,7 +2,7 @@ import json
 
 from flask_restful import Resource, reqparse
 
-from app.ai_core import censor
+from app.ai_core import check
 
 parser = reqparse.RequestParser()
 
@@ -24,8 +24,8 @@ class Check(Resource):
         users_theme = args.theme
         users_desires = args.desires
         answer_from_censor = json.loads(
-            censor(
-                theme_from_user=users_theme,
+            check(
+                theme=users_theme,
                 desires=users_desires,
             )
         )

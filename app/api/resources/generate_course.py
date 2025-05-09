@@ -2,7 +2,7 @@ import json
 
 from flask_restful import Resource, reqparse
 
-from app.ai_core import censor, cool_prompt, get_theory, plan
+from app.ai_core import check, gen_course, gen_plan, gen_prompt
 
 parser = reqparse.RequestParser()
 
@@ -30,8 +30,8 @@ class GenerateCourse(Resource):
         users_desires = args.desires
         description_of_user = args.description_of_user
         answer_from_censor = json.loads(
-            censor(
-                theme_from_user=users_theme,
+            check(
+                theme=users_theme,
                 desires=users_desires,
             )
         )
@@ -44,17 +44,15 @@ class GenerateCourse(Resource):
                 "message": message,
                 "theme_is_good": False,
             }, 400
-        prompt_from_llm = cool_prompt(
+        prompt_from_llm = gen_prompt(
             users_theme=users_theme,
             desires=users_desires,
             description_of_user=description_of_user,
         )
-        plan_of_course: dict = json.loads(
-            plan(prompt_from_llm=prompt_from_llm)
-        )
+        plan_of_course: dict = json.loads(gen_plan(prompt=prompt_from_llm))
         course = json.loads(
-            get_theory(
-                prompt_from_prompt_agent=prompt_from_llm,
+            gen_course(
+                prompt=prompt_from_llm,
                 plan=plan_of_course,
             )
         )
@@ -64,6 +62,6 @@ class GenerateCourse(Resource):
             "description_of_user": description_of_user,
             "answer_from_censor": answer_from_censor,
             "prompt_from_llm": prompt_from_llm,
-            "plan_of_course": plan_of_course,
+            "plan": plan_of_course,
             "course": course,
         }, 200

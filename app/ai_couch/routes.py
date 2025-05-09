@@ -5,7 +5,7 @@ import colorama
 from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
-from app.ai_core import censor, cool_prompt, edit_course, get_theory, plan
+from app.ai_core import check, edit_course, gen_course, gen_plan, gen_prompt
 from app.config import config
 from app.forms import LoginForm, RegistrationForm
 from app.models import CourseModel, UsersModel, create_session, global_init
@@ -49,7 +49,7 @@ def create_course():
     if users_desires:
         print(f" * User's desires: {users_desires}")
     answer_from_censor = json.loads(
-        censor(theme_from_user=users_theme, desires=users_desires)
+        check(theme=users_theme, desires=users_desires)
     )
     is_theme_are_good = answer_from_censor["data"]
     print(
@@ -67,8 +67,8 @@ def create_course():
             current_user=current_user,
         )
     else:
-        prompt_from_llm = cool_prompt(
-            users_theme=users_theme,
+        prompt_from_llm = gen_prompt(
+            theme=users_theme,
             desires=users_desires,
             description_of_user=(
                 current_user.description
@@ -78,15 +78,13 @@ def create_course():
         )
         print(prompt_from_llm)
         time.sleep(1)
-        plan_of_course: dict = json.loads(
-            plan(prompt_from_llm=prompt_from_llm)
-        )
+        plan_of_course: dict = json.loads(gen_plan(prompt=prompt_from_llm))
         print(colorama.Fore.GREEN + " * Plan of course created successfully!")
         print(plan_of_course)
         time.sleep(1)
         print(" * Course function invoked successfully!")
-        course = get_theory(
-            prompt_from_prompt_agent=prompt_from_llm,
+        course = gen_course(
+            prompt=prompt_from_llm,
             plan=plan_of_course,
         )
         if course:

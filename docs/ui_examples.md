@@ -1,4 +1,4 @@
-# Примеры UI
+# :art: Примеры UI
 
 UI сделан с использованием Bootstrap.
 
@@ -29,4 +29,3 @@ UI сделан с использованием Bootstrap.
 ## 7. Созданный курс `/course/{course_id}`
 
 ![Курс](./img/created_course.png)
-

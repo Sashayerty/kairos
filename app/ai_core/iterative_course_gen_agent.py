@@ -1,8 +1,9 @@
+from app.config import config
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def create_course(
-    prompt_from_prompt_agent: str,
+    prompt: str,
     plan: str,
     part_of_plan: str,
     ready_part_of_course: str | None = None,
@@ -11,7 +12,7 @@ def create_course(
     """Функция для итеративной генерации итогового результата.
 
     Args:
-        prompt_from_prompt_agent (str): Промпт, по которому нужно сделать курс.
+        prompt (str): Промпт, по которому нужно сделать курс.
         plan (str): План курса.
         part_of_plan (str): Пункт плана, который нужно раскрыть.
         ready_part_of_course (str, optional): Готовая часть курса для сохранения сути. Defaults to None.
@@ -30,7 +31,7 @@ def create_course(
     }
     """
     client = mistral_ai_initializer()
-    prompt = f"""{prompt_from_prompt_agent}.
+    prompt_to_llm = f"""{prompt}.
     Тебе подается пункт плана, весь план, теория, пример твоего ответа
     и уже готовая часть курса. Твоя задача написать пункт плана, который
     от тебя требуется учитывая остальную часть курса, весь план и теорию.
@@ -41,10 +42,11 @@ def create_course(
     Готовая часть курса: {ready_part_of_course}
     Пиши data не в markdown, а в html!"""
     result = client.message(
+        model=config.MODEL_NAME,
         messages=[
             {
                 "role": "user",
-                "content": prompt,
+                "content": prompt_to_llm,
             }
         ],
         temperature=0.2,

@@ -3,13 +3,19 @@ repo_url: https://github.com/sashayerty/kairos
 repo_name: sashayerty/kairos
 nav:
   - Главная: README.md
-  - 'Настройки конфигурации': config_settings.md
-  - 'Переменные .env': dotenv_variables.md
-  - 'Развертывание с mkdocs': mkdocs.md
-  - 'RestAPI Docs': api.md
-  - 'Структура проекта': structure.md
-  - 'Примеры UI': ui_examples.md
+  - Начало: getting_started.md
+  - "Локальный запуск": local_setup.md
+  - "Настройки конфигурации": config_settings.md
+  - "Переменные .env": dotenv_variables.md
+  - "RestAPI Docs": restapi.md
+  - "Структура проекта": structure.md
+  - "API проекта": api.md
+  - "Примеры UI": ui_examples.md
 theme:
+  features:
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github-alt
   language: ru
   name: material
   palette:
@@ -38,7 +44,14 @@ theme:
 # plugins:
 #   - offline
 markdown_extensions:
-  # Python Markdown
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: true
 

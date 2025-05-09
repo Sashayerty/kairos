@@ -1,22 +1,23 @@
+from app.config import config
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def cool_prompt(
-    users_theme: str,
+def gen_prompt(
+    theme: str,
     desires: str | None = None,
     description_of_user: str | None = None,
 ) -> str:
     """Функция для обогащения темы юзера до промпта
 
     Args:
-        users_theme (str): Тема пользователя
+        theme (str): Тема пользователя
         desires (str, optional): Пожелания пользователя. Defaults to None.
         description_of_user (str): Описание пользователя. Defaults to None.
 
     Returns:
         str: Промпт
     """
-    prompt = f"""
+    prompt_to_llm = f"""
         Привет! Ты составитель промптов для LLM. Промпт нужно составить с учетом того, что LLM будет создавать курсы
         для обучения по заданной теме. Для начала тебе следует указать роль LLM. К примеру: если пользователь просит
         составить курс по программированию, то роль будет опытный синьор-разработчик. Далее укажи задачу.
@@ -27,8 +28,8 @@ def cool_prompt(
         описания не стоит.
 
         Итак, твоя задача:
-        Указать роль и задачу для LLM с учетом темы курса пользователя: {users_theme}. Указать пожелания пользователя,
-        если они есть: {desires}. Учесть описание пользователя, если оно может понадобится для курса.
+        Указать роль и задачу для LLM с учетом темы курса пользователя: {theme}. Обязательно указать пожелания
+        пользователя, если они есть: {desires}. Учесть описание пользователя, если оно может понадобится для курса.
         Описание: {description_of_user}.
 
         Не создавай план (нумерации), пояснений, примеров в этой сфере и т.п. Не назначай практические задания!
@@ -48,10 +49,11 @@ def cool_prompt(
 
     client = mistral_ai_initializer()
     result = client.message(
+        model=config.MODEL_NAME,
         messages=[
             {
                 "role": "system",
-                "content": prompt,
+                "content": prompt_to_llm,
             }
         ],
         temperature=1.0,

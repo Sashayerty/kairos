@@ -8,15 +8,13 @@ from app.ai_core import analyze, summarizer
 from app.config import config
 
 
-def scraper(
-    list_of_links: list[str], prompt: str, plan_of_course: str
-) -> list[str]:
+def scraper(list_of_links: list[str], prompt: str, plan: str) -> list[str]:
     """Функция для парсинга и комплексной обработки данных из Интернета
 
     Args:
         list_of_links (list[str]): Список ссылок, которые нужно пропарсить и обработать.
         prompt (str): Тема курса для проверки пунктов на нужность.
-        plan_of_course (str): План курса для дополнительной проверки.
+        plan (str): План курса для дополнительной проверки.
 
     Returns:
         list[str]: Список обработанных данных по каждой ссылке.
@@ -52,16 +50,16 @@ def scraper(
                 BS4_CLASS=config.BS4_CLASS,
             )
             if analyze(
-                data_from_internet=data,
+                data=data,
                 prompt=prompt,
-                plan_of_course=plan_of_course,
+                plan=plan,
             ):
                 sleep(1)
                 list_of_processed_data.append(
                     summarizer(
                         data=data,
                         prompt=prompt,
-                        plan_of_course=plan_of_course,
+                        plan=plan,
                     )
                 )
                 print(

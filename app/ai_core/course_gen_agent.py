@@ -1,13 +1,16 @@
+from app.config import config
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def get_theory(
-    prompt_from_prompt_agent: str, plan: dict, theory: str | None = None
+def gen_course(
+    prompt: str,
+    plan: dict,
+    theory: str | None = None,
 ) -> str:
     """Функция для генерации итогового результата.
 
     Args:
-        prompt_from_prompt_agent (str): Промпт, по которому нужно сделать курс.
+        prompt (str): Промпт, по которому нужно сделать курс.
         plan (dict): План курса.
         theory (str, optional): Теория, которая должна быть обязательно включена в курс. Defaults to None.
 
@@ -39,14 +42,15 @@ def get_theory(
     }
     """
     client = mistral_ai_initializer()
-    prompt = f"""{prompt_from_prompt_agent}.
+    prompt_to_llm = f"""{prompt}.
     План: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}.
     Пиши data не в markdown, а в html!"""
     result = client.message(
+        model=config.MODEL_NAME,
         messages=[
             {
                 "role": "user",
-                "content": prompt,
+                "content": prompt_to_llm,
             }
         ],
         temperature=0.2,

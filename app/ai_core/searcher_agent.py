@@ -1,13 +1,16 @@
 import json
 
+from app.config import config
 from app.mistral_ai_initializer import mistral_ai_initializer
 
 
-def searcher(prompt_from_llm: str) -> str:
+def searcher(
+    prompt: str,
+) -> str:
     """Функция для составления поискового запроса по промпту
 
     Args:
-        prompt_from_llm (str): Промпт от llm
+        prompt (str): Промпт от llm
 
     Returns:
         str: Поисковой запрос в виде строки.
@@ -17,17 +20,18 @@ def searcher(prompt_from_llm: str) -> str:
         "data": "Python курсы"
     }
     """
-    prompt = f"""Привет! Ты составитель поисковых запросов для поиска в google. Твоя задача составить запрос по
+    prompt_to_llm = f"""Привет! Ты составитель поисковых запросов для поиска в google. Твоя задача составить запрос по
     промпту, который составлен для другой llm. Запрос должен быть короткий. Нужно найти материал для
     составления курсов по теме
-    промпта. Сам промпт: {prompt_from_llm}. Твой ответ должен быть как этот пример:
+    промпта. Сам промпт: {prompt}. Твой ответ должен быть как этот пример:
     {json_example}"""
     client = mistral_ai_initializer()
     response = client.message(
+        model=config.MODEL_NAME,
         messages=[
             {
                 "role": "user",
-                "content": prompt,
+                "content": prompt_to_llm,
             }
         ],
         temperature=0.2,
