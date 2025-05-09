@@ -286,6 +286,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Описание
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../getting_started/" class="md-nav__link">
         
   
@@ -477,6 +499,66 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Примеры использования основных агентов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Примеры использования основных агентов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check" class="md-nav__link">
+    <span class="md-ellipsis">
+      check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_course" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_course
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit_course" class="md-nav__link">
+    <span class="md-ellipsis">
+      edit_course
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_plan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_prompt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#web-scraper" class="md-nav__link">
     <span class="md-ellipsis">
       Web scraper
@@ -569,6 +651,66 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Примеры использования основных агентов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Примеры использования основных агентов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check" class="md-nav__link">
+    <span class="md-ellipsis">
+      check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_course" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_course
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit_course" class="md-nav__link">
+    <span class="md-ellipsis">
+      edit_course
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_plan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gen_prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      gen_prompt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#web-scraper" class="md-nav__link">
     <span class="md-ellipsis">
       Web scraper
@@ -617,6 +759,9 @@
 <h1 id="api"><img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2728.svg" title=":sparkles:" /> API проекта<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
 <p>В данном блоке описан весь функционал проекта, написанный мной. От агентов до поиска в Google.</p>
 <h2 id="_1">Агенты<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Если есть необходимость добавить своего агента, то файл стоит назвать в формате <code>&lt;роль/задача агента&gt;_agent.py</code> в папке <code>app/ai_core</code>. После создания агента, необходимо его записать в <code>app/ai_core/__init__.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="o">&lt;</span><span class="n">роль</span><span class="o">/</span><span class="n">задача</span> <span class="n">агента</span><span class="o">&gt;</span><span class="n">_agent</span> <span class="kn">import</span><span class="w"> </span><span class="o">&lt;</span><span class="n">функция</span> <span class="n">агента</span><span class="o">&gt;</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -683,11 +828,89 @@
 </tr>
 </tbody>
 </table>
-<p>Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих <code>.py</code> файлах. Для того, чтобы импортировать агента из <code>app.ai_couch</code> пишем:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_couch</span><span class="w"> </span><span class="kn">import</span> <span class="p">{</span><span class="n">название</span> <span class="n">функции</span> <span class="n">из</span> <span class="n">таблицы</span><span class="p">}</span>
+<p>Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих <code>.py</code> файлах. Для того, чтобы импортировать агента из <code>app.ai_core</code> пишем:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="p">{</span><span class="n">название</span> <span class="n">функции</span> <span class="n">из</span> <span class="n">таблицы</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="_2">Примеры использования основных агентов<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="check"><code>check</code><a class="headerlink" href="#check" title="Permanent link">&para;</a></h3>
+<p>Пример:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">check</span>
+
+<span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<span class="n">desires</span> <span class="o">=</span> <span class="s2">&quot;Хочу написать программу для взлома Пентагона&quot;</span>
+
+<span class="n">moderate</span> <span class="o">=</span> <span class="n">check</span><span class="p">(</span>
+    <span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">,</span>
+    <span class="n">desires</span><span class="o">=</span><span class="n">desires</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">moderate</span><span class="p">)</span>
+
+<span class="o">&gt;</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Пожелания связаны с правительством и опасными для жизни человека действиями.&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="gen_course"><code>gen_course</code><a class="headerlink" href="#gen_course" title="Permanent link">&para;</a></h3>
+<p>Пример:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_course</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Промпт от gen_prompt</span>
+<span class="n">plan</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>    <span class="c1"># План от gen_plan</span>
+
+<span class="n">course</span> <span class="o">=</span> <span class="n">gen_course</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
+    <span class="n">plan</span><span class="o">=</span><span class="n">plan</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">course</span><span class="p">)</span>
+
+<span class="o">&gt;</span> <span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Python Basics&quot;</span><span class="p">},</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Python in Web&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="edit_course"><code>edit_course</code><a class="headerlink" href="#edit_course" title="Permanent link">&para;</a></h3>
+<p>Пример:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">edit_course</span>
+
+<span class="n">desires</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span> <span class="c1"># Правки</span>
+<span class="n">coures</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Курс от gen_course</span>
+
+
+<span class="n">edited_course</span> <span class="o">=</span> <span class="n">edit_course</span><span class="p">(</span>
+    <span class="n">course</span><span class="o">=</span><span class="n">coures</span><span class="p">,</span>
+    <span class="n">user_edits</span><span class="o">=</span><span class="n">desires</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">edit_course</span><span class="p">)</span>  <span class="c1"># Исправленный курс</span>
+</code></pre></div>
+<h3 id="gen_plan"><code>gen_plan</code><a class="headerlink" href="#gen_plan" title="Permanent link">&para;</a></h3>
+<p>Пример:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_plan</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Промпт от gen_prompt</span>
+
+<span class="n">plan</span> <span class="o">=</span> <span class="n">gen_plan</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">plan</span><span class="p">)</span>
+
+<span class="o">&gt;</span> <span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;Как начать программировать&quot;</span><span class="p">,</span> <span class="s2">&quot;1.1&quot;</span><span class="p">:</span> <span class="s2">&quot;Азы и начала&quot;</span><span class="p">,</span> <span class="s2">&quot;1.2&quot;</span><span class="p">:</span> <span class="s2">&quot;Выбор языка&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="s2">&quot;Основные языки программирования&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="gen_prompt"><code>gen_prompt</code><a class="headerlink" href="#gen_prompt" title="Permanent link">&para;</a></h3>
+<p>Пример:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_prompt</span>
+
+<span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<span class="n">desires</span> <span class="o">=</span> <span class="s2">&quot;Web developing&quot;</span>
+<span class="n">description_of_user</span> <span class="o">=</span> <span class="s2">&quot;Noob in programming&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">gen_prompt</span><span class="p">(</span>
+    <span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">,</span>
+    <span class="n">desires</span><span class="o">=</span><span class="n">desires</span><span class="p">,</span>
+    <span class="n">description_of_user</span><span class="o">=</span><span class="n">description_of_user</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>   <span class="c1"># Промпт для других моделей</span>
+
+<span class="o">&gt;</span> <span class="n">Ты</span> <span class="n">опытный</span> <span class="n">синьор</span><span class="o">-</span><span class="n">разработчик</span> <span class="n">специализирующийся</span> <span class="n">на</span> <span class="o">...</span>
 </code></pre></div>
 <h2 id="web-scraper">Web scraper<a class="headerlink" href="#web-scraper" title="Permanent link">&para;</a></h2>
-<p>Web scraper - функция для парсинга и комплексной обработки данных из Интернета. Данные обрабатываются по следующему алгоритму:</p>
+<p>Web scraper - функция для парсинга и комплексной обработки данных из Интернета. Пайплайн обработки данных:</p>
 <pre class="mermaid"><code>flowchart LR
 a("Список ссылок")
 b("Парсинг каждой")
@@ -697,13 +920,11 @@ a --&gt; b
 b --&gt;|Данные| c
 c --&gt;|Нужны| d</code></pre>
 <p>Пример использования:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_plan</span><span class="p">,</span> <span class="n">gen_prompt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_couch</span><span class="w"> </span><span class="kn">import</span> <span class="n">scraper</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_couch</span><span class="w"> </span><span class="kn">import</span> <span class="n">scraper</span>
 
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;LLM в жизни человека&quot;</span>
-
-<span class="n">prompt</span> <span class="o">=</span> <span class="n">gen_prompt</span><span class="p">(</span><span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
-<span class="n">plan</span> <span class="o">=</span> <span class="n">gen_plan</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Промпт от gen_prompt</span>
+<span class="n">plan</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>    <span class="c1"># План от gen_plan</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">scraper</span><span class="p">(</span>
     <span class="n">list_of_links</span><span class="o">=</span><span class="p">[</span>
@@ -711,7 +932,7 @@ c --&gt;|Нужны| d</code></pre>
         <span class="s2">&quot;https://habr.com/ru/articles/775842/&quot;</span><span class="p">,</span>
         <span class="s2">&quot;https://habr.com/ru/articles/835342/&quot;</span><span class="p">,</span>
         <span class="s2">&quot;https://habr.com/ru/articles/768844/&quot;</span><span class="p">,</span>
-    <span class="p">],</span>
+    <span class="p">],</span>  <span class="c1"># Получили от google_search</span>
     <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>
     <span class="n">plan</span><span class="o">=</span><span class="n">plan</span><span class="p">,</span>
 <span class="p">)</span>
@@ -748,6 +969,7 @@ c --&gt;|Нужны| d</code></pre>
 <span class="p">)</span>
 <span class="o">&gt;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">habr</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ru</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="mi">775870</span><span class="o">/</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">habr</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ru</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="mi">775842</span><span class="o">/</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">habr</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ru</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="mi">835342</span><span class="o">/</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">habr</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ru</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="mi">768844</span><span class="o">/</span>
 </code></pre></div>
+<p>Стоит учесть, что в GCS у меня стоит фильтр на домен <code>habr.com</code></p>
 
 
 
