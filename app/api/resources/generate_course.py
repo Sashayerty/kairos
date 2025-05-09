@@ -61,7 +61,7 @@ class GenerateCourse(Resource):
             "desires": users_desires,
             "description_of_user": description_of_user,
             "answer_from_censor": answer_from_censor,
-            "prompt_from_llm": prompt_from_llm,
+            "prompt": prompt_from_llm,
             "plan": plan_of_course,
             "course": course,
         }, 200

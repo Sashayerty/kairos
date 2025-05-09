@@ -5,7 +5,9 @@ Kairos/
 ├── app/                                # Директория проекта
 │   ├── ai_core/                        # Функционал ИИ-агентов
 │   ├── ai_couch/                       # Приложение ai_couch, в нем функции и эндпоинты
-│   ├── api/                            # API проекта
+│   │   └── functions/                  # Функции для ai_couch
+│   ├── api/                            # RestAPI проекта
+│   │   └── resources/                  # Реализация эндпоинтов RestAPI
 │   ├── forms/                          # Формы wtforms
 │   ├── google_custom_search/           # Google Custom Search функция
 │   ├── mistral_ai_initializer/         # Инициализатор кастомного класса MistralAI
@@ -14,3 +16,55 @@ Kairos/
 │   └── templates/                      # Темплейты проекта
 └── docs/                               # Документация проекта
 ```
+
+## Папка app
+
+Главная папка, в ней находится вся логика бэкэнда и фронтенда.
+
+### ai_core
+
+Папка, в которой находится ИИ-логика бэкэнда. На данный момент доступно 11 агентов, 9 из них работают.
+
+### ai_couch
+
+Папка, в которой находится логика чертежа `flask`.
+
+#### functions
+
+Папка, в которой реализованы функции для `ai_couch`.
+
+### api
+
+Папка в которой находится RestAPI, написано с помощью flask-restful.
+
+#### resources
+
+Endpoints RestAPI.
+
+### forms
+
+Папка с формами `wtforms`.
+
+### google_custom_search
+
+Папка функцией `google_search`.
+
+### mistral_ai_initializer
+
+Папка с дочерним классом `Mistral` и  инициализатором экземпляра класса `ModifiedMistral`.
+
+### models
+
+Папка с моделями `sqlalchemy` и создателем сессий бд.
+
+### static
+
+Статика проекта
+
+### templates
+
+Темплейты для `jinja2`
+
+## Папка docs
+
+Папка с документацией и статикой для нее.

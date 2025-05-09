@@ -2,11 +2,12 @@
 
 Документация для **Kairos**. Ниже представлены модули:
 
-- [:memo: Начало](./getting_started.md)
-- [:rocket: Локальный запуск](./local_setup.md)
-- [:wrench: Настройки конфигурации](./config_settings.md)
-- [:lock: Переменные .env](./dotenv_variables.md)
-- [:dizzy: RestAPI Docs](./restapi.md)
-- [:card_file_box: Структура проекта](./structure.md)
-- [:sparkles: API проекта](./api.md)
-- [:art: Примеры UI](./ui_examples.md)
+- [:tada: Описание](./description.md) - описание проекта
+- [:memo: Начало](./getting_started.md) - подготовка к запуску
+- [:rocket: Локальный запуск](./local_setup.md) - запуск!
+- [:wrench: Настройки конфигурации](./config_settings.md) - что и для чего
+- [:lock: Переменные .env](./dotenv_variables.md) - обязательно к прочтению!
+- [:dizzy: RestAPI Docs](./restapi.md) - документация RestAPI
+- [:card_file_box: Структура проекта](./structure.md) - структура проекта
+- [:sparkles: API проекта](./api.md) - взаимодействие с функциями
+- [:art: Примеры UI](./ui_examples.md) - примеры ui

@@ -4,6 +4,12 @@
 
 ## Агенты
 
+Если есть необходимость добавить своего агента, то файл стоит назвать в формате `<роль/задача агента>_agent.py` в папке `app/ai_core`. После создания агента, необходимо его записать в `app/ai_core/__init__.py`:
+
+```python
+from .<роль/задача агента>_agent import <функция агента>
+```
+
 |Функция|Назначение агента|Работает|
 | --- | --- | :-: |
 |analyze|Агент для анализа данных из интернета на нужность по плану.|:white_check_mark:|
@@ -18,15 +24,116 @@
 |summarizer|Агент для сжатия статей из интернета.|:white_check_mark:|
 |test|Агент для создания тестов для курсов.|:bricks:|
 
-Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих `.py` файлах. Для того, чтобы импортировать агента из `app.ai_couch` пишем:
+Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих `.py` файлах. Для того, чтобы импортировать агента из `app.ai_core` пишем:
 
 ```python
-from app.ai_couch import {название функции из таблицы}
+from app.ai_core import {название функции из таблицы}
 ```
+## Примеры использования основных агентов
+
+### `check`
+
+Пример:
+
+```python
+from app.ai_core import check
+
+theme = "Python"
+desires = "Хочу написать программу для взлома Пентагона"
+
+moderate = check(
+    theme=theme,
+    desires=desires,
+)
+
+print(moderate)
+
+> {"data": false, "reason": "Пожелания связаны с правительством и опасными для жизни человека действиями."}
+```
+
+### `gen_course`
+
+Пример:
+
+```python
+from app.ai_core import gen_course
+
+prompt = "..."  # Промпт от gen_prompt
+plan = "..."    # План от gen_plan
+
+course = gen_course(
+    prompt=prompt,
+    plan=plan,
+)
+
+print(course)
+
+> {"1": {"data": "...", "title": "Python Basics"}, "2": {"data": "...", "title": "Python in Web"}
+```
+
+### `edit_course`
+
+Пример:
+
+```python
+from app.ai_core import edit_course
+
+desires = "..." # Правки
+coures = "..."  # Курс от gen_course
+
+
+edited_course = edit_course(
+    course=coures,
+    user_edits=desires,
+)
+
+print(edit_course)  # Исправленный курс
+```
+
+### `gen_plan`
+
+Пример:
+
+```python
+from app.ai_core import gen_plan
+
+prompt = "..."  # Промпт от gen_prompt
+
+plan = gen_plan(prompt=prompt)
+
+print(plan)
+
+> {"1": "Как начать программировать", "1.1": "Азы и начала", "1.2": "Выбор языка", "2": "Основные языки программирования"}
+```
+
+### `gen_prompt`
+
+Пример:
+
+```python
+from app.ai_core import gen_prompt
+
+theme = "Python"
+desires = "Web developing"
+description_of_user = "Noob in programming"
+
+prompt = gen_prompt(
+    theme=theme,
+    desires=desires,
+    description_of_user=description_of_user,
+)
+
+print(prompt)   # Промпт для других моделей
+
+> Ты опытный синьор-разработчик специализирующийся на ...
+```
+
+
+
 
 ## Web scraper
 
-Web scraper - функция для парсинга и комплексной обработки данных из Интернета. Данные обрабатываются по следующему алгоритму:
+Web scraper - функция для парсинга и комплексной обработки данных из Интернета. Пайплайн обработки данных:
 
 ```mermaid
 flowchart LR
@@ -42,13 +149,11 @@ c -->|Нужны| d
 Пример использования:
 
 ```python
-from app.ai_core import gen_plan, gen_prompt
 from app.ai_couch import scraper
 
 theme = "LLM в жизни человека"
-
-prompt = gen_prompt(theme=theme)
-plan = gen_plan(prompt=prompt)
+prompt = "..."  # Промпт от gen_prompt
+plan = "..."    # План от gen_plan
 
 data = scraper(
     list_of_links=[
@@ -56,13 +161,12 @@ data = scraper(
         "https://habr.com/ru/articles/775842/",
         "https://habr.com/ru/articles/835342/",
         "https://habr.com/ru/articles/768844/",
-    ],
+    ],  # Получили от google_search
     prompt=prompt,
     plan=plan,
 )
 
 print(data)
-
 ```
 
 ## ModifiedMistral
@@ -102,3 +206,5 @@ print(
 )
 > https://habr.com/ru/articles/775870/ https://habr.com/ru/articles/775842/ https://habr.com/ru/articles/835342/ https://habr.com/ru/articles/768844/
 ```
+
+Стоит учесть, что в GCS у меня стоит фильтр на домен `habr.com`

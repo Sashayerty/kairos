@@ -3,6 +3,7 @@ repo_url: https://github.com/sashayerty/kairos
 repo_name: sashayerty/kairos
 nav:
   - Главная: README.md
+  - Описание: description.md
   - Начало: getting_started.md
   - "Локальный запуск": local_setup.md
   - "Настройки конфигурации": config_settings.md
