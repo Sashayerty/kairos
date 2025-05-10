@@ -20,6 +20,7 @@ def create_app() -> Flask:
     app.config.from_object(config)
     login_manager.init_app(app)
     app.register_blueprint(ai_couch)
+
     return app
 
 
