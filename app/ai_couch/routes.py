@@ -100,7 +100,7 @@ def create_course():
             db_session.commit()
         return render_template(
             "course.html",
-            course=json.loads(course),
+            course=course_model,
             current_user=current_user,
             title="Kairos - Курс",
         )
@@ -247,7 +247,7 @@ def course(course_id: int):
     return render_template(
         "course.html",
         title="Kairos - Курс",
-        course=course.course,
+        course=course,
         current_user=current_user,
     )
 
@@ -273,7 +273,8 @@ def terms_of_using_kairos():
 @login_required
 def edit_course_view(course_id: int):
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
-    user_edits = request.args.get("user_edits", type=str)
+    user_edits = request.form.get("user_edits", type=str)
+    print(user_edits)
     course.course = edit_course(
         course=course.course,
         user_edits=user_edits,

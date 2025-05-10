@@ -30,7 +30,7 @@
             </p>
             {% endfor %}
             </p>
-            <p class="mb-4">{{ form.accept_with_terms_of_using }}{{ form.accept_with_terms_of_using.label }} <a
+            <p class="mb-4">{{ form.accept_with_terms_of_using(class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none",) }}{{ form.accept_with_terms_of_using.label }} <a
                 class="text-decoration-none link-warning" href="/terms">условия использования</a>
             </p>
             <p class="d-grid gap-2">{{ form.submit(type="submit", class="btn btn-warning") }}</p>

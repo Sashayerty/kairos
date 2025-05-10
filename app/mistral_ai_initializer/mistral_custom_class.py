@@ -8,7 +8,6 @@ class ModifiedMistral(Mistral):
         self,
         messages: list[dict],
         temperature: int | float = None,
-        timeout_ms: int = None,
         response_format: dict = None,
         model: str = "mistral-large-latest",
         timeout: int = 300000,
@@ -18,7 +17,7 @@ class ModifiedMistral(Mistral):
         Args:
             messages (list[dict]): List of messages to model
             temperature (int | float, optional): 1 - more random, 0 - no random, 0.5 - between. Defaults to None.
-            timeout_ms (int, optional): Timeout of response in ms. Defaults to None.
+            timeout (int, optional): Timeout of response in ms. Defaults to None.
             response_format (dict, optional): Format of response. May be json or else. Defaults to None.
             model (str, optional): Model to use. Defaults to "mistral-large-latest".
 

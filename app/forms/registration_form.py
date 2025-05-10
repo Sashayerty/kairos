@@ -23,6 +23,7 @@ class RegistrationForm(FlaskForm):
     )
     accept_with_terms_of_using = BooleanField(
         "Принять",
+        render_kw={"id": "accept_with_terms_of_using"},
         validators=[DataRequired("Соглашение с условием обязательно!")],
     )
     submit = SubmitField("Зарегистрироваться")

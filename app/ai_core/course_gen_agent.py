@@ -55,6 +55,6 @@ def gen_course(
         ],
         temperature=0.2,
         response_format={"type": "json_object"},
-        timeout_ms=180000,
+        timeout=180000,
     )
     return result

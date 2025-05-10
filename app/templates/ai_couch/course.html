@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="text-center mb-5">Ваш курс: {{ course.title }}</h1>
+    <h1 class="text-center mb-5">{{ course.theme }}</h1>
     <div class="row">
-        {% for key, section in course.items() %}
+        {% for key, section in course.course.items() %}
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-header bg-warning">

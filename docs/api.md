@@ -4,11 +4,52 @@
 
 ## Агенты
 
+### Добавление своего агента
+
 Если есть необходимость добавить своего агента, то файл стоит назвать в формате `<роль/задача агента>_agent.py` в папке `app/ai_core`. После создания агента, необходимо его записать в `app/ai_core/__init__.py`:
 
 ```python
 from .<роль/задача агента>_agent import <функция агента>
 ```
+
+Пример создания агента `kairos_agent`(к примеру):
+
+1. Создаем файл `kairos_agent.py` в `app/ai_core`
+2. Пусть у него будет такое наполнение:
+```python
+from app.mistral_ai_initializer import mistral_ai_initializer
+
+
+def kairos_agent_useful_function(name: str) -> str:
+    client = mistral_ai_initializer()
+    response = client.message(
+        messages=[
+            {
+                "role": "system",
+                "content": "Отвечай в стиле 18 века",
+            },
+            {
+                "role": "user",
+                "content": f"Поздоровайся с {name}",
+            },
+        ]
+    )
+    return response
+
+
+greeting = kairos_agent_useful_function(name="Александр")
+print(greeting)
+
+> Добрый день, уважаемый Александр! Рад видеть вас в добром здравии. Как протекает ваш день?
+```
+3. Теперь в `app/ai_core/__init__.py` дописываем:
+```python
+...
+# Остальные импорты
+from .kairos_agent import kairos_agent_useful_function
+```
+
+### Список агентов 
 
 |Функция|Назначение агента|Работает|
 | --- | --- | :-: |

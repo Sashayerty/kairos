@@ -21,7 +21,7 @@
             </div>
             {% endfor %}
             </p>
-            <p class="mb-4">{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <p class="mb-4">{{ form.remember_me(class="remember form-check-input border-2 border-warning-subtle shadow-none") }} {{ form.remember_me.label(class="form-check-label") }}</p>
             <p class="d-grid gap-2">{{ form.submit(class="btn btn-warning") }}</p>
             <p class="text-center">Нет учетной записи?<br><a class="text-decoration-none link-warning" href="/reg">Зарегистрироваться</a></p>
             {{ message }}
