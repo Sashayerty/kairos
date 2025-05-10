@@ -613,7 +613,7 @@
 <ul>
 <li><code>MISTRAL_AI_API_KEY</code> - API-ключ для взаимодействия с MistralAI. На данный момент обязателен, в будущем планируется поддержка локальных моделей. Получить ключ можно на <a href="https://console.mistral.ai/api-keys">сайте Mistral</a>, необходим аккаунт.</li>
 <li><code>GOOGLE_API_KEY</code> и <code>CSE_ID</code> - данные для использования поисковика Google. Необходимо получить на <a href="https://programmablesearchengine.google.com/controlpanel/all">сайте</a>. Нужен поиск в Google для поиска статей и парсинга данных из них.</li>
-<li><code>SECRET_KEY</code> - секретный ключ для wtforms. Необходим для корректной работы wtforms. Нужно его создать <strong>собственноручно</strong>.</li>
+<li><code>SECRET_KEY</code> - секретный ключ для wtforms. Необходим для корректной работы wtforms. Нужно его создать <strong>собственноручно</strong>. Лучше всего для ключа подойдет <code>uuid4</code>. Сгенерировать можно или через python библиотеку <code>uuid</code>, или на <a href="https://www.uuidgenerator.net/version4">сайте</a>.</li>
 </ul>
 
 

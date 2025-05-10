@@ -496,10 +496,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Агенты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Добавление своего агента
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Список агентов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       Примеры использования основных агентов
     </span>
@@ -648,10 +672,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Агенты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Добавление своего агента
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Список агентов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       Примеры использования основных агентов
     </span>
@@ -759,9 +807,46 @@
 <h1 id="api"><img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2728.svg" title=":sparkles:" /> API проекта<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
 <p>В данном блоке описан весь функционал проекта, написанный мной. От агентов до поиска в Google.</p>
 <h2 id="_1">Агенты<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">Добавление своего агента<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>Если есть необходимость добавить своего агента, то файл стоит назвать в формате <code>&lt;роль/задача агента&gt;_agent.py</code> в папке <code>app/ai_core</code>. После создания агента, необходимо его записать в <code>app/ai_core/__init__.py</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="o">&lt;</span><span class="n">роль</span><span class="o">/</span><span class="n">задача</span> <span class="n">агента</span><span class="o">&gt;</span><span class="n">_agent</span> <span class="kn">import</span><span class="w"> </span><span class="o">&lt;</span><span class="n">функция</span> <span class="n">агента</span><span class="o">&gt;</span>
 </code></pre></div>
+<p>Пример создания агента <code>kairos_agent</code>(к примеру):</p>
+<ol>
+<li>Создаем файл <code>kairos_agent.py</code> в <code>app/ai_core</code></li>
+<li>Пусть у него будет такое наполнение:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.mistral_ai_initializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">mistral_ai_initializer</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">kairos_agent_useful_function</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">mistral_ai_initializer</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">message</span><span class="p">(</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Отвечай в стиле 18 века&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Поздоровайся с </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="n">greeting</span> <span class="o">=</span> <span class="n">kairos_agent_useful_function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Александр&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>
+
+<span class="o">&gt;</span> <span class="n">Добрый</span> <span class="n">день</span><span class="p">,</span> <span class="n">уважаемый</span> <span class="n">Александр</span><span class="err">!</span> <span class="n">Рад</span> <span class="n">видеть</span> <span class="n">вас</span> <span class="n">в</span> <span class="n">добром</span> <span class="n">здравии</span><span class="o">.</span> <span class="n">Как</span> <span class="n">протекает</span> <span class="n">ваш</span> <span class="n">день</span><span class="err">?</span>
+</code></pre></div></li>
+<li>Теперь в <code>app/ai_core/__init__.py</code> дописываем:
+<div class="highlight"><pre><span></span><code><span class="o">...</span>
+<span class="c1"># Остальные импорты</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.kairos_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">kairos_agent_useful_function</span>
+</code></pre></div></li>
+</ol>
+<h3 id="_3">Список агентов<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -831,7 +916,7 @@
 <p>Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих <code>.py</code> файлах. Для того, чтобы импортировать агента из <code>app.ai_core</code> пишем:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="p">{</span><span class="n">название</span> <span class="n">функции</span> <span class="n">из</span> <span class="n">таблицы</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="_2">Примеры использования основных агентов<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_4">Примеры использования основных агентов<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <h3 id="check"><code>check</code><a class="headerlink" href="#check" title="Permanent link">&para;</a></h3>
 <p>Пример:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">check</span>
