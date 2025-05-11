@@ -1,4 +1,4 @@
-# Kairos [![FastAPI Version](https://img.shields.io/badge/FastAPI-Ver-009485.svg)](https://github.com/sashayerty/kairos-fastapi) [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) [![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![GitHub commits](https://badgen.net/github/commits/Sashayerty/Kairos?color=orange)](https://GitHub.com/Sashayerty/Kairos/commits/) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker) [![Powered by Flask Manager](https://shields.io/badge/Powered_by-Flask_Manager-orange)](https://github.com/Sashayerty/flask_manager)
+# Kairos [![FastAPI Version](https://img.shields.io/badge/FastAPI-Ver-009485.svg)](https://github.com/sashayerty/kairos-fastapi) [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) ![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker)
 
 Простой проект для создания индивидуального курса/плана обучения с помощью ИИ. [Документация](https://sashayerty.github.io/Kairos/)
 <!-- Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов. -->
@@ -10,7 +10,7 @@
 3. [Установка](#установка)
     * [pip](#с-помощью-pip)
     * [uv](#с-помощью-uv-рекомендуемое)
-4. [Интересные факты](#интересные-факты)
+4. [API](#api)
 5. [Схема логики приложения со стороны агентов](#схема-логики-приложения-со-стороны-агентов)
 6. [База данных проекта](#база-данных-проекта)
 7. [License](#license)
@@ -30,10 +30,12 @@
 .env-файл должен лежать в корне проекта.
 
 ```.env
-MISTRAL_AI_API_KEY=your-data
-GOOGLE_API_KEY=your-data
-CSE_ID=your-data
-SECRET_KEY=your-data # Секретный ключ для корректной работы форм wtforms
+MISTRAL_AI_API_KEY=mistral-ai-api-key
+GOOGLE_API_KEY=google-api-key
+CSE_ID=cse-id
+SECRET_KEY=secret-key
+DEBUG=True # к примеру
+DATABASE_PATH=./database/kairos.db
 ```
 
 ## Установка
@@ -99,41 +101,37 @@ uv run run.py
 
 ### Переходим на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
-## Интересные факты
+## API
 
-### 1. [app.config](./app/config.py)
+### [Конфиг](./app/config.py)
 
 Файл конфига. В нем хранятся настройки проекта, которые можно менять и Вам, в зависимости от Ваших нужд.
 
-### 2. [app.mistral_ai_initializer.mistral_custom_class](./app/mistral_ai_initializer/mistral_custom_class.py)
+### [ModifiedMistral](./app/mistral_ai_initializer/mistral_custom_class.py)
 
 Это кастомный класс **Mistral**. Был он создан для того, чтобы убрать лишнюю рутинную работу. Подробнее - [тут](./app/mistral_ai_initializer/mistral_custom_class.py)
 
-### 3. [app.ai_core](./app/ai_core/)
+### Список агентов
 
-Директория с основным функционалом и взаимодействиями с ИИ. Возможно, сделаю нумерацию или табличку для удобной навигации, но это неточно. Представлено 9 агентов.
-
-|В [схеме](#схема-логики-приложения-со-стороны-агентов)|Файл|Назначение агента|Работает|
+|В схеме|Функция|Назначение агента|Работает|
 | :-: | --- | --- | :-: |
-|[1]|[app.ai_core.censor_agent](./app/ai_core/censor_agent.py)|Агент для цензуры темы пользователя.|+|
-|[2]|[app.ai_core.prompt_gen_agent](./app/ai_core/prompt_gen_agent.py)|Агент для обогащения темы пользователя до промпта для llm.|+|
-|[3]|[app.ai_core.searcher_agent](./app/ai_core/searcher_agent.py)|Агент для составления поискового запроса по промпту.|+|
-|[4]|[app.ai_core.check_test_agent](./app/ai_core/check_test_agent.py)|Агент для проверки нужности тестов в курсе.|-|
-|[5]|[app.ai_core.plan_gen_agent](./app/ai_core/plan_gen_agent.py)|Агент для составления плана курса по промпту от llm.|+|
-|[6]|[app.ai_core.analyzer_agent](./app/ai_core/analyzer_agent.py)|Агент для анализа данных из интернета на нужность по плану.|+|
-|[7]|[app.ai_core.test_maker](./app/ai_core/test_gen_agent.py)|Агент для создания тестов для курсов.|-|
-|[8]|[app.ai_core.summarizer_agent](./app/ai_core/summarizer_agent.py)|Агент для сжатия статей из интернета.|+|
-|[9]|[app.ai_core.course_gen_agent](./app/ai_core/course_gen_agent.py)|Агент для генерации итогового результата.|+|
+|1|check|Агент для цензуры темы и пожеланий пользователя.|:white_check_mark:|
+|2|gen_prompt|Агент для создания промпта по теме, пожеланиям и описанию пользователя.|:white_check_mark:|
+|3|searcher|Агент для составления поискового запроса по промпту.|:white_check_mark:|
+|4|check_is_need_test|Агент для проверки нужности тестов в курсе.|:bricks:|
+|5|gen_plan|Агент для составления плана курса по промпту.|:white_check_mark:|
+|6|analyze|Агент для анализа данных из интернета на нужность по плану.|:white_check_mark:|
+|7|test|Агент для создания тестов для курсов.|:bricks:|
+|8|summarizer|Агент для сжатия статей из интернета.|:white_check_mark:|
+|9|gen_course|Агент для генерации итогового результата.|:white_check_mark:|
+|*|edit_course|Агент для изменения курса по корректировкам пользователя|:white_check_mark:|
+|*|create_course|Агент для итеративной генерации курса.|:white_check_mark:|
 
-Пока не в схеме:
+`*` - вспомогательный агент
 
-|Файл|Назначение агента|Работает|
-|---|---|:-:|
-|[app.ai_core.editor_agent](./app/ai_core/editor_agent.py)|Правка курса с учетом пожеланий|+|
+### [google_search](./app/google_custom_search/search_function.py)
 
-### 4. [app.google_custom_search.search_function](./app/google_custom_search/search_function.py)
-
-Функция для поиска в Google Custom Search. Подробнее [тут](#1-google-custom-search-api)
+Функция для поиска в Google Custom Search. Подробнее [тут](#1-google-custom-search-api-сделана-только-функция-без-интеграции)
 
 ## Схема логики приложения со стороны агентов
 
