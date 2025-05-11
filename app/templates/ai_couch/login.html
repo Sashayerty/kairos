@@ -4,27 +4,32 @@
     <div class="login-container border border-2 rounded-4 p-5">
         <h1 class="login-title fs-2 fw-bold text-body mb-5">Войти в аккаунт</h1>
         <form action="" method="post">
-            {{ form.hidden_tag() }}
             <p>
-                {{ form.name(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Имя") }}<br>
-                {% for error in form.name.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-            {% endfor %}
+                <input type="text" name="name" placeholder="Имя" autocomplete="off" required
+                       class="form-control focus-ring focus-ring-warning border-warning"
+                       value="{{ request.form.name or '' }}">
             </p>
             <p>
-                {{ form.password(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Пароль") }}<br>
-                {% for error in form.password.errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-            {% endfor %}
+                <input type="password" name="password" placeholder="Пароль" autocomplete="off" required
+                       class="form-control focus-ring focus-ring-warning border-warning">
+
             </p>
-            <p class="mb-4">{{ form.remember_me(class="remember form-check-input border-2 border-warning-subtle shadow-none") }} {{ form.remember_me.label(class="form-check-label") }}</p>
-            <p class="d-grid gap-2">{{ form.submit(class="btn btn-warning") }}</p>
-            <p class="text-center">Нет учетной записи?<br><a class="text-decoration-none link-warning" href="/reg">Зарегистрироваться</a></p>
-            {{ message }}
+            <p class="mb-4">
+                <input type="checkbox" name="remember_me"
+                       class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                       id="remember_me" {% if request.form.remember_me %}checked{% endif %}>
+                <label for="remember_me" class="form-check-label">Запомнить меня</label>
+            </p>
+            <p class="d-grid gap-2">
+                <button type="submit" class="btn btn-warning">Вход</button>
+            </p>
+            <p class="text-center">Нет учетной записи?<br>
+                <a class="text-decoration-none link-warning" href="/reg">Зарегистрироваться</a>
+            </p>
+            {% if message %}
+                <p class="alert alert-warning" role="alert">{{ message }}</p>
+            {% endif %}
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         </form>
     </div>
 </div>

@@ -45,7 +45,7 @@ class GenerateCourse(Resource):
                 "theme_is_good": False,
             }, 400
         prompt_from_llm = gen_prompt(
-            users_theme=users_theme,
+            theme=users_theme,
             desires=users_desires,
             description_of_user=description_of_user,
         )

@@ -14,6 +14,7 @@
                 </div>
             </div>
             <form method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="mb-4">
                     <h5 class="mb-3 text-warning">Основные данные</h5>
                     <div class="row g-3">
@@ -59,7 +60,9 @@
                     <button type="reset" class="btn btn-outline-secondary">Сбросить форму</button>
                     <button type="submit" class="btn btn-warning">Обновить данные</button>
                 </div>
-                <p>{{ message }}</p>
+                {% if message %}
+                <p class="alert alert-warning my-2" role="alert">{{ message }}</p>
+                {% endif %}
             </form>
         </div>
     </div>

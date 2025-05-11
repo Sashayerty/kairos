@@ -4,39 +4,48 @@
     <div class="login-container border border-2 rounded-4 p-5">
         <h1 class="login-title fs-2 fw-bold text-body mb-5">Зарегистрировать аккаунт</h1>
         <form action="" method="post">
-            {{ form.hidden_tag() }}
             <p>
-                {{ form.name(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Имя") }}<br>
-                {% for error in form.name.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
+                <input type="text" name="name" placeholder="Имя" autocomplete="off" required
+                       class="form-control focus-ring focus-ring-warning border-warning"
+                       value="{{ request.form.name or '' }}">
+
             </p>
-            {% endfor %}
-            </p>
-            </p>
+
             <p>
-                {{ form.password(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Пароль") }}<br>
-                {% for error in form.password.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
+                <input type="password" name="password" placeholder="Пароль" autocomplete="off" required
+                       class="form-control focus-ring focus-ring-warning border-warning">
+
             </p>
-            {% endfor %}
-            </p>
+
             <p>
-                {{ form.password_again(class="form-control focus-ring focus-ring-warning border-warning", placeholder="Подтвердите пароль") }}<br>
-                {% for error in form.password_again.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
+                <input type="password" name="password_again" placeholder="Подтвердите пароль" required
+                       class="form-control focus-ring focus-ring-warning border-warning" autocomplete="off">
+
             </p>
-            {% endfor %}
+
+            <p class="mb-4">
+                <input type="checkbox" name="accept_with_terms_of_using"
+                       class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                       id="accept_with_terms_of_using"
+                       required
+                       {% if request.form.accept_with_terms_of_using %}checked{% endif %}>
+                <label for="accept_with_terms_of_using">Принять</label>
+                <a class="text-decoration-none link-warning" href="/terms">условия использования</a>
+
             </p>
-            <p class="mb-4">{{ form.accept_with_terms_of_using(class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none",) }}{{ form.accept_with_terms_of_using.label }} <a
-                class="text-decoration-none link-warning" href="/terms">условия использования</a>
+
+            <p class="d-grid gap-2">
+                <button type="submit" class="btn btn-warning">Зарегистрироваться</button>
             </p>
-            <p class="d-grid gap-2">{{ form.submit(type="submit", class="btn btn-warning") }}</p>
-            <p class="text-center">Уже есть аккаунт?<br><a class="text-decoration-none link-warning" href="/login">Войти</a>
+
+            <p class="text-center">Уже есть аккаунт?<br>
+                <a class="text-decoration-none link-warning" href="/login">Войти</a>
             </p>
-            {{message}}
+
+            {% if message %}
+            <p class="alert alert-warning" role="alert">{{ message }}</p>
+            {% endif %}
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         </form>
     </div>
 </div>

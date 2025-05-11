@@ -1,5 +1,6 @@
 import json
 import time
+from http import HTTPStatus
 
 import colorama
 from flask import Blueprint, redirect, render_template, request, send_file
@@ -7,7 +8,6 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 from app.ai_core import check, edit_course, gen_course, gen_plan, gen_prompt
 from app.config import config
-from app.forms import LoginForm, RegistrationForm
 from app.models import CourseModel, UsersModel, create_session, global_init
 
 ai_couch = Blueprint(
@@ -114,38 +114,53 @@ def create_course():
     ],
 )
 def register():
-    registration_form = RegistrationForm()
-    if registration_form.validate_on_submit():
+    if request.method == "POST":
+        name = request.form.get("name")
+        password = request.form.get("password")
+        password_again = request.form.get("password_again")
         if (
-            registration_form.password.data
-            == registration_form.password_again.data
-        ):
-            if (
-                db_session.query(UsersModel)
-                .filter_by(name=registration_form.name.data)
-                .first()
-            ):
-                return render_template(
+            not name or not password or not password_again
+        ):  # Если запросы через curl/postman
+            return (
+                render_template(
+                    "register.html",
+                    message="Все поля обязательны!",
+                ),
+                HTTPStatus.BAD_REQUEST,
+            )
+        if password != password_again:
+            return (
+                render_template(
+                    "register.html",
+                    message="Пароли не совпадают.",
+                ),
+                HTTPStatus.BAD_REQUEST,
+            )
+        if db_session.query(UsersModel).filter_by(name=name).first():
+            return (
+                render_template(
                     "register.html",
                     message="Пользователь с таким именем уже есть!",
-                    form=registration_form,
-                )
-            user = UsersModel(
-                name=registration_form.name.data,
+                ),
+                HTTPStatus.BAD_REQUEST,
             )
-            user.set_password(password=registration_form.password.data)
-            db_session.add(user)
-            db_session.commit()
-            return redirect("/login")
-        else:
-            return render_template(
-                "register.html",
-                message="Пароли не совпадают.",
-                form=registration_form,
+        if len(password) < 8 or len(password_again) < 8:
+            return (
+                render_template(
+                    "register.html",
+                    message="Длина пароля должна быть не менее 8 символов!",
+                ),
+                HTTPStatus.BAD_REQUEST,
             )
+        user = UsersModel(
+            name=name,
+        )
+        user.set_password(password=password)
+        db_session.add(user)
+        db_session.commit()
+        return redirect("/login")
     return render_template(
         "register.html",
-        form=registration_form,
         title="Kairos - Регистрация",
     )
 
@@ -158,25 +173,21 @@ def register():
     ],
 )
 def login():
-    login_form = LoginForm()
-    if login_form.validate_on_submit():
-        user = (
-            db_session.query(UsersModel)
-            .filter_by(name=login_form.name.data)
-            .first()
-        )
-        if user and user.check_password(login_form.password.data):
-            login_user(user, remember=login_form.remember_me.data)
+    if request.method == "POST":
+        name = request.form.get("name")
+        password = request.form.get("password")
+        remember_me = request.form.get("remember_me", type=bool)
+        user = db_session.query(UsersModel).filter_by(name=name).first()
+        if user and user.check_password(password):
+            login_user(user, remember=remember_me)
             return redirect("/")
         else:
             return render_template(
                 "login.html",
-                form=login_form,
                 message="Неправильный логин или пароль.",
             )
     return render_template(
         "login.html",
-        form=login_form,
         title="Kairos - Вход",
     )
 

@@ -6,7 +6,7 @@ class Config:
 
     # Настройки сервера Flask
     DEBUG: bool = True
-    SECRET_KEY: str = dotenv_values("./.env")["SECRET_KEY"]
+    SECRET_KEY: str | None = dotenv_values("./.env")["SECRET_KEY"]
     DATABASE_PATH: str = "./database/kairos.db"
 
     # Настройки парсера Google Custom Search
@@ -21,4 +21,10 @@ class Config:
     )
 
 
+class TestingConfig(Config):
+    SECRET_KEY: str | None = "test"
+    WTF_CSRF_ENABLED: bool = False
+
+
 config = Config()
+testing_config = TestingConfig()

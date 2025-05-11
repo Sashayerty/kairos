@@ -16,6 +16,14 @@
 
 `SECRET_KEY` - переменная для корректной работы `wtforms`. Лучше всего для ключа подойдет `uuid4`. Сгенерировать можно или через python библиотеку `uuid`, или на [сайте](https://www.uuidgenerator.net/version4).
 
+P.S. В документации Flask [рекомендуется](https://flask.palletsprojects.com/en/stable/config/#SECRET_KEY) использовать рандомный набор байтов. Ниже **пример**:
+
+```bash
+python -c 'import secrets; print(secrets.token_hex())'
+
+> 192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
+```
+
 ## Обязательные действия в проекте
 
 ### Создаем директорию `database` в корне

@@ -1,35 +1,67 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="main-container container">
     <!-- <p class="text-center fw-medium fs-3 mt-5 pt-5">Создайте курс на любой вкус, ведь сейчас подходящий момент!</p> -->
-    <p class="text-center fw-medium fs-3 mt-5 pt-5">Создайте курс на любой вкус, ведь всегда есть время для обучения!
+    <p class="text-center fw-medium fs-3 mt-5 pt-5">
+        Создайте курс на любой вкус, ведь всегда есть время для обучения!
     </p>
     <form class="row my-5 pt-5" action="/create-course" method="post">
         <div class="col-12 mb-3">
-            <label for="users_theme" class="form-label fw-medium">Тема курса*</label>
-            <input class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
-                required placeholder="Например, 'Основы программирования на Python'" type="text" name="users_theme"
-                id="users_theme" autocomplete="off" autofocus>
+            <label for="users_theme" class="form-label fw-medium"
+                >Тема курса*</label
+            >
+            <input
+                class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                required
+                placeholder="Например, 'Основы программирования на Python'"
+                type="text"
+                name="users_theme"
+                id="users_theme"
+                autocomplete="off"
+                autofocus
+            />
         </div>
         <div class="col-12 mb-3">
-            <label for="users_desires" class="form-label fw-medium">Пожелание к курсу</label>
-            <textarea class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
-                placeholder="Например, 'Хочу изучить основы Python для анализа данных'" name="users_desires"
-                id="users_desires" rows="3"></textarea>
+            <label for="users_desires" class="form-label fw-medium"
+                >Пожелание к курсу</label
+            >
+            <textarea
+                class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                placeholder="Например, 'Хочу изучить основы Python для анализа данных'"
+                name="users_desires"
+                id="users_desires"
+                rows="3"
+            ></textarea>
         </div>
         <div class="use-local-models mb-3">
-            <input class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none" type="checkbox" name="use_local_models" id="use_local_models">
-            <label class="form-check-label" for="use_local_models">Использовать локальные модели</label>
+            <input
+                class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                type="checkbox"
+                name="use_local_models"
+                id="use_local_models"
+            />
+            <label class="form-check-label" for="use_local_models"
+                >Использовать локальные модели</label
+            >
         </div>
         <div class="col-12">
-            <button class="btn btn-warning border-2 w-100 py-2 fw-medium" type="submit">Создать курс</button>
+            <button
+                class="btn btn-warning border-2 w-100 py-2 fw-medium"
+                type="submit"
+            >
+                Создать курс
+            </button>
         </div>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     </form>
     {% if message %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+        ></button>
     </div>
     {% endif %}
 </div>

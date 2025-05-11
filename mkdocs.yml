@@ -11,6 +11,8 @@ nav:
   - "RestAPI Docs": restapi.md
   - "Структура проекта": structure.md
   - "API проекта": api.md
+  - "Возможные ошибки": exceptions.md
+  - "Тестирование": tests.md
   - "Примеры UI": ui_examples.md
 theme:
   features:

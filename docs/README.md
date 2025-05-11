@@ -10,4 +10,6 @@
 - [:dizzy: RestAPI Docs](./restapi.md) - документация RestAPI
 - [:card_file_box: Структура проекта](./structure.md) - структура проекта
 - [:sparkles: API проекта](./api.md) - взаимодействие с функциями
+- [:rotating_light: Возможные ошибки](./exceptions.md) - ошибки, которые могут вернуться
+- [:recycle: Тестирование](./tests.md) - описание тестов для приложения
 - [:art: Примеры UI](./ui_examples.md) - примеры ui

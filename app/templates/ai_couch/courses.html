@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container py-4">
     <div class="row mb-4">
         <div class="col">
@@ -10,65 +8,134 @@
 
     {% if courses_of_current_user %}
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        {% for course in courses_of_current_user|sort(attribute='is_favorite', reverse=True) %}
+        {% for course in courses_of_current_user|sort(attribute='is_favorite',
+        reverse=True) %}
         <div class="modal fade" id="editCourseModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ url_for('ai_couch.edit_course_view', course_id=course.id) }}" method="POST">
+                    <form
+                        action="{{ url_for('ai_couch.edit_course_view', course_id=course.id) }}"
+                        method="POST"
+                    >
                         <div class="modal-header">
-                            <h5 class="modal-title">Редактирование курса с id {{course.id}}</h5>
-                            <button type="button" class="btn-close focus-ring focus-ring-warning" data-bs-dismiss="modal"></button>
+                            <h5 class="modal-title">
+                                Редактирование курса с id {{course.id}}
+                            </h5>
+                            <button
+                                type="button"
+                                class="btn-close focus-ring focus-ring-warning"
+                                data-bs-dismiss="modal"
+                            ></button>
                         </div>
-                        
+
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label class="form-label">Правки</label>
-                                <input type="text" autocomplete="off" class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none" id="user_edits" name="user_edits" placeholder="ИИ все сделает ✨!">
+                                <input
+                                    type="text"
+                                    autocomplete="off"
+                                    class="form-control focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                                    id="user_edits"
+                                    name="user_edits"
+                                    placeholder="ИИ все сделает ✨!"
+                                />
                             </div>
                         </div>
-                        
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                            <button type="submit" class="btn btn-warning">Сделать</button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >
+                                Отмена
+                            </button>
+                            <button type="submit" class="btn btn-warning">
+                                Сделать
+                            </button>
                         </div>
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="{{ csrf_token() }}"
+                        />
                     </form>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card h-100" style="position: relative;">
-                <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 1;">
+            <div class="card h-100" style="position: relative">
+                <div
+                    style="
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        display: flex;
+                        gap: 5px;
+                        z-index: 1;
+                    "
+                >
                     <!-- Кнопка избранного -->
-                    <form action="{{ url_for('ai_couch.favorites', course_id=course.id) }}" method="POST">
-                        <button type="submit"
+                    <form
+                        action="{{ url_for('ai_couch.favorites', course_id=course.id) }}"
+                        method="POST"
+                    >
+                        <button
+                            type="submit"
                             class="btn btn-sm {% if course.is_favorite %}btn-warning border-2{% else %}btn-outline-warning border-2{% endif %}"
-                            title="{% if course.is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}">
-                            <i class="bi {% if course.is_favorite %}bi-star-fill{% else %}bi-star{% endif %}"></i>
+                            title="{% if course.is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}"
+                        >
+                            <i
+                                class="bi {% if course.is_favorite %}bi-star-fill{% else %}bi-star{% endif %}"
+                            ></i>
                         </button>
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="{{ csrf_token() }}"
+                        />
                     </form>
 
                     <!-- Кнопка удаления -->
-                    <form action="{{ url_for('ai_couch.delete_course', course_id=course.id) }}" method="POST">
-                        <button type="submit" class="btn btn-warning btn-sm border-2"
-                            onclick="return confirm('Удалить курс с id {{course.id}}?')">
+                    <form
+                        action="{{ url_for('ai_couch.delete_course', course_id=course.id) }}"
+                        method="POST"
+                    >
+                        <button
+                            type="submit"
+                            class="btn btn-warning btn-sm border-2"
+                            onclick="return confirm('Удалить курс с id {{course.id}}?')"
+                        >
                             Удалить
                         </button>
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="{{ csrf_token() }}"
+                        />
                     </form>
 
                     <!-- Кнопка редактирования -->
 
-                    <button type="button" 
-                            class="btn btn-sm border-2 btn-warning"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#editCourseModal"
-                            title="Редактировать">
+                    <button
+                        type="button"
+                        class="btn btn-sm border-2 btn-warning"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCourseModal"
+                        title="Редактировать"
+                    >
                         <i class="bi bi-pencil"></i>
                     </button>
-
-                    
-
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="{{ csrf_token() }}"
+                    />
                 </div>
-                <a href="{{ url_for('ai_couch.course', course_id=course.id) }}" class="text-decoration-none text-dark">
+                <a
+                    href="{{ url_for('ai_couch.course', course_id=course.id) }}"
+                    class="text-decoration-none text-dark"
+                >
                     <div class="card-body">
                         <h5 class="card-title mb-3" title="{{ course.theme }}">
                             {{ course.theme | truncate(40) }}
@@ -80,7 +147,9 @@
                         {% endif %}
                     </div>
                     <div class="card-footer bg-transparent">
-                        <small class="text-muted">ID курса: {{ course.id }}</small>
+                        <small class="text-muted"
+                            >ID курса: {{ course.id }}</small
+                        >
                     </div>
                 </a>
             </div>
