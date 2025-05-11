@@ -11,6 +11,8 @@ MISTRAL_AI_API_KEY=mistral-ai-api-key
 GOOGLE_API_KEY=google-api-key
 CSE_ID=cse-id
 SECRET_KEY=secret-key
+DEBUG=True # к примеру
+DATABASE_PATH=./database/kairos.db
 ```
 
 ## Переменные и назначение
@@ -25,3 +27,5 @@ SECRET_KEY=secret-key
 
     > 192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
     ```
+- `DEBUG` - режим дебага или нет
+- `DATABASE_PATH` - путь к базе данных

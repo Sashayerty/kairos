@@ -3,12 +3,12 @@ from http import HTTPStatus
 import pytest
 
 from app import create_app
-from app.config import testing_config
 
 
 @pytest.fixture
 def app():
-    app = create_app(testing_config)
+    app = create_app()
+    app.config["SECRET_KEY"] = "testing"
     yield app
 
 

@@ -1,13 +1,17 @@
-from dotenv import dotenv_values
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Config:
     """Класс конфиг, в нем содержаться основные настройки проекта."""
 
     # Настройки сервера Flask
-    DEBUG: bool = True
-    SECRET_KEY: str | None = dotenv_values("./.env")["SECRET_KEY"]
-    DATABASE_PATH: str = "./database/kairos.db"
+    DEBUG: bool = os.getenv("DEBUG", "True") == "True"
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "test_key")
+    DATABASE_PATH: str = os.getenv("DATABASE_PATH", "./database/kairos.db")
 
     # Настройки парсера Google Custom Search
     COUNT_OF_LINKS: int = 5  # Количество ссылок от Google Custom Search
@@ -21,10 +25,4 @@ class Config:
     )
 
 
-class TestingConfig(Config):
-    SECRET_KEY: str | None = "test"
-    WTF_CSRF_ENABLED: bool = False
-
-
 config = Config()
-testing_config = TestingConfig()

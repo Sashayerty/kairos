@@ -43,6 +43,8 @@ MISTRAL_AI_API_KEY=mistral-ai-api-key
 GOOGLE_API_KEY=google-api-key
 CSE_ID=cse-id
 SECRET_KEY=secret-key
+DEBUG=True # к примеру
+DATABASE_PATH=./database/kairos.db
 ```
 
 Данные заменяем на свои. Подробное описание содержания файла находиться в блоке ["Переменные .env"](./dotenv_variables.md)
