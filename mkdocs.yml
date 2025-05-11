@@ -9,8 +9,9 @@ nav:
   - "Настройки конфигурации": config_settings.md
   - "Переменные .env": dotenv_variables.md
   - "RestAPI Docs": restapi.md
-  - "Структура проекта": structure.md
   - "API проекта": api.md
+  - "База данных": database.md
+  - "Структура проекта": structure.md
   - "Возможные ошибки": exceptions.md
   - "Тестирование": tests.md
   - "Примеры UI": ui_examples.md
