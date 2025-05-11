@@ -660,6 +660,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Возможные ошибки
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Тестирование
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ui_examples/" class="md-nav__link">
         
   
@@ -885,6 +929,11 @@
 <p>Теперь, главная составляющая проекта - ИИ. Получить API ключ можно на официальном <a href="https://console.mistral.ai/api-keys/">сайте Mistral</a>.</p>
 <h3 id="3-secret-key">3. Secret key<a class="headerlink" href="#3-secret-key" title="Permanent link">&para;</a></h3>
 <p><code>SECRET_KEY</code> - переменная для корректной работы <code>wtforms</code>. Лучше всего для ключа подойдет <code>uuid4</code>. Сгенерировать можно или через python библиотеку <code>uuid</code>, или на <a href="https://www.uuidgenerator.net/version4">сайте</a>.</p>
+<p>P.S. В документации Flask <a href="https://flask.palletsprojects.com/en/stable/config/#SECRET_KEY">рекомендуется</a> использовать рандомный набор байтов. Ниже <strong>пример</strong>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import secrets; print(secrets.token_hex())&#39;</span>
+
+&gt;<span class="w"> </span>192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
+</code></pre></div>
 <h2 id="_3">Обязательные действия в проекте<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="database">Создаем директорию <code>database</code> в корне<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
 <p>Для корректной работы создаем в корне проекта директорию <code>database</code> любым удобным Вам способом. Вот пример через командную строку:</p>
@@ -896,6 +945,8 @@
 <span class="nv">GOOGLE_API_KEY</span><span class="o">=</span>google-api-key
 <span class="nv">CSE_ID</span><span class="o">=</span>cse-id
 <span class="nv">SECRET_KEY</span><span class="o">=</span>secret-key
+<span class="nv">DEBUG</span><span class="o">=</span>True<span class="w"> </span><span class="c1"># к примеру</span>
+<span class="nv">DATABASE_PATH</span><span class="o">=</span>./database/kairos.db
 </code></pre></div>
 <p>Данные заменяем на свои. Подробное описание содержания файла находиться в блоке <a href="../dotenv_variables/">"Переменные .env"</a></p>
 <h2 id="_4">Установка зависимостей<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>

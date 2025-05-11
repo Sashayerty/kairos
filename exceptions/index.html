@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../local_setup/">
+        <link rel="prev" href="../api/">
       
       
-        <link rel="next" href="../dotenv_variables/">
+        <link rel="next" href="../tests/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Настройки конфигурации - Kairos</title>
+        <title>Возможные ошибки - Kairos</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configpy" class="md-skip">
+        <a href="#_1" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Настройки конфигурации
+              Возможные ошибки
             
           </span>
         </div>
@@ -349,32 +349,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Настройки конфигурации
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../config_settings/" class="md-nav__link">
         
   
   
@@ -385,62 +363,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Содержание">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#flask" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки сервера Flask
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#google-custom-search" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки парсера Google Custom Search
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bs4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки bs4
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mistralai" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки MistralAI
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -537,10 +459,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../exceptions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -551,6 +482,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -619,50 +551,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#flask" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки сервера Flask
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#google-custom-search" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки парсера Google Custom Search
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bs4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки bs4
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mistralai" class="md-nav__link">
-    <span class="md-ellipsis">
-      Настройки MistralAI
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -680,26 +568,7 @@
   
 
 
-<h1 id="configpy"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f527.svg" title=":wrench:" /> Значения в config.py и для чего они нужны<a class="headerlink" href="#configpy" title="Permanent link">&para;</a></h1>
-<p><code>config.py</code> - файл для конфигурации и настройки сервера и библиотек. Настоятельно рекомендуется оставить настройки по умолчанию.</p>
-<h2 id="flask">Настройки сервера Flask<a class="headerlink" href="#flask" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>DEBUG</code>: bool, По дефолту True. Настройка определяет будет запущен сервер Flask в режиме Debug или нет.</li>
-<li><code>SECRET_KEY</code>: str, Секретный ключ для корректной работы форм wtforms, парсится из <code>.env</code></li>
-<li><code>DATABASE_PATH</code>: str, По дефолту <code>./database/kairos.db</code>. Путь к базе данных.</li>
-</ul>
-<h2 id="google-custom-search">Настройки парсера Google Custom Search<a class="headerlink" href="#google-custom-search" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>COUNT_OF_LINKS</code>: int, По дефолту 5. Количество ссылок, которые будут получаться в ответ.</li>
-</ul>
-<h2 id="bs4">Настройки bs4<a class="headerlink" href="#bs4" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>BS4_CLASS</code>: str, По дефолту "p". Класс элемента, из которого будут извлекаться данные при парсинге html с помощью bs4.</li>
-</ul>
-<h2 id="mistralai">Настройки MistralAI<a class="headerlink" href="#mistralai" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>MODEL_NAME</code>: str, По дефолту "mistral-large-latest". Название модели, которая будет использоваться в приложении.</li>
-</ul>
+<h1 id="_1"><img alt="🚨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6a8.svg" title=":rotating_light:" /> Ошибки, которые могут возникнуть<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 
 
 

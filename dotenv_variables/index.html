@@ -522,6 +522,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Возможные ошибки
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Тестирование
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ui_examples/" class="md-nav__link">
         
   
@@ -608,12 +652,25 @@
 <span class="nv">GOOGLE_API_KEY</span><span class="o">=</span>google-api-key
 <span class="nv">CSE_ID</span><span class="o">=</span>cse-id
 <span class="nv">SECRET_KEY</span><span class="o">=</span>secret-key
+<span class="nv">DEBUG</span><span class="o">=</span>True<span class="w"> </span><span class="c1"># к примеру</span>
+<span class="nv">DATABASE_PATH</span><span class="o">=</span>./database/kairos.db
 </code></pre></div>
 <h2 id="_1">Переменные и назначение<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>MISTRAL_AI_API_KEY</code> - API-ключ для взаимодействия с MistralAI. На данный момент обязателен, в будущем планируется поддержка локальных моделей. Получить ключ можно на <a href="https://console.mistral.ai/api-keys">сайте Mistral</a>, необходим аккаунт.</li>
 <li><code>GOOGLE_API_KEY</code> и <code>CSE_ID</code> - данные для использования поисковика Google. Необходимо получить на <a href="https://programmablesearchengine.google.com/controlpanel/all">сайте</a>. Нужен поиск в Google для поиска статей и парсинга данных из них.</li>
-<li><code>SECRET_KEY</code> - секретный ключ для wtforms. Необходим для корректной работы wtforms. Нужно его создать <strong>собственноручно</strong>. Лучше всего для ключа подойдет <code>uuid4</code>. Сгенерировать можно или через python библиотеку <code>uuid</code>, или на <a href="https://www.uuidgenerator.net/version4">сайте</a>.</li>
+<li>
+<p><code>SECRET_KEY</code> - секретный ключ для wtforms. Необходим для корректной работы wtforms. Нужно его создать <strong>собственноручно</strong>. Лучше всего для ключа подойдет <code>uuid4</code>. Сгенерировать можно или через python библиотеку <code>uuid</code>, или на <a href="https://www.uuidgenerator.net/version4">сайте</a>.<br />
+    P.S. В документации Flask <a href="https://flask.palletsprojects.com/en/stable/config/#SECRET_KEY">рекомендуется</a> использовать рандомный набор байтов. Ниже <strong>пример</strong>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import secrets; print(secrets.token_hex())&#39;</span>
+
+&gt;<span class="w"> </span>192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
+</code></pre></div>
+</li>
+<li>
+<p><code>DEBUG</code> - режим дебага или нет. В режиме дебага происходит обновление при изменениях в коде, а также добавляется отображение ошибок прямо в браузере.</p>
+</li>
+<li><code>DATABASE_PATH</code> - путь к базе данных, по дефолту лучше ставить <code>./database/kairos.db</code></li>
 </ul>
 
 
