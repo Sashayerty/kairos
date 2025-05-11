@@ -24,6 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r testing_requirements.txt
+        mkdir ./database
     - name: Testing with pytest
       run: |
         pytest -v .
