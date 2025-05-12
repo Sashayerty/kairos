@@ -7,8 +7,7 @@ from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.ai_core import check, edit_course, gen_course, gen_plan, gen_prompt
-from app.config import config
-from app.models import CourseModel, UsersModel, create_session, global_init
+from app.models import CourseModel, UsersModel, create_session
 
 ai_couch = Blueprint(
     "ai_couch",
@@ -16,8 +15,6 @@ ai_couch = Blueprint(
     template_folder="../templates/ai_couch",
 )
 colorama.init(autoreset=True)
-global_init(config.DATABASE_PATH)
-db_session = create_session()
 
 
 @ai_couch.route(
@@ -43,8 +40,21 @@ def index():
     ],
 )
 def create_course():
-    users_theme = dict(request.form.items())["users_theme"]
-    users_desires = dict(request.form.items())["users_desires"]
+    db_session = create_session()
+    users_theme = request.form.get("users_theme")
+    users_desires = request.form.get("users_desires")
+    use_local_models = request.form.get("use_local_models")
+    print(f"Use local models: {use_local_models}")
+    if not users_theme:
+        return (
+            render_template(
+                "index.html",
+                message="Тема курса не указана",
+                title="Kairos - Главная",
+                current_user=current_user,
+            ),
+            HTTPStatus.BAD_REQUEST,
+        )
     print(f" * User's theme: {users_theme}")
     if users_desires:
         print(f" * User's desires: {users_desires}")
@@ -114,6 +124,7 @@ def create_course():
     ],
 )
 def register():
+    db_session = create_session()
     if request.method == "POST":
         name = request.form.get("name")
         password = request.form.get("password")
@@ -173,6 +184,7 @@ def register():
     ],
 )
 def login():
+    db_session = create_session()
     if request.method == "POST":
         name = request.form.get("name")
         password = request.form.get("password")
@@ -208,6 +220,7 @@ def logout():
 @ai_couch.route("/profile", methods=["POST", "GET"])
 @login_required
 def profile():
+    db_session = create_session()
     if request.method == "POST":
         new_users_data = dict(request.form.items())
         user = (
@@ -254,6 +267,7 @@ def courses():
 )
 @login_required
 def course(course_id: int):
+    db_session = create_session()
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
     return render_template(
         "course.html",
@@ -266,6 +280,7 @@ def course(course_id: int):
 @ai_couch.route("/delete-course/<int:course_id>", methods=["POST", "GET"])
 @login_required
 def delete_course(course_id: int):
+    db_session = create_session()
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
     db_session.delete(course) if course else None
     db_session.commit()
@@ -283,6 +298,7 @@ def terms_of_using_kairos():
 )
 @login_required
 def edit_course_view(course_id: int):
+    db_session = create_session()
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
     user_edits = request.form.get("user_edits", type=str)
     print(user_edits)
@@ -297,6 +313,7 @@ def edit_course_view(course_id: int):
 @ai_couch.route("/favorites/<int:course_id>", methods=["POST", "GET"])
 @login_required
 def favorites(course_id: int):
+    db_session = create_session()
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
     course.is_favorite = True if not course.is_favorite else False
     db_session.commit()

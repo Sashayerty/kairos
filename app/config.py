@@ -25,4 +25,14 @@ class Config:
     )
 
 
+class TestingConfig:
+    """Конфиг для тестинга"""
+
+    TESTING: bool = True
+    SECRET_KEY: str = "test"
+    WTF_CSRF_ENABLED: bool = False
+    DATABASE_PATH: str = "./database/test.db"
+
+
 config = Config()
+testing_config = TestingConfig()

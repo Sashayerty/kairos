@@ -2,13 +2,12 @@ from http import HTTPStatus
 
 import pytest
 
-from app import create_app
+from app import create_test_app
 
 
 @pytest.fixture
 def app():
-    app = create_app()
-    app.config["SECRET_KEY"] = "testing"
+    app = create_test_app()
     yield app
 
 
@@ -20,3 +19,4 @@ def client(app):
 def test_api_status_code(client):
     response = client.get("/api/")
     assert response.status_code == HTTPStatus.OK
+    assert response.json == {"details": "Kairos server is running!"}

@@ -24,7 +24,24 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r testing_requirements.txt
-        mkdir ./database
-    - name: Testing with pytest
+    - name: Make dir /database
       run: |
-        pytest -v .
+        mkdir ./database
+    - name: Testing API
+      run: |
+        pytest -v ./tests/test_api.py
+    - name: Testing authentication
+      run: |
+        pytest -v ./tests/test_auth.py
+    - name: Testing database writing
+      run: |
+        pytest -v ./tests/test_database.py
+    - name: Testing forms validation
+      run: |
+        pytest -v ./tests/test_forms_validation.py
+    - name: Testing status codes
+      run: |
+        pytest -v ./tests/test_status_codes.py
+    - name: Deleting database
+      run: |
+        rm -f ./database/test.db

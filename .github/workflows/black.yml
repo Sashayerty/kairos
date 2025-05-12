@@ -26,4 +26,4 @@ jobs:
         python -m pip install black
     - name: Lint with black
       run: |
-        black . -l 79
+        black -l 79 --check .
