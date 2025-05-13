@@ -4,7 +4,7 @@ import colorama
 import requests
 from bs4 import BeautifulSoup
 
-from app.ai_core import analyze, summarizer
+from app.agents import analyze, summarizer
 from app.config import config
 
 

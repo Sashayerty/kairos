@@ -10,7 +10,7 @@
     <div class="row row-cols-1 row-cols-md-2 g-4">
         {% for course in courses_of_current_user|sort(attribute='is_favorite',
         reverse=True) %}
-        <div class="modal fade" id="editCourseModal" tabindex="-1">
+        <div class="modal fade" id="editCourseModal{{course.id}}" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form
@@ -105,8 +105,9 @@
                             type="submit"
                             class="btn btn-warning btn-sm border-2"
                             onclick="return confirm('Удалить курс с id {{course.id}}?')"
+                            title="Удалить"
                         >
-                            Удалить
+                            <i class="bi bi-trash"></i>
                         </button>
                         <input
                             type="hidden"
@@ -121,10 +122,10 @@
                         type="button"
                         class="btn btn-sm border-2 btn-warning"
                         data-bs-toggle="modal"
-                        data-bs-target="#editCourseModal"
-                        title="Редактировать"
+                        data-bs-target="#editCourseModal{{course.id}}"
+                        title="Редактировать с ИИ"
                     >
-                        <i class="bi bi-pencil"></i>
+                        <i class="bi bi-stars"></i>
                     </button>
                     <input
                         type="hidden"

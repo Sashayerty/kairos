@@ -2,7 +2,7 @@ import json
 
 from flask_restful import Resource, reqparse
 
-from app.ai_core import check, gen_course, gen_plan, gen_prompt
+from app.agents import check, gen_course, gen_plan, gen_prompt
 
 parser = reqparse.RequestParser()
 

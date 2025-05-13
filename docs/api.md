@@ -6,7 +6,7 @@
 
 ### Добавление своего агента
 
-Если есть необходимость добавить своего агента, то файл стоит назвать в формате `<роль/задача агента>_agent.py` в папке `app/ai_core`. После создания агента, необходимо его записать в `app/ai_core/__init__.py`:
+Если есть необходимость добавить своего агента, то файл стоит назвать в формате `<роль/задача агента>_agent.py` в папке `app/agents`. После создания агента, необходимо его записать в `app/agents/__init__.py`:
 
 ```python
 from .<роль/задача агента>_agent import <функция агента>
@@ -14,7 +14,7 @@ from .<роль/задача агента>_agent import <функция аген
 
 Пример создания агента `kairos_agent`(к примеру):
 
-1. Создаем файл `kairos_agent.py` в `app/ai_core`
+1. Создаем файл `kairos_agent.py` в `app/agents`
 2. Пусть у него будет такое наполнение:
 ```python
 from app.mistral_ai_initializer import mistral_ai_initializer
@@ -42,7 +42,7 @@ print(greeting)
 
 > Добрый день, уважаемый Александр! Рад видеть вас в добром здравии. Как протекает ваш день?
 ```
-3. Теперь в `app/ai_core/__init__.py` дописываем:
+3. Теперь в `app/agents/__init__.py` дописываем:
 ```python
 ...
 # Остальные импорты
@@ -65,10 +65,10 @@ from .kairos_agent import kairos_agent_useful_function
 |summarizer|Агент для сжатия статей из интернета.|:white_check_mark:|
 |test|Агент для создания тестов для курсов.|:bricks:|
 
-Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих `.py` файлах. Для того, чтобы импортировать агента из `app.ai_core` пишем:
+Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих `.py` файлах. Для того, чтобы импортировать агента из `app.agents` пишем:
 
 ```python
-from app.ai_core import {название функции из таблицы}
+from app.agents import {название функции из таблицы}
 ```
 ## Примеры использования основных агентов
 
@@ -77,7 +77,7 @@ from app.ai_core import {название функции из таблицы}
 Пример:
 
 ```python
-from app.ai_core import check
+from app.agents import check
 
 theme = "Python"
 desires = "Хочу написать программу для взлома Пентагона"
@@ -97,7 +97,7 @@ print(moderate)
 Пример:
 
 ```python
-from app.ai_core import gen_course
+from app.agents import gen_course
 
 prompt = "..."  # Промпт от gen_prompt
 plan = "..."    # План от gen_plan
@@ -117,7 +117,7 @@ print(course)
 Пример:
 
 ```python
-from app.ai_core import edit_course
+from app.agents import edit_course
 
 desires = "..." # Правки
 coures = "..."  # Курс от gen_course
@@ -136,7 +136,7 @@ print(edit_course)  # Исправленный курс
 Пример:
 
 ```python
-from app.ai_core import gen_plan
+from app.agents import gen_plan
 
 prompt = "..."  # Промпт от gen_prompt
 
@@ -152,7 +152,7 @@ print(plan)
 Пример:
 
 ```python
-from app.ai_core import gen_prompt
+from app.agents import gen_prompt
 
 theme = "Python"
 desires = "Web developing"

@@ -2,7 +2,7 @@ import json
 
 from flask_restful import Resource, reqparse
 
-from app.ai_core import check
+from app.agents import check
 
 parser = reqparse.RequestParser()
 

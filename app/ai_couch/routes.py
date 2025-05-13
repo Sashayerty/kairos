@@ -6,7 +6,7 @@ import colorama
 from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
-from app.ai_core import check, edit_course, gen_course, gen_plan, gen_prompt
+from app.agents import check, edit_course, gen_course, gen_plan, gen_prompt
 from app.models import CourseModel, UsersModel, create_session
 
 ai_couch = Blueprint(
@@ -44,7 +44,9 @@ def create_course():
     users_theme = request.form.get("users_theme")
     users_desires = request.form.get("users_desires")
     use_local_models = request.form.get("use_local_models")
-    print(f"Use local models: {use_local_models}")
+    print(
+        f" * Use local models: {colorama.Fore.GREEN if use_local_models else colorama.Fore.YELLOW}{use_local_models}"
+    )
     if not users_theme:
         return (
             render_template(
@@ -90,7 +92,6 @@ def create_course():
         time.sleep(1)
         plan_of_course: dict = json.loads(gen_plan(prompt=prompt_from_llm))
         print(colorama.Fore.GREEN + " * Plan of course created successfully!")
-        print(plan_of_course)
         time.sleep(1)
         print(" * Course function invoked successfully!")
         course = gen_course(
@@ -300,8 +301,8 @@ def terms_of_using_kairos():
 def edit_course_view(course_id: int):
     db_session = create_session()
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
-    user_edits = request.form.get("user_edits", type=str)
-    print(user_edits)
+    user_edits = request.form.get("user_edits")
+    print(f" * Правки: {user_edits}")
     course.course = edit_course(
         course=course.course,
         user_edits=user_edits,

@@ -43,9 +43,8 @@ def gen_course(
     """
     client = mistral_ai_initializer()
     prompt_to_llm = f"""{prompt}.
-    План: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}.
-    Пиши data не в markdown, а в html! Раскрой КАЖДЫЙ пункт плана как можно ПОДРОБНЕЕ!
-    Напиши как можно больше в каждом пункте плана для раскрытия."""
+    План курса: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}. Пиши data не в markdown, а в html!
+    Учти, что ты должен научить человека. Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!"""
     result = client.message(
         model=config.MODEL_NAME,
         messages=[
