@@ -224,6 +224,17 @@ def profile():
     db_session = create_session()
     if request.method == "POST":
         new_users_data = dict(request.form.items())
+        if (
+            db_session.query(UsersModel)
+            .filter_by(name=new_users_data["name"])
+            .first()
+        ):
+            return render_template(
+                "profile.html",
+                title="Kairos - Профиль",
+                current_user=current_user,
+                message="Данное имя занято!",
+            )
         user = (
             db_session.query(UsersModel).filter_by(id=current_user.id).first()
         )

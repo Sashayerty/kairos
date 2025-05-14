@@ -20,20 +20,16 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="name" class="form-label">Имя</label>
-                            <input type="text" 
-                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle" 
-                                id="name" 
-                                name="name"
-                                value="{{ current_user.name }}"
-                                required autocomplete="off">
+                            <input type="text"
+                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle"
+                                id="name" name="name" value="{{ current_user.name }}" required autocomplete="off">
                         </div>
                         <div class="col-12">
                             <label for="description" class="form-label">Описание</label>
-                            <textarea class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle" 
-                                    id="description" 
-                                    name="description"
-                                    rows="2"
-                                    placeholder="Добавьте информацию о себе">{{ current_user.description }}</textarea>
+                            <textarea
+                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle"
+                                id="description" name="description" rows="2"
+                                placeholder="Добавьте информацию о себе">{{ current_user.description }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -41,23 +37,19 @@
                     <h5 class="mb-3 text-warning">Безопасность</h5>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <input type="password" 
-                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle" 
-                                id="password" 
-                                name="password"
-                                placeholder="Новый пароль">
+                            <input type="password"
+                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle"
+                                id="password" name="password" placeholder="Новый пароль">
                         </div>
                         <div class="col-md-6">
-                            <input type="password" 
-                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle" 
-                                id="confirm_password" 
-                                name="confirm_password"
-                                placeholder="Подтверждение пароля">
+                            <input type="password"
+                                class="form-control focus-ring focus-ring-warning border border-2 border-warning-subtle"
+                                id="confirm_password" name="confirm_password" placeholder="Подтверждение пароля">
                         </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
-                    <button type="reset" class="btn btn-outline-secondary">Сбросить форму</button>
+                    <button type="reset" class="btn btn-secondary">Сбросить форму</button>
                     <button type="submit" class="btn btn-warning">Обновить данные</button>
                 </div>
                 {% if message %}
