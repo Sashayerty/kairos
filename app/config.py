@@ -13,6 +13,9 @@ class Config:
     SECRET_KEY: str = os.getenv("SECRET_KEY", "test_key")
     DATABASE_PATH: str = os.getenv("DATABASE_PATH", "./database/kairos.db")
 
+    # Beta
+    BETA_FUNCTIONS: bool = True
+
     # Настройки парсера Google Custom Search
     COUNT_OF_LINKS: int = 5  # Количество ссылок от Google Custom Search
 
@@ -20,9 +23,15 @@ class Config:
     BS4_CLASS: str = "p"  # Класс элемента, который будет парсится на странице
 
     # Настройки MistralAI
-    MODEL_NAME: str = (
+    MISTRAL_MODEL_NAME: str = (
         "mistral-large-latest"  # https://docs.mistral.ai/getting-started/models/
     )
+
+    # Настройки Ollama (beta)
+    OLLAMA_MODEL_NAME: str = "qwen3:4b"  # http://localhost:11434/api/tags
+
+    # Настройки пайплайна агентов
+    CENSOR_CHECK_ENABLED: bool = True
 
 
 class TestingConfig:

@@ -1,11 +1,12 @@
+from app.ai_initializer import get_ai_client
 from app.config import config
-from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def gen_prompt(
     theme: str,
     desires: str | None = None,
     description_of_user: str | None = None,
+    use_local_models: bool = False,
 ) -> str:
     """Функция для обогащения темы юзера до промпта
 
@@ -13,6 +14,7 @@ def gen_prompt(
         theme (str): Тема пользователя
         desires (str, optional): Пожелания пользователя. Defaults to None.
         description_of_user (str): Описание пользователя. Defaults to None.
+        use_local_models (bool): Использовать локальные модели или нет. Defaults to False
 
     Returns:
         str: Промпт
@@ -49,9 +51,13 @@ def gen_prompt(
         мнению улучшат качество курса.
     """
 
-    client = mistral_ai_initializer()
+    client = get_ai_client(use_local_models)
     result = client.message(
-        model=config.MODEL_NAME,
+        model=(
+            config.MISTRAL_MODEL_NAME
+            if not use_local_models
+            else config.OLLAMA_MODEL_NAME
+        ),
         messages=[
             {
                 "role": "system",

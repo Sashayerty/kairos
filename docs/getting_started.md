@@ -24,6 +24,10 @@ python -c 'import secrets; print(secrets.token_hex())'
 > 192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
 ```
 
+## Beta функционал
+
+На данный момент к beta функционалу относится использование локальных моделей `Ollama`. Для их использования необходимо установить `Ollama` способом, подходящим Вашей [системе](https://ollama.com/download). Также стоит прочитать про настройки конфига для [beta](./config_settings.md#beta) и [ollama](./config_settings.md#ollama-beta) .
+
 ## Обязательные действия в проекте
 
 ### Создаем директорию `database` в корне

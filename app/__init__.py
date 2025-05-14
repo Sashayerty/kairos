@@ -22,6 +22,13 @@ def create_app() -> Flask:
     api.add_resource(ApiStatus, "/")
     login_manager.init_app(app)
     app.register_blueprint(ai_couch)
+
+    @app.context_processor
+    def inject_global_vars():
+        return {
+            "use_beta": config.BETA_FUNCTIONS,
+        }
+
     return app
 
 

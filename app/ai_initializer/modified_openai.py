@@ -9,9 +9,9 @@ class ModifiedOpenai(openai.OpenAI):
         messages: list,
         model: str,
         response_format: dict[str, str] | openai.NotGiven = openai.NOT_GIVEN,
-        timeout: int | openai.NotGiven = openai.NOT_GIVEN,
+        timeout: float | openai.NotGiven = openai.NOT_GIVEN,
         temperature: float | openai.NotGiven = 0.7,
-    ):
+    ) -> str:
         result = self.chat.completions.create(
             model=model,
             response_format=response_format,

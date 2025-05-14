@@ -1,11 +1,12 @@
+from app.ai_initializer import get_ai_client
 from app.config import config
-from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def gen_course(
     prompt: str,
     plan: dict,
     theory: str | None = None,
+    use_local_models: bool = False,
 ) -> str:
     """Функция для генерации итогового результата.
 
@@ -13,6 +14,7 @@ def gen_course(
         prompt (str): Промпт, по которому нужно сделать курс.
         plan (dict): План курса.
         theory (str, optional): Теория, которая должна быть обязательно включена в курс. Defaults to None.
+        use_local_models (bool): Использовать локальные модели или нет. Defaults to False
 
     Returns:
         str: Итоговый курс.
@@ -41,12 +43,16 @@ def gen_course(
             },
     }
     """
-    client = mistral_ai_initializer()
+    client = get_ai_client(use_local_models)
     prompt_to_llm = f"""{prompt}.
     План курса: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}. Пиши data не в markdown, а в html!
     Учти, что ты должен научить человека. Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!"""
     result = client.message(
-        model=config.MODEL_NAME,
+        model=(
+            config.MISTRAL_MODEL_NAME
+            if not use_local_models
+            else config.OLLAMA_MODEL_NAME
+        ),
         messages=[
             {
                 "role": "user",

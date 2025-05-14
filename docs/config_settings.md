@@ -8,6 +8,10 @@
 - `SECRET_KEY`: str, Секретный ключ для корректной работы форм wtforms, парсится из `.env`
 - `DATABASE_PATH`: str, По дефолту `./database/kairos.db`. Путь к базе данных, парсится из `.env`
 
+## Beta
+
+- `BETA_FUNCTIONS`: bool, По дефолту True. Использование beta-функций в приложении.
+
 ## Настройки парсера Google Custom Search
 
 - `COUNT_OF_LINKS`: int, По дефолту 5. Количество ссылок, которые будут получаться в ответ.
@@ -18,4 +22,14 @@
 
 ## Настройки MistralAI
 
-- `MODEL_NAME`: str, По дефолту "mistral-large-latest". Название модели, которая будет использоваться в приложении.
+- `MISTRAL_MODEL_NAME`: str, По дефолту "mistral-large-latest". Название модели, которая будет использоваться в приложении.
+
+## Настройки Ollama (beta)
+
+- `OLLAMA_MODEL_NAME`: str, По дефолту "qwen3:4b". Название модели, которую будет использовать Ollama в приложении.
+
+    P.S. Для того, чтобы узнать, какие модели Ollama у Вас есть переходим по [http://localhost:11434/api/tags](http://localhost:11434/api/tags)
+
+## Настройки пайплайна агентов
+
+- `CENSOR_CHECK_ENABLED`: bool, По дефолту True. Включает/выключает проверку цензором.

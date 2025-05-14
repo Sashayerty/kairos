@@ -1,16 +1,18 @@
+from app.ai_initializer import get_ai_client
 from app.config import config
-from app.mistral_ai_initializer import mistral_ai_initializer
 
 
 def check(
     theme: str,
     desires: str = None,
+    use_local_models: bool = False,
 ) -> str:
     """Функция для цензуры темы пользователя.
 
     Args:
         theme (str): Тема пользователя
         desires (str, optional): Пожелания пользователя. Defaults to None.
+        use_local_models (bool): Использовать локальные модели или нет. Defaults to False
 
     Returns:
         str: Dict в виде str {"data": True/False(с темой хорошо/плохо)}
@@ -33,9 +35,13 @@ def check(
     далее,
     иначе - не пропускаешь. Тема пользователя: {theme}. Пожелания пользователя: {desires} Пример твоего
     ответа: {json_example}. Причина должна быть небольшая и учти то, что ты отвечаешь напрямую пользователю."""
-    client = mistral_ai_initializer()
+    client = get_ai_client(use_local_models)
     response = client.message(
-        model=config.MODEL_NAME,
+        model=(
+            config.MISTRAL_MODEL_NAME
+            if not use_local_models
+            else config.OLLAMA_MODEL_NAME
+        ),
         messages=[
             {
                 "role": "user",

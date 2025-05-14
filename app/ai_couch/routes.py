@@ -7,6 +7,7 @@ from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.agents import check, edit_course, gen_course, gen_plan, gen_prompt
+from app.config import config
 from app.models import CourseModel, UsersModel, create_session
 
 ai_couch = Blueprint(
@@ -29,6 +30,7 @@ def index():
         "index.html",
         title="Kairos - Главная",
         current_user=current_user,
+        use_beta=config.BETA_FUNCTIONS,
     )
 
 
@@ -43,7 +45,7 @@ def create_course():
     db_session = create_session()
     users_theme = request.form.get("users_theme")
     users_desires = request.form.get("users_desires")
-    use_local_models = request.form.get("use_local_models")
+    use_local_models = request.form.get("use_local_models") == "on"
     print(
         f" * Use local models: {colorama.Fore.GREEN if use_local_models else colorama.Fore.YELLOW}{use_local_models}"
     )
@@ -54,16 +56,23 @@ def create_course():
                 message="Тема курса не указана",
                 title="Kairos - Главная",
                 current_user=current_user,
+                use_beta=config.BETA_FUNCTIONS,
             ),
             HTTPStatus.BAD_REQUEST,
         )
     print(f" * User's theme: {users_theme}")
     if users_desires:
         print(f" * User's desires: {users_desires}")
-    answer_from_censor = json.loads(
-        check(theme=users_theme, desires=users_desires)
-    )
-    is_theme_are_good = answer_from_censor["data"]
+    if config.CENSOR_CHECK_ENABLED:
+        answer_from_censor = json.loads(
+            check(
+                theme=users_theme,
+                desires=users_desires,
+            )
+        )
+        is_theme_are_good = answer_from_censor["data"]
+    else:
+        is_theme_are_good = True
     print(
         f" * User's theme and desires is good:"
         f" {colorama.Fore.GREEN if is_theme_are_good else colorama.Fore.RED}{is_theme_are_good}"
@@ -77,6 +86,7 @@ def create_course():
             message=message,
             title="Kairos - Главная",
             current_user=current_user,
+            use_beta=config.BETA_FUNCTIONS,
         )
     else:
         prompt_from_llm = gen_prompt(
@@ -90,7 +100,11 @@ def create_course():
         )
         print(prompt_from_llm)
         time.sleep(1)
-        plan_of_course: dict = json.loads(gen_plan(prompt=prompt_from_llm))
+        plan_of_course: dict = json.loads(
+            gen_plan(
+                prompt=prompt_from_llm,
+            )
+        )
         print(colorama.Fore.GREEN + " * Plan of course created successfully!")
         time.sleep(1)
         print(" * Course function invoked successfully!")
@@ -114,6 +128,7 @@ def create_course():
             course=course_model,
             current_user=current_user,
             title="Kairos - Курс",
+            use_beta=config.BETA_FUNCTIONS,
         )
 
 
