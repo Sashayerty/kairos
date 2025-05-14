@@ -1,20 +1,22 @@
 @font-face {
     font-display: swap;
-    font-family: 'Noto Sans';
+    font-family: "Noto Sans";
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/noto-sans-v38-cyrillic_latin-regular.woff2') format('woff2');
+    src: url("../fonts/noto-sans-v38-cyrillic_latin-regular.woff2")
+        format("woff2");
 }
 
-
 body {
-    font-family: 'Noto Sans';
+    font-family: "Noto Sans";
 }
 
 .card {
     border: 1px solid #e9ecef;
     border-radius: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .card-header {
@@ -54,19 +56,20 @@ body {
 pre {
     border-radius: 5px;
     border: 2px solid rgb(175, 175, 175);
-    padding: 4px;    
+    padding: 4px;
 }
 
 .login {
     height: 80vh;
 }
-  
+
 .login-container {
     border-radius: 20px;
     height: auto;
 }
 
-#remember_me:checked, #accept_with_terms_of_using:checked, #use_local_models:checked {
+#remember_me:checked,
+#accept_with_terms_of_using:checked,
+#use_local_models:checked {
     background-color: #ffc107;
 }
-

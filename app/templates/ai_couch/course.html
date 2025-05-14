@@ -1,20 +1,16 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container my-5">
     <h1 class="text-center mb-5">{{ course.theme }}</h1>
     <div class="row">
         {% for key, section in course.course.items() %}
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-sm">
-                <div class="card-header bg-warning">
-                    <span class="badge bg-light me-2">{{ key }}</span>
+                <div class="card-header bg-warning text-dark">
+                    <span class="badge bg-body text-body me-2">{{ key }}</span>
                     <h5 class="card-title mb-0">{{ section.title }}</h5>
                 </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        {{ section.data | safe }}
-                    </div>
+                <div class="card-body bg-body text-body">
+                    <div class="card-text">{{ section.data | safe }}</div>
                 </div>
             </div>
         </div>

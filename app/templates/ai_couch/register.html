@@ -1,51 +1,81 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="login container d-grid align-items-center justify-content-center">
     <div class="login-container border border-2 rounded-4 p-5">
-        <h1 class="login-title fs-2 fw-bold text-body mb-5">Зарегистрировать аккаунт</h1>
+        <h1 class="login-title fs-2 fw-bold text-body mb-5 text-center">
+            Регистрация
+        </h1>
         <form action="" method="post">
             <p>
-                <input type="text" name="name" placeholder="Имя" autocomplete="off" required
-                       class="form-control focus-ring focus-ring-warning border-warning"
-                       value="{{ request.form.name or '' }}">
-
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Имя"
+                    autocomplete="off"
+                    required
+                    class="form-control focus-ring focus-ring-warning border-warning"
+                    value="{{ request.form.name or '' }}"
+                />
             </p>
 
             <p>
-                <input type="password" name="password" placeholder="Пароль" autocomplete="off" required
-                       class="form-control focus-ring focus-ring-warning border-warning">
-
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Пароль"
+                    autocomplete="off"
+                    required
+                    class="form-control focus-ring focus-ring-warning border-warning"
+                />
             </p>
 
             <p>
-                <input type="password" name="password_again" placeholder="Подтвердите пароль" required
-                       class="form-control focus-ring focus-ring-warning border-warning" autocomplete="off">
-
+                <input
+                    type="password"
+                    name="password_again"
+                    placeholder="Подтвердите пароль"
+                    required
+                    class="form-control focus-ring focus-ring-warning border-warning"
+                    autocomplete="off"
+                />
             </p>
 
             <p class="mb-4">
-                <input type="checkbox" name="accept_with_terms_of_using"
-                       class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
-                       id="accept_with_terms_of_using"
-                       required
-                       {% if request.form.accept_with_terms_of_using %}checked{% endif %}>
+                <input
+                    type="checkbox"
+                    name="accept_with_terms_of_using"
+                    class="form-check-input focus-ring focus-ring-warning border-2 border-warning-subtle shadow-none"
+                    id="accept_with_terms_of_using"
+                    required
+                    {%
+                    if
+                    request.form.accept_with_terms_of_using
+                    %}checked{%
+                    endif
+                    %}
+                />
                 <label for="accept_with_terms_of_using">Принять</label>
-                <a class="text-decoration-none link-warning" href="/terms">условия использования</a>
-
+                <a class="text-decoration-none link-warning" href="/terms"
+                    >условия использования</a
+                >
             </p>
 
             <p class="d-grid gap-2">
-                <button type="submit" class="btn btn-warning">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-warning">
+                    Зарегистрироваться
+                </button>
             </p>
 
-            <p class="text-center">Уже есть аккаунт?<br>
-                <a class="text-decoration-none link-warning" href="/login">Войти</a>
+            <p class="text-center">
+                Уже есть аккаунт?<br />
+                <a class="text-decoration-none link-warning" href="/login"
+                    >Войти</a
+                >
             </p>
 
             {% if message %}
             <p class="alert alert-warning" role="alert">{{ message }}</p>
             {% endif %}
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         </form>
     </div>
 </div>

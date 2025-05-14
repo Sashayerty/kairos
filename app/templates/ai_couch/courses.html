@@ -64,7 +64,10 @@
             </div>
         </div>
         <div class="col">
-            <div class="card h-100" style="position: relative">
+            <div
+                class="card h-100 bg-body text-body"
+                style="position: relative"
+            >
                 <div
                     style="
                         position: absolute;
@@ -137,7 +140,7 @@
                     href="{{ url_for('ai_couch.course', course_id=course.id) }}"
                     class="text-decoration-none text-dark"
                 >
-                    <div class="card-body">
+                    <div class="card-body bg-body text-body">
                         <h5 class="card-title mb-3" title="{{ course.theme }}">
                             {{ course.theme | truncate(40) }}
                         </h5>
