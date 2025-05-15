@@ -16,12 +16,14 @@ from .<роль/задача агента>_agent import <функция аген
 
 1. Создаем файл `kairos_agent.py` в `app/agents`
 2. Пусть у него будет такое наполнение:
+
 ```python
-from app.mistral_ai_initializer import mistral_ai_initializer
+from app.ai_initializer import get_ai_client
+from app.config import config
 
 
-def kairos_agent_useful_function(name: str) -> str:
-    client = mistral_ai_initializer()
+def kairos_agent_useful_function(name: str, use_local_models: bool = False) -> str:
+    client = get_ai_client(use_local_models)
     response = client.message(
         messages=[
             {
@@ -32,7 +34,12 @@ def kairos_agent_useful_function(name: str) -> str:
                 "role": "user",
                 "content": f"Поздоровайся с {name}",
             },
-        ]
+        ],
+        model=(
+            config.MISTRAL_MODEL_NAME
+            if not use_local_models
+            else config.OLLAMA_MODEL_NAME
+        ),
     )
     return response
 
@@ -42,14 +49,16 @@ print(greeting)
 
 > Добрый день, уважаемый Александр! Рад видеть вас в добром здравии. Как протекает ваш день?
 ```
+
 3. Теперь в `app/agents/__init__.py` дописываем:
+
 ```python
 ...
 # Остальные импорты
 from .kairos_agent import kairos_agent_useful_function
 ```
 
-### Список агентов 
+### Список агентов
 
 |Функция|Назначение агента|Работает|
 | --- | --- | :-: |
@@ -70,7 +79,10 @@ from .kairos_agent import kairos_agent_useful_function
 ```python
 from app.agents import {название функции из таблицы}
 ```
+
 ## Примеры использования основных агентов
+
+В примерах везде используется `MistralAI`
 
 ### `check`
 
@@ -120,11 +132,11 @@ print(course)
 from app.agents import edit_course
 
 desires = "..." # Правки
-coures = "..."  # Курс от gen_course
+course = "..."  # Курс от gen_course
 
 
 edited_course = edit_course(
-    course=coures,
+    course=course,
     user_edits=desires,
 )
 
@@ -169,9 +181,6 @@ print(prompt)   # Промпт для других моделей
 > Ты опытный синьор-разработчик специализирующийся на ...
 ```
 
-
-
-
 ## Web scraper
 
 Web scraper - функция для парсинга и комплексной обработки данных из Интернета. Пайплайн обработки данных:
@@ -210,7 +219,9 @@ data = scraper(
 print(data)
 ```
 
-## ModifiedMistral
+## ModifiedMistral (deprecated)
+
+Устаревший функционал. Рекомендуется использовать [ModifiedOpenai](./api.md#modifiedopenai)
 
 Дочерний класс `Mistral`. Создан для удобства взаимодействия с моделью в рамках приложения. Есть функция `message`, есть инициализатор экземпляра класса. Пример использования:
 
@@ -222,6 +233,37 @@ instance2 = mistral_ai_initializer()  # Автоматически получа�
 
 print(instance1.message(messages=[{"role": "user", "content": "Привет!"}]))
 print(instance2.message(messages=[{"role": "user", "content": "Привет!"}]))
+
+> Привет! Как я могу помочь?
+> Привет! Как я могу помочь?
+```
+
+## ModifiedOpenai
+
+Дочерний класс `openai.OpenAI`. Создан для удобства взаимодействия с моделью в рамках приложения. Есть функция `message`, есть инициализатор экземпляра класса. Пример использования:
+
+```python
+from app.ai_initializer import ModifiedOpenai, get_ai_client
+
+instance1 = ModifiedOpenai(
+    api_key="api_key", base_url="https://api.mistral.ai/v1"
+)  # MistralAI
+instance2 = get_ai_client(
+    use_local_models=False
+)  # Автоматически получает API ключ из .env
+
+print(
+    instance1.message(
+        messages=[{"role": "user", "content": "Привет!"}],
+        model="mistral-small-latest",
+    )
+)
+print(
+    instance2.message(
+        messages=[{"role": "user", "content": "Привет!"}],
+        model="mistral-small-latest",
+    )
+)
 
 > Привет! Как я могу помочь?
 > Привет! Как я могу помочь?
