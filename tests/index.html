@@ -418,12 +418,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Структура проекта
+    API проекта
     
   </span>
   
@@ -440,12 +440,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../database/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    API проекта
+    База данных
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Структура проекта
     
   </span>
   
@@ -544,18 +566,45 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test_status_codes" class="md-nav__link">
+  <a href="#test_api" class="md-nav__link">
     <span class="md-ellipsis">
-      test_status_codes
+      test_api
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#test_api" class="md-nav__link">
+  <a href="#test_auth" class="md-nav__link">
     <span class="md-ellipsis">
-      test_api
+      test_auth
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test_database" class="md-nav__link">
+    <span class="md-ellipsis">
+      test_database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test_forms_validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      test_forms_validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test_status_codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      test_status_codes
     </span>
   </a>
   
@@ -633,18 +682,45 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test_status_codes" class="md-nav__link">
+  <a href="#test_api" class="md-nav__link">
     <span class="md-ellipsis">
-      test_status_codes
+      test_api
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#test_api" class="md-nav__link">
+  <a href="#test_auth" class="md-nav__link">
     <span class="md-ellipsis">
-      test_api
+      test_auth
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test_database" class="md-nav__link">
+    <span class="md-ellipsis">
+      test_database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test_forms_validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      test_forms_validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test_status_codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      test_status_codes
     </span>
   </a>
   
@@ -678,10 +754,16 @@
 <p>Тестирование представлено в виде <code>github workflow</code>. Проще говоря, автоматически скачивается <code>pytest</code>, запускается проверка, и выносится вердикт.</p>
 <h2 id="tests">Модуль <code>tests</code><a class="headerlink" href="#tests" title="Permanent link">&para;</a></h2>
 <p>В модуле, на данный момент, находится 2 файла с тестами. В обозримом будущем планируется тестирование регистрации аккаунтов, входа в аккаунт и т.п.</p>
-<h3 id="test_status_codes">test_status_codes<a class="headerlink" href="#test_status_codes" title="Permanent link">&para;</a></h3>
-<p>Тесты для проверки "сухих" статус-кодов ответов. Тут не производится логинг в аккаунт, регистрация и тому подобное: просто проверка статус-кодов.</p>
 <h3 id="test_api">test_api<a class="headerlink" href="#test_api" title="Permanent link">&para;</a></h3>
 <p>Тесты для <code>RestAPI</code> проекта. Ровно так же, как и с <code>test_status_codes</code> идет проверка статус-кодов.</p>
+<h3 id="test_auth">test_auth<a class="headerlink" href="#test_auth" title="Permanent link">&para;</a></h3>
+<p>Тесты для проверки работоспособности регистрации и входа в аккаунт.</p>
+<h3 id="test_database">test_database<a class="headerlink" href="#test_database" title="Permanent link">&para;</a></h3>
+<p>Тесты для проверки работоспособности записи в бд.</p>
+<h3 id="test_forms_validation">test_forms_validation<a class="headerlink" href="#test_forms_validation" title="Permanent link">&para;</a></h3>
+<p>Проверка валидаторов форм.</p>
+<h3 id="test_status_codes">test_status_codes<a class="headerlink" href="#test_status_codes" title="Permanent link">&para;</a></h3>
+<p>Тесты для проверки "сухих" статус-кодов ответов. Тут не производится логинг в аккаунт, регистрация и тому подобное: просто проверка статус-кодов.</p>
 
 
 

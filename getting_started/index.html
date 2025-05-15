@@ -400,6 +400,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta функционал
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       Обязательные действия в проекте
@@ -616,12 +625,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Структура проекта
+    API проекта
     
   </span>
   
@@ -638,12 +647,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../database/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    API проекта
+    База данных
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Структура проекта
     
   </span>
   
@@ -784,6 +815,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta функционал
+    </span>
+  </a>
   
 </li>
       
@@ -934,6 +974,8 @@
 
 &gt;<span class="w"> </span>192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
 </code></pre></div>
+<h2 id="beta">Beta функционал<a class="headerlink" href="#beta" title="Permanent link">&para;</a></h2>
+<p>На данный момент к beta функционалу относится использование локальных моделей <code>Ollama</code>. Для их использования необходимо установить <code>Ollama</code> способом, подходящим Вашей <a href="https://ollama.com/download">системе</a>. Также стоит прочитать про настройки конфига для <a href="../config_settings/#beta">beta</a> и <a href="../config_settings/#ollama-beta">ollama</a> .</p>
 <h2 id="_3">Обязательные действия в проекте<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="database">Создаем директорию <code>database</code> в корне<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
 <p>Для корректной работы создаем в корне проекта директорию <code>database</code> любым удобным Вам способом. Вот пример через командную строку:</p>
@@ -945,8 +987,6 @@
 <span class="nv">GOOGLE_API_KEY</span><span class="o">=</span>google-api-key
 <span class="nv">CSE_ID</span><span class="o">=</span>cse-id
 <span class="nv">SECRET_KEY</span><span class="o">=</span>secret-key
-<span class="nv">DEBUG</span><span class="o">=</span>True<span class="w"> </span><span class="c1"># к примеру</span>
-<span class="nv">DATABASE_PATH</span><span class="o">=</span>./database/kairos.db
 </code></pre></div>
 <p>Данные заменяем на свои. Подробное описание содержания файла находиться в блоке <a href="../dotenv_variables/">"Переменные .env"</a></p>
 <h2 id="_4">Установка зависимостей<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>

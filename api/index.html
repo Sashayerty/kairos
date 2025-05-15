@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../structure/">
+        <link rel="prev" href="../restapi/">
       
       
-        <link rel="next" href="../exceptions/">
+        <link rel="next" href="../database/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -415,28 +415,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Структура проекта
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -592,9 +570,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modifiedmistral" class="md-nav__link">
+  <a href="#modifiedmistral-deprecated" class="md-nav__link">
     <span class="md-ellipsis">
-      ModifiedMistral
+      ModifiedMistral (deprecated)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifiedopenai" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModifiedOpenai
     </span>
   </a>
   
@@ -613,6 +600,50 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    База данных
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Структура проекта
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -812,9 +843,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modifiedmistral" class="md-nav__link">
+  <a href="#modifiedmistral-deprecated" class="md-nav__link">
     <span class="md-ellipsis">
-      ModifiedMistral
+      ModifiedMistral (deprecated)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifiedopenai" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModifiedOpenai
     </span>
   </a>
   
@@ -852,18 +892,20 @@
 <p>В данном блоке описан весь функционал проекта, написанный мной. От агентов до поиска в Google.</p>
 <h2 id="_1">Агенты<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">Добавление своего агента<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>Если есть необходимость добавить своего агента, то файл стоит назвать в формате <code>&lt;роль/задача агента&gt;_agent.py</code> в папке <code>app/ai_core</code>. После создания агента, необходимо его записать в <code>app/ai_core/__init__.py</code>:</p>
+<p>Если есть необходимость добавить своего агента, то файл стоит назвать в формате <code>&lt;роль/задача агента&gt;_agent.py</code> в папке <code>app/agents</code>. После создания агента, необходимо его записать в <code>app/agents/__init__.py</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="o">&lt;</span><span class="n">роль</span><span class="o">/</span><span class="n">задача</span> <span class="n">агента</span><span class="o">&gt;</span><span class="n">_agent</span> <span class="kn">import</span><span class="w"> </span><span class="o">&lt;</span><span class="n">функция</span> <span class="n">агента</span><span class="o">&gt;</span>
 </code></pre></div>
 <p>Пример создания агента <code>kairos_agent</code>(к примеру):</p>
 <ol>
-<li>Создаем файл <code>kairos_agent.py</code> в <code>app/ai_core</code></li>
-<li>Пусть у него будет такое наполнение:
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.mistral_ai_initializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">mistral_ai_initializer</span>
+<li>Создаем файл <code>kairos_agent.py</code> в <code>app/agents</code></li>
+<li>Пусть у него будет такое наполнение:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_initializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_ai_client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">kairos_agent_useful_function</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">mistral_ai_initializer</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">kairos_agent_useful_function</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_local_models</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">get_ai_client</span><span class="p">(</span><span class="n">use_local_models</span><span class="p">)</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">message</span><span class="p">(</span>
         <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
             <span class="p">{</span>
@@ -874,7 +916,12 @@
                 <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Поздоровайся с </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">},</span>
-        <span class="p">]</span>
+        <span class="p">],</span>
+        <span class="n">model</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">MISTRAL_MODEL_NAME</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">use_local_models</span>
+            <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">OLLAMA_MODEL_NAME</span>
+        <span class="p">),</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span>
 
@@ -883,13 +930,14 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>
 
 <span class="o">&gt;</span> <span class="n">Добрый</span> <span class="n">день</span><span class="p">,</span> <span class="n">уважаемый</span> <span class="n">Александр</span><span class="err">!</span> <span class="n">Рад</span> <span class="n">видеть</span> <span class="n">вас</span> <span class="n">в</span> <span class="n">добром</span> <span class="n">здравии</span><span class="o">.</span> <span class="n">Как</span> <span class="n">протекает</span> <span class="n">ваш</span> <span class="n">день</span><span class="err">?</span>
-</code></pre></div></li>
-<li>Теперь в <code>app/ai_core/__init__.py</code> дописываем:
+</code></pre></div>
+<ol>
+<li>Теперь в <code>app/agents/__init__.py</code> дописываем:</li>
+</ol>
 <div class="highlight"><pre><span></span><code><span class="o">...</span>
 <span class="c1"># Остальные импорты</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.kairos_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">kairos_agent_useful_function</span>
-</code></pre></div></li>
-</ol>
+</code></pre></div>
 <h3 id="_3">Список агентов<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -957,13 +1005,14 @@
 </tr>
 </tbody>
 </table>
-<p>Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих <code>.py</code> файлах. Для того, чтобы импортировать агента из <code>app.ai_core</code> пишем:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="p">{</span><span class="n">название</span> <span class="n">функции</span> <span class="n">из</span> <span class="n">таблицы</span><span class="p">}</span>
+<p>Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих <code>.py</code> файлах. Для того, чтобы импортировать агента из <code>app.agents</code> пишем:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.agents</span><span class="w"> </span><span class="kn">import</span> <span class="p">{</span><span class="n">название</span> <span class="n">функции</span> <span class="n">из</span> <span class="n">таблицы</span><span class="p">}</span>
 </code></pre></div>
 <h2 id="_4">Примеры использования основных агентов<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>В примерах везде используется <code>MistralAI</code></p>
 <h3 id="check"><code>check</code><a class="headerlink" href="#check" title="Permanent link">&para;</a></h3>
 <p>Пример:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">check</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">check</span>
 
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
 <span class="n">desires</span> <span class="o">=</span> <span class="s2">&quot;Хочу написать программу для взлома Пентагона&quot;</span>
@@ -979,7 +1028,7 @@
 </code></pre></div>
 <h3 id="gen_course"><code>gen_course</code><a class="headerlink" href="#gen_course" title="Permanent link">&para;</a></h3>
 <p>Пример:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_course</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_course</span>
 
 <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Промпт от gen_prompt</span>
 <span class="n">plan</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>    <span class="c1"># План от gen_plan</span>
@@ -995,14 +1044,14 @@
 </code></pre></div>
 <h3 id="edit_course"><code>edit_course</code><a class="headerlink" href="#edit_course" title="Permanent link">&para;</a></h3>
 <p>Пример:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">edit_course</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">edit_course</span>
 
 <span class="n">desires</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span> <span class="c1"># Правки</span>
-<span class="n">coures</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Курс от gen_course</span>
+<span class="n">course</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Курс от gen_course</span>
 
 
 <span class="n">edited_course</span> <span class="o">=</span> <span class="n">edit_course</span><span class="p">(</span>
-    <span class="n">course</span><span class="o">=</span><span class="n">coures</span><span class="p">,</span>
+    <span class="n">course</span><span class="o">=</span><span class="n">course</span><span class="p">,</span>
     <span class="n">user_edits</span><span class="o">=</span><span class="n">desires</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -1010,7 +1059,7 @@
 </code></pre></div>
 <h3 id="gen_plan"><code>gen_plan</code><a class="headerlink" href="#gen_plan" title="Permanent link">&para;</a></h3>
 <p>Пример:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_plan</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_plan</span>
 
 <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>  <span class="c1"># Промпт от gen_prompt</span>
 
@@ -1022,7 +1071,7 @@
 </code></pre></div>
 <h3 id="gen_prompt"><code>gen_prompt</code><a class="headerlink" href="#gen_prompt" title="Permanent link">&para;</a></h3>
 <p>Пример:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_core</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_prompt</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_prompt</span>
 
 <span class="n">theme</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
 <span class="n">desires</span> <span class="o">=</span> <span class="s2">&quot;Web developing&quot;</span>
@@ -1068,7 +1117,8 @@ c --&gt;|Нужны| d</code></pre>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="modifiedmistral">ModifiedMistral<a class="headerlink" href="#modifiedmistral" title="Permanent link">&para;</a></h2>
+<h2 id="modifiedmistral-deprecated">ModifiedMistral (deprecated)<a class="headerlink" href="#modifiedmistral-deprecated" title="Permanent link">&para;</a></h2>
+<p>Устаревший функционал. Рекомендуется использовать <a href="./#modifiedopenai">ModifiedOpenai</a></p>
 <p>Дочерний класс <code>Mistral</code>. Создан для удобства взаимодействия с моделью в рамках приложения. Есть функция <code>message</code>, есть инициализатор экземпляра класса. Пример использования:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.mistral_ai_initializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModifiedMistral</span><span class="p">,</span> <span class="n">mistral_ai_initializer</span>
 
@@ -1077,6 +1127,33 @@ c --&gt;|Нужны| d</code></pre>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">instance1</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Привет!&quot;</span><span class="p">}]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">instance2</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Привет!&quot;</span><span class="p">}]))</span>
+
+<span class="o">&gt;</span> <span class="n">Привет</span><span class="err">!</span> <span class="n">Как</span> <span class="n">я</span> <span class="n">могу</span> <span class="n">помочь</span><span class="err">?</span>
+<span class="o">&gt;</span> <span class="n">Привет</span><span class="err">!</span> <span class="n">Как</span> <span class="n">я</span> <span class="n">могу</span> <span class="n">помочь</span><span class="err">?</span>
+</code></pre></div>
+<h2 id="modifiedopenai">ModifiedOpenai<a class="headerlink" href="#modifiedopenai" title="Permanent link">&para;</a></h2>
+<p>Дочерний класс <code>openai.OpenAI</code>. Создан для удобства взаимодействия с моделью в рамках приложения. Есть функция <code>message</code>, есть инициализатор экземпляра класса. Пример использования:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.ai_initializer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModifiedOpenai</span><span class="p">,</span> <span class="n">get_ai_client</span>
+
+<span class="n">instance1</span> <span class="o">=</span> <span class="n">ModifiedOpenai</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;api_key&quot;</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://api.mistral.ai/v1&quot;</span>
+<span class="p">)</span>  <span class="c1"># MistralAI</span>
+<span class="n">instance2</span> <span class="o">=</span> <span class="n">get_ai_client</span><span class="p">(</span>
+    <span class="n">use_local_models</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>  <span class="c1"># Автоматически получает API ключ из .env</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="n">instance1</span><span class="o">.</span><span class="n">message</span><span class="p">(</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Привет!&quot;</span><span class="p">}],</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-small-latest&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="n">instance2</span><span class="o">.</span><span class="n">message</span><span class="p">(</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Привет!&quot;</span><span class="p">}],</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-small-latest&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 
 <span class="o">&gt;</span> <span class="n">Привет</span><span class="err">!</span> <span class="n">Как</span> <span class="n">я</span> <span class="n">могу</span> <span class="n">помочь</span><span class="err">?</span>
 <span class="o">&gt;</span> <span class="n">Привет</span><span class="err">!</span> <span class="n">Как</span> <span class="n">я</span> <span class="n">могу</span> <span class="n">помочь</span><span class="err">?</span>

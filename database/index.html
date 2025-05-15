@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../tests/">
+        <link rel="prev" href="../api/">
       
+      
+        <link rel="next" href="../structure/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>Примеры UI - Kairos</title>
+        <title>База данных - Kairos</title>
       
     
     
@@ -70,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ui" class="md-skip">
+        <a href="#_1" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -106,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Примеры UI
+              База данных
             
           </span>
         </div>
@@ -435,10 +437,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../database/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    База данных
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -449,6 +473,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usersmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      UsersModel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coursemodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      CourseModel
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -523,32 +585,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Примеры UI
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ui_examples/" class="md-nav__link">
         
   
   
@@ -559,89 +599,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Содержание">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Главная страница /
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-login" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Вход /login
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Главная страница (выполнен вход) /
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-courses" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Список курсов /courses
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-profile" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Профиль /profile
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Создаем курс /
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-coursecourse_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Созданный курс /course/{course_id}
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -673,63 +630,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#usersmodel" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Главная страница /
+      UsersModel
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-login" class="md-nav__link">
+  <a href="#coursemodel" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Вход /login
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Главная страница (выполнен вход) /
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-courses" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Список курсов /courses
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-profile" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Профиль /profile
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Создаем курс /
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-coursecourse_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Созданный курс /course/{course_id}
+      CourseModel
     </span>
   </a>
   
@@ -754,22 +666,89 @@
   
 
 
-<h1 id="ui"><img alt="🎨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f3a8.svg" title=":art:" /> Примеры UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h1>
-<p>UI сделан с использованием Bootstrap.</p>
-<h2 id="1">1. Главная страница <code>/</code><a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p><img alt="Главная" src="../img/main_page.png" /></p>
-<h2 id="2-login">2. Вход <code>/login</code><a class="headerlink" href="#2-login" title="Permanent link">&para;</a></h2>
-<p><img alt="Вход" src="../img/login.png" /></p>
-<h2 id="3">3. Главная страница (выполнен вход) <code>/</code><a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p><img alt="Главная-вход" src="../img/logined.png" /></p>
-<h2 id="4-courses">4. Список курсов <code>/courses</code><a class="headerlink" href="#4-courses" title="Permanent link">&para;</a></h2>
-<p><img alt="Список" src="../img/list_of_courses.png" /></p>
-<h2 id="5-profile">5. Профиль <code>/profile</code><a class="headerlink" href="#5-profile" title="Permanent link">&para;</a></h2>
-<p><img alt="Профиль" src="../img/profile.png" /></p>
-<h2 id="6">6. Создаем курс <code>/</code><a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p><img alt="Создаём" src="../img/create_course.png" /></p>
-<h2 id="7-coursecourse_id">7. Созданный курс <code>/course/{course_id}</code><a class="headerlink" href="#7-coursecourse_id" title="Permanent link">&para;</a></h2>
-<p><img alt="Курс" src="../img/created_course.png" /></p>
+<h1 id="_1"><img alt="📦" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4e6.svg" title=":package:" /> База данных<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>В базе данных представлено 2 таблицы. Таблицы связаны между собой через <code>foreign_key</code>, которым является <code>user_id</code> из <code>CourseModel</code>.</p>
+<h2 id="usersmodel"><img alt="🧑‍💻" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f9d1-200d-1f4bb.svg" title=":technologist:" /> UsersModel<a class="headerlink" href="#usersmodel" title="Permanent link">&para;</a></h2>
+<p>Модель пользователей. В ней представлены следующие поля:</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>int</code></td>
+<td>id, тут все понятно</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code>str</code></td>
+<td>Имя пользователя, уникальное.</td>
+</tr>
+<tr>
+<td>hashed_password</td>
+<td><code>str</code></td>
+<td>Хэшированный пароль.</td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>str</code></td>
+<td>Описание пользователя. Используется ИИ для более точных курсов.</td>
+</tr>
+<tr>
+<td>admin</td>
+<td><code>bool</code></td>
+<td>Админ или нет.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="coursemodel"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4c4.svg" title=":page_facing_up:" /> CourseModel<a class="headerlink" href="#coursemodel" title="Permanent link">&para;</a></h2>
+<p>Модель курса. В ней представлены следующие поля:</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>int</code></td>
+<td>id, тут все понятно</td>
+</tr>
+<tr>
+<td>theme</td>
+<td><code>str</code></td>
+<td>Тема курса.</td>
+</tr>
+<tr>
+<td>desires_of_user</td>
+<td><code>str</code></td>
+<td>Пожелания пользователя.</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td><code>int</code></td>
+<td>id пользователя, которому принадлежит курс.</td>
+</tr>
+<tr>
+<td>course</td>
+<td><code>dict</code></td>
+<td>Сам курс в виде словаря.</td>
+</tr>
+<tr>
+<td>is_favorite</td>
+<td><code>bool</code></td>
+<td>Любимый или нет.</td>
+</tr>
+</tbody>
+</table>
 
 
 

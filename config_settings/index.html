@@ -411,6 +411,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#google-custom-search" class="md-nav__link">
     <span class="md-ellipsis">
       Настройки парсера Google Custom Search
@@ -432,6 +441,24 @@
   <a href="#mistralai" class="md-nav__link">
     <span class="md-ellipsis">
       Настройки MistralAI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ollama-beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройки Ollama (beta)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройки пайплайна агентов
     </span>
   </a>
   
@@ -496,12 +523,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../structure/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Структура проекта
+    API проекта
     
   </span>
   
@@ -518,12 +545,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../database/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    API проекта
+    База данных
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Структура проекта
     
   </span>
   
@@ -635,6 +684,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#google-custom-search" class="md-nav__link">
     <span class="md-ellipsis">
       Настройки парсера Google Custom Search
@@ -661,6 +719,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ollama-beta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройки Ollama (beta)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Настройки пайплайна агентов
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -681,12 +757,17 @@
 
 
 <h1 id="configpy"><img alt="🔧" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f527.svg" title=":wrench:" /> Значения в config.py и для чего они нужны<a class="headerlink" href="#configpy" title="Permanent link">&para;</a></h1>
-<p><code>config.py</code> - файл для конфигурации и настройки сервера и библиотек. Настоятельно рекомендуется оставить настройки по умолчанию.</p>
+<p><code>config.py</code> - файл для конфигурации и настройки сервера и библиотек. В файле представлено 2 класса конфигов и по экземпляру каждого класса. <code>TestingConfig</code> нужен для тестирования, его трогать не надо. Конфиг для запуска приложения - <code>Config</code>.  </p>
+<p><strong>Настоятельно рекомендуется оставить настройки по умолчанию.</strong></p>
 <h2 id="flask">Настройки сервера Flask<a class="headerlink" href="#flask" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>DEBUG</code>: bool, По дефолту True. Настройка определяет будет запущен сервер Flask в режиме Debug или нет.</li>
+<li><code>DEBUG</code>: bool, По дефолту True. Настройка определяет будет запущен сервер Flask в режиме Debug или нет, парсится из <code>.env</code></li>
 <li><code>SECRET_KEY</code>: str, Секретный ключ для корректной работы форм wtforms, парсится из <code>.env</code></li>
-<li><code>DATABASE_PATH</code>: str, По дефолту <code>./database/kairos.db</code>. Путь к базе данных.</li>
+<li><code>DATABASE_PATH</code>: str, По дефолту <code>./database/kairos.db</code>. Путь к базе данных, парсится из <code>.env</code></li>
+</ul>
+<h2 id="beta">Beta<a class="headerlink" href="#beta" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>BETA_FUNCTIONS</code>: bool, По дефолту True. Использование beta-функций в приложении.</li>
 </ul>
 <h2 id="google-custom-search">Настройки парсера Google Custom Search<a class="headerlink" href="#google-custom-search" title="Permanent link">&para;</a></h2>
 <ul>
@@ -698,7 +779,18 @@
 </ul>
 <h2 id="mistralai">Настройки MistralAI<a class="headerlink" href="#mistralai" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>MODEL_NAME</code>: str, По дефолту "mistral-large-latest". Название модели, которая будет использоваться в приложении.</li>
+<li><code>MISTRAL_MODEL_NAME</code>: str, По дефолту "mistral-large-latest". Название модели, которая будет использоваться в приложении.</li>
+</ul>
+<h2 id="ollama-beta">Настройки Ollama (beta)<a class="headerlink" href="#ollama-beta" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>OLLAMA_MODEL_NAME</code>: str, По дефолту "qwen3:4b". Название модели, которую будет использовать Ollama в приложении.</p>
+<p>P.S. Для того, чтобы узнать, какие модели Ollama у Вас есть переходим по <a href="http://localhost:11434/api/tags">http://localhost:11434/api/tags</a></p>
+</li>
+</ul>
+<h2 id="_1">Настройки пайплайна агентов<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>CENSOR_CHECK_ENABLED</code>: bool, По дефолту True. Включает/выключает проверку цензором.</li>
 </ul>
 
 
