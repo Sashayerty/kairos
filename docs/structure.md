@@ -11,6 +11,7 @@ Kairos/
 │   │   └── resources/                  # Реализация эндпоинтов RestAPI
 │   ├── forms/                          # Формы wtforms
 │   ├── google_custom_search/           # Google Custom Search функция
+│   ├── mistral_ai_initializer          # Инициализатор клиента MistralAI для взаимодействия с моделями (deprecated)
 │   ├── models/                         # Модели базы данных, инициализатор сессии бд, регистрация всех моделей
 │   ├── static/                         # Статика проекта
 │   └── templates/                      # Темплейты проекта
@@ -35,6 +36,10 @@ Kairos/
 
 Папка, в которой реализованы функции для `ai_couch`.
 
+### ai_initializer
+
+Папка с дочерним классом `openai.OpenAI` и  инициализатором экземпляра класса `ModifiedOpenAI`.
+
 ### api
 
 Папка в которой находится RestAPI, написано с помощью flask-restful.
@@ -51,7 +56,7 @@ Endpoints RestAPI.
 
 Папка функцией `google_search`.
 
-### mistral_ai_initializer
+### mistral_ai_initializer (deprecated)
 
 Папка с дочерним классом `Mistral` и  инициализатором экземпляра класса `ModifiedMistral`.
 
