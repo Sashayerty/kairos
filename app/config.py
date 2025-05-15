@@ -28,10 +28,10 @@ class Config:
     )
 
     # Настройки Ollama (beta)
-    OLLAMA_MODEL_NAME: str = "qwen3:4b"  # http://localhost:11434/api/tags
+    OLLAMA_MODEL_NAME: str = "qwen3:1.7b"  # http://localhost:11434/api/tags
 
     # Настройки пайплайна агентов
-    CENSOR_CHECK_ENABLED: bool = True
+    CENSOR_CHECK_ENABLED: bool = False
 
 
 class TestingConfig:

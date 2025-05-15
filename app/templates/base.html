@@ -23,7 +23,7 @@
                             class="text-decoration-none text-dark-emphasis"
                             href="/"
                         >
-                            Kairos
+                            Kairos{%if use_beta%} β{%endif%}
                         </a>
                     </span>
                     <button
@@ -56,18 +56,15 @@
                                 >
                             </li>
                             <li class="nav-item mx-2">
-                                <a
-                                    class="nav-link text-dark-emphasis fs-5"
-                                    href="/profile"
-                                    >Профиль</a
-                                >
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a
-                                    class="nav-link text-danger fs-5"
-                                    href="/logout"
-                                    >Выйти</a
-                                >
+                                <div class="dropdown">
+                                    <button class="nav-link text-dark-emphasis fs-5 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{current_user.name}}
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark bg-body text-body">
+                                        <li><a class="drop dropdown-item nav-link text-dark-emphasis fs-5" href="/profile">Профиль</a></li>
+                                        <li><a class="drop dropdown-item nav-link text-danger fs-5" href="/logout">Выйти</a></li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
