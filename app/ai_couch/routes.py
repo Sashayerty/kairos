@@ -68,6 +68,7 @@ def create_course():
             check(
                 theme=users_theme,
                 desires=users_desires,
+                use_local_models=use_local_models,
             )
         )
         is_theme_are_good = answer_from_censor["data"]
@@ -97,12 +98,14 @@ def create_course():
                 if current_user.is_authenticated
                 else None
             ),
+            use_local_models=use_local_models,
         )
         print(prompt_from_llm)
         time.sleep(1)
         plan_of_course: dict = json.loads(
             gen_plan(
                 prompt=prompt_from_llm,
+                use_local_models=use_local_models,
             )
         )
         print(colorama.Fore.GREEN + " * Plan of course created successfully!")
@@ -111,6 +114,7 @@ def create_course():
         course = gen_course(
             prompt=prompt_from_llm,
             plan=plan_of_course,
+            use_local_models=use_local_models,
         )
         if course:
             print(colorama.Fore.GREEN + " * Course created successfully!")
