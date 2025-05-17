@@ -97,6 +97,8 @@ jsonpath-python==1.0.6
     # via mistralai
 lxml==5.4.0
     # via kairos
+markdown==3.8
+    # via kairos
 markupsafe==3.0.2
     # via
     #   jinja2
