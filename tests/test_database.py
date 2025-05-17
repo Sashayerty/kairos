@@ -30,6 +30,7 @@ def test_course_creation(db_session):
     test_course = CourseModel(
         theme="test",
         desires_of_user="test",
+        local_model=False,
         user_id=1,
         course={
             "test": "test",
