@@ -50,7 +50,7 @@
                             >
                                 Отмена
                             </button>
-                            <button type="submit" class="btn btn-warning">
+                            <button type="submit" class="btn btn-warning fw-bold text-dark">
                                 Сделать
                             </button>
                         </div>
@@ -85,11 +85,11 @@
                     >
                         <button
                             type="submit"
-                            class="btn btn-sm {% if course.is_favorite %}btn-warning border-2{% else %}btn-outline-warning border-2{% endif %}"
+                            class="btn btn-sm btn-outline-warning border-2"
                             title="{% if course.is_favorite %}Убрать из избранного{% else %}Добавить в избранное{% endif %}"
                         >
                             <i
-                                class="bi {% if course.is_favorite %}bi-star-fill{% else %}bi-star{% endif %}"
+                                class="bi {% if course.is_favorite %}bi-star-fill{% else %}bi-star{% endif %} fs-6"
                             ></i>
                         </button>
                         <input
@@ -106,11 +106,11 @@
                     >
                         <button
                             type="submit"
-                            class="btn btn-warning btn-sm border-2"
+                            class="btn btn-outline-warning btn-sm border-2"  
                             onclick="return confirm('Удалить курс с id {{course.id}}?')"
                             title="Удалить"
                         >
-                            <i class="bi bi-trash"></i>
+                            <i class="bi bi-trash3-fill fs-6"></i>
                         </button>
                         <input
                             type="hidden"
@@ -123,12 +123,12 @@
 
                     <button
                         type="button"
-                        class="btn btn-sm border-2 btn-warning"
+                        class="btn btn-sm border-2 btn-outline-warning"
                         data-bs-toggle="modal"
                         data-bs-target="#editCourseModal{{course.id}}"
                         title="Редактировать с ИИ"
                     >
-                        <i class="bi bi-stars"></i>
+                        <i class="bi bi-magic fs-6"></i>
                     </button>
                     <input
                         type="hidden"
@@ -140,13 +140,16 @@
                     href="{{ url_for('ai_couch.course', course_id=course.id) }}"
                     class="text-decoration-none text-dark"
                 >
-                    <div class="card-body bg-body text-body">
+                    <div class="card-body bg-body text-body rounded rounded-5">
                         <h5 class="card-title mb-3" title="{{ course.theme }}">
                             {{ course.theme | truncate(40) }}
                         </h5>
                         {% if course.desires_of_user %}
                         <p class="card-text text-muted small">
                             {{ course.desires_of_user|truncate(100) }}
+                        </p>
+                        <p class="card-text text-muted small">
+                            {% if course.local_model %}<i class="bi bi-geo-fill fs-6"></i> Локальная модель{%endif%}
                         </p>
                         {% endif %}
                     </div>

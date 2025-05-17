@@ -12,7 +12,7 @@ function toggleTheme() {
 
   // Обновляем иконку кнопки
   const icon = document.querySelector(".theme-toggle i");
-  icon.className = theme === "dark" ? "bi bi-moon-fill" : "bi bi-sun-fill";
+  icon.className = theme === "dark" ? "bi bi-moon-stars-fill fs-5" : "bi bi-sun-fill fs-5";
 }
 
 // Инициализация темы при загрузке
@@ -26,7 +26,7 @@ function initTheme() {
   document.documentElement.setAttribute("data-bs-theme", savedTheme);
 
   const icon = document.querySelector(".theme-toggle i");
-  icon.className = savedTheme === "dark" ? "bi bi-moon-fill" : "bi bi-sun-fill";
+  icon.className = savedTheme === "dark" ? "bi bi-moon-stars-fill fs-5" : "bi bi-sun-fill fs-5";
 }
 
 // Вешаем обработчик на кнопку

@@ -29,6 +29,10 @@ class CourseModel(SqlAlchemyBase):
         ),
         nullable=False,
     )
+    local_model = sqlalchemy.Column(
+        sqlalchemy.Boolean,
+        nullable=False,
+    )
     course = sqlalchemy.Column(
         sqlalchemy.JSON,
         nullable=False,

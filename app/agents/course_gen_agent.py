@@ -1,3 +1,5 @@
+import json
+
 from app.ai_initializer import get_ai_client
 from app.config import config
 
@@ -7,7 +9,7 @@ def gen_course(
     plan: dict,
     theory: str | None = None,
     use_local_models: bool = False,
-) -> str:
+) -> dict:
     """Функция для генерации итогового результата.
 
     Args:
@@ -17,7 +19,7 @@ def gen_course(
         use_local_models (bool): Использовать локальные модели или нет. Defaults to False
 
     Returns:
-        str: Итоговый курс.
+        dict: Итоговый курс.
 
     """
     json_example = """
@@ -45,8 +47,8 @@ def gen_course(
     """
     client = get_ai_client(use_local_models)
     prompt_to_llm = f"""{prompt}.
-    План курса: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}. Пиши data не в markdown, а в html!
-    Учти, что ты должен научить человека. Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!"""
+    План курса: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}. Учти, что ты должен научить человека.
+    Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!"""
     result = client.message(
         model=(
             config.MISTRAL_MODEL_NAME
@@ -63,4 +65,4 @@ def gen_course(
         response_format={"type": "json_object"},
         timeout=180000,
     )
-    return result
+    return json.loads(result)

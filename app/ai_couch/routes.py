@@ -7,6 +7,7 @@ from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.agents import check, edit_course, gen_course, gen_plan, gen_prompt
+from app.ai_couch.functions import convert_course_to_html
 from app.config import config
 from app.models import CourseModel, UsersModel, create_session
 
@@ -111,10 +112,12 @@ def create_course():
         print(colorama.Fore.GREEN + " * Plan of course created successfully!")
         time.sleep(1)
         print(" * Course function invoked successfully!")
-        course = gen_course(
-            prompt=prompt_from_llm,
-            plan=plan_of_course,
-            use_local_models=use_local_models,
+        course = convert_course_to_html(
+            gen_course(
+                prompt=prompt_from_llm,
+                plan=plan_of_course,
+                use_local_models=use_local_models,
+            )
         )
         if course:
             print(colorama.Fore.GREEN + " * Course created successfully!")
@@ -123,7 +126,8 @@ def create_course():
                 theme=users_theme,
                 desires_of_user=users_desires,
                 user_id=current_user.id,
-                course=json.loads(course),
+                local_model=use_local_models,
+                course=course,
             )
             db_session.add(course_model)
             db_session.commit()
