@@ -1,130 +1,97 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../static/css/style.css" />
-        <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../static/css/bootstrap-icons.min.css" />
-        <link rel="stylesheet" href="../static/css/code.css" />
-        <title>{{ title }}</title>
-    </head>
 
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-lg bg-body">
-                <div class="container">
-                    <span
-                        class="border-bottom border-3 border-warning mb-0 pb-0 h1 fs-1"
-                    >
-                        <a
-                            class="text-decoration-none text-dark-emphasis"
-                            href="/"
-                        >
-                            Kairos{%if use_beta%} β{%endif%}
-                        </a>
-                    </span>
-                    {% if current_user.is_authenticated %}
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="../static/css/code.css" />
+    <title>{{ title }}</title>
+</head>
 
-                    <div
-                        class="collapse navbar-collapse justify-content-end"
-                        id="navbarNav"
-                    >
-                        <ul class="navbar-nav align-items-center">
-                            <li class="nav-item mx-2">
-                                <button
-                                    class="btn theme-toggle shadow-none border-0"
-                                >
-                                    <i class="bi bi-sun-fill fs-5"></i>
-                                </button>
-                            </li>
-                            <div class="vr my-2"></div>
-                            <li class="nav-item mx-2">
-                                <a
-                                    class="nav-link text-dark-emphasis fs-5"
-                                    href="/courses"
-                                    >Мои курсы</a
-                                >
-                            </li>
-                            <div class="vr my-2"></div>
-                            <li class="nav-item mx-2">
-                                <div class="dropdown">
-                                    <button
-                                        class="nav-link text-dark-emphasis fs-5 dropdown-toggle"
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body">
+            <div class="container">
+                <span class="border-bottom border-3 border-warning mb-0 pb-0 h1 fs-1">
+                    <a class="text-decoration-none text-dark-emphasis" href="/">
+                        Kairos{%if use_beta%} β{%endif%}
+                    </a>
+                </span>
+                {% if current_user.is_authenticated %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item mx-2">
+                            <button class="btn theme-toggle shadow-none border-0">
+                                <i class="bi bi-sun-fill fs-5"></i>
+                            </button>
+                        </li>
+                        <div class="vr my-2"></div>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5"
+                                href="https://sashayerty.github.io/Kairos/">Документация</a>
+                        </li>
+                        <div class="vr my-2"></div>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5" href="/courses">Мои курсы</a>
+                        </li>
+                        <div class="vr my-2"></div>
+                        <li class="nav-item mx-2">
+                            <div class="dropdown">
+                                <button class="nav-link text-dark-emphasis fs-5 dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     {{current_user.name}}
-                                    </button>
-                                    <ul
-                                        class="dropdown-menu dropdown-menu-dark bg-body text-body"
-                                    >
-                                        <li>
-                                            <a
-                                                class="drop dropdown-item nav-link text-dark-emphasis fs-5"
-                                                href="/profile"
-                                                >Профиль</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                class="drop dropdown-item nav-link text-danger fs-5"
-                                                href="/logout"
-                                                >Выйти</a
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    {% else %}
-                    <div
-                        class="collapse navbar-collapse justify-content-end"
-                        id="navbarNav"
-                    >
-                        <ul class="navbar-nav align-items-center">
-                            <li class="nav-item mx-2">
-                                <button
-                                    class="btn theme-toggle shadow-none border-0"
-                                >
-                                    <i class="bi bi-sun-fill fs-5"></i>
                                 </button>
-                            </li>
-                            <div class="vr my-2"></div>
-                            <li class="nav-item mx-2">
-                                <a
-                                    class="nav-link link-warning fs-5"
-                                    href="/login"
-                                    >Войти</a
-                                >
-                            </li>
-                            <div class="vr my-2"></div>
-                            <li class="nav-item mx-2">
-                                <a
-                                    class="nav-link text-dark-emphasis fs-5"
-                                    href="/reg"
-                                    >Регистрация</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    {% endif %}
+                                <ul class="dropdown-menu dropdown-menu-dark bg-body text-body">
+                                    <li>
+                                        <a class="drop dropdown-item nav-link text-dark-emphasis fs-5"
+                                            href="/profile">Профиль</a>
+                                    </li>
+                                    <li>
+                                        <a class="drop dropdown-item nav-link text-danger fs-5" href="/logout">Выйти</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
+                {% else %}
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item mx-2">
+                            <button class="btn theme-toggle shadow-none border-0">
+                                <i class="bi bi-sun-fill fs-5"></i>
+                            </button>
+                        </li>
+                        <div class="vr my-2"></div>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5"
+                                href="https://sashayerty.github.io/Kairos/">Документация</a>
+                        </li>
+                        <div class="vr my-2"></div>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link link-warning fs-5" href="/login">Войти</a>
+                        </li>
+                        <div class="vr my-2"></div>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-dark-emphasis fs-5" href="/reg">Регистрация</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
 
-        {% block content %} {% endblock %}
-        <script src="../static/js/bootstrap.bundle.min.js"></script>
-        <script src="../static/js/theme_toggler.js"></script>
-    </body>
+    {% block content %} {% endblock %}
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/theme_toggler.js"></script>
+</body>
+
 </html>

@@ -2,9 +2,10 @@ import json
 import time
 from http import HTTPStatus
 
-import colorama
 from flask import Blueprint, redirect, render_template, request, send_file
 from flask_login import current_user, login_required, login_user, logout_user
+from rich import print, print_json
+from rich.panel import Panel
 
 from app.agents import check, edit_course, gen_course, gen_plan, gen_prompt
 from app.ai_couch.functions import convert_course_to_html
@@ -16,7 +17,7 @@ ai_couch = Blueprint(
     __name__,
     template_folder="../templates/ai_couch",
 )
-colorama.init(autoreset=True)
+pretty_log = Panel
 
 
 @ai_couch.route(
@@ -47,9 +48,7 @@ def create_course():
     users_theme = request.form.get("users_theme")
     users_desires = request.form.get("users_desires")
     use_local_models = request.form.get("use_local_models") == "on"
-    print(
-        f" * Use local models: {colorama.Fore.GREEN if use_local_models else colorama.Fore.YELLOW}{use_local_models}"
-    )
+    print(f" * Use local models: {use_local_models}")
     if not users_theme:
         return (
             render_template(
@@ -75,10 +74,7 @@ def create_course():
         is_theme_are_good = answer_from_censor["data"]
     else:
         is_theme_are_good = True
-    print(
-        f" * User's theme and desires is good:"
-        f" {colorama.Fore.GREEN if is_theme_are_good else colorama.Fore.RED}{is_theme_are_good}"
-    )
+    print(f" * User's theme and desires is good: {is_theme_are_good}")
     time.sleep(1.5)
     message = answer_from_censor["reason"] if not is_theme_are_good else None
     if message:
@@ -101,7 +97,7 @@ def create_course():
             ),
             use_local_models=use_local_models,
         )
-        print(prompt_from_llm)
+        print(pretty_log(prompt_from_llm, style="yellow"))
         time.sleep(1)
         plan_of_course: dict = json.loads(
             gen_plan(
@@ -109,7 +105,8 @@ def create_course():
                 use_local_models=use_local_models,
             )
         )
-        print(colorama.Fore.GREEN + " * Plan of course created successfully!")
+        print_json(data=plan_of_course)
+        print("[green] * Plan of course created successfully![/green]")
         time.sleep(1)
         print(" * Course function invoked successfully!")
         course = convert_course_to_html(
@@ -120,7 +117,7 @@ def create_course():
             )
         )
         if course:
-            print(colorama.Fore.GREEN + " * Course created successfully!")
+            print("[green] * Course created successfully![/green]")
         if current_user.is_authenticated:
             course_model = CourseModel(
                 theme=users_theme,

@@ -5,8 +5,8 @@ def convert_course_to_html(course: dict) -> dict:
     """Конвертирует курс из markdown в html"""
     for key in course.keys():
         converter = markdown.Markdown(
-            extensions=["nl2br", "fenced_code", "codehilite"]
+            extensions=["nl2br", "extra", "codehilite"]
         )
-        course[key]["data"] = converter.convert(course[key]["data"])
+        course[key]["content"] = converter.convert(course[key]["content"])
         converter.reset()
     return course

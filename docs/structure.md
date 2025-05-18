@@ -9,7 +9,6 @@ Kairos/
 │   ├── ai_initializer                  # Инициализатор клиента для взаимодействия с моделями 
 │   ├── api/                            # RestAPI проекта
 │   │   └── resources/                  # Реализация эндпоинтов RestAPI
-│   ├── forms/                          # Формы wtforms
 │   ├── google_custom_search/           # Google Custom Search функция
 │   ├── mistral_ai_initializer          # Инициализатор клиента MistralAI для взаимодействия с моделями (deprecated)
 │   ├── models/                         # Модели базы данных, инициализатор сессии бд, регистрация всех моделей
@@ -47,10 +46,6 @@ Kairos/
 #### resources
 
 Endpoints RestAPI.
-
-### forms
-
-Папка с формами `wtforms`.
 
 ### google_custom_search
 

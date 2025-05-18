@@ -1,52 +1,66 @@
-site_name: Kairos
+site_name: Kairos Documentation
 repo_url: https://github.com/sashayerty/kairos
 repo_name: sashayerty/kairos
 nav:
   - Главная: README.md
   - Описание: description.md
-  - Начало: getting_started.md
-  - "Локальный запуск": local_setup.md
-  - "Настройки конфигурации": config_settings.md
-  - "Переменные .env": dotenv_variables.md
-  - "RestAPI Docs": restapi.md
-  - "API проекта": api.md
-  - "База данных": database.md
-  - "Структура проекта": structure.md
-  - "Возможные ошибки": exceptions.md
-  - "Тестирование": tests.md
-  - "Примеры UI": ui_examples.md
+  - "Подготовка к запуску": getting_started.md
+  - "Запуск":
+      - "Локальный запуск": local_setup.md
+      - "Настройки конфигурации": config_settings.md
+      - "Переменные .env": dotenv_variables.md
+  - "Код и API":
+      - "RestAPI Docs": restapi.md
+      - "API проекта": api.md
+      - "База данных": database.md
+      - "Структура проекта": structure.md
+  - "Прочее":
+      - "Возможные ошибки": exceptions.md
+      - "Тестирование": tests.md
+      - "Примеры UI": ui_examples.md
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Sashayerty
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/Sashayerty
+    - icon: fontawesome/brands/vk
+      link: https://vk.com/sashayerty
 theme:
   features:
     - content.code.copy
+    - navigation.sections
+    - navigation.footer
+    # - navigation.tabs
+    # - navigation.tabs.sticky
   icon:
+    logo: fontawesome/solid/book-open
     repo: fontawesome/brands/github-alt
   language: ru
   name: material
   palette:
     - media: "(prefers-color-scheme)"
-      primary: green
-      accent: green
       toggle:
         icon: material/link
         name: Переключить на светлую тему
 
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: green
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/toggle-switch-off-outline
         name: Переключить на темную тему
 
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: green
-      accent: green
+      scheme: dracula
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/toggle-switch
         name: Переключить на системную тему
-# plugins:
-#   - offline
+extra_css:
+  - stylesheets/extra.css
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:

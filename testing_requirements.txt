@@ -28,10 +28,9 @@ click==8.1.8
     # via
     #   black
     #   flask
-colorama==0.4.6
+colorama==0.4.6 ; sys_platform == 'win32'
     # via
     #   click
-    #   kairos
     #   pytest
     #   tqdm
 distro==1.9.0
@@ -99,6 +98,8 @@ lxml==5.4.0
     # via kairos
 markdown==3.8
     # via kairos
+markdown-it-py==3.0.0
+    # via rich
 markupsafe==3.0.2
     # via
     #   jinja2
@@ -106,6 +107,8 @@ markupsafe==3.0.2
     #   wtforms
 mccabe==0.7.0
     # via flake8
+mdurl==0.1.2
+    # via markdown-it-py
 mistralai==1.2.5
     # via kairos
 mypy-extensions==1.0.0
@@ -147,6 +150,8 @@ pydantic-core==2.27.2
     # via pydantic
 pyflakes==3.3.2
     # via flake8
+pygments==2.19.1
+    # via rich
 pyparsing==3.2.1
     # via httplib2
 pytest==8.3.5
@@ -158,6 +163,8 @@ pytz==2025.2
     # via flask-restful
 requests==2.32.3
     # via google-api-core
+rich==14.0.0
+    # via kairos
 rsa==4.9
     # via google-auth
 six==1.17.0

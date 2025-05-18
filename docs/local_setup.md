@@ -22,14 +22,14 @@ uv run run.py
 В командной строке должен появиться следующий вывод:
 
 ```bash
- * Подключение к базе данных по адресу sqlite:///./database/kairos.db?check_same_thread=False
+ * Подключение к базе данных по адресу sqlite:///./database/kairos.db
  * Serving Flask app 'app'
  * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on http://127.0.0.1:5000
 Press CTRL+C to quit
  * Restarting with stat
- * Подключение к базе данных по адресу sqlite:///./database/kairos.db?check_same_thread=False
+ * Подключение к базе данных по адресу sqlite:///./database/kairos.db
  * Debugger is active!
 ```
 
