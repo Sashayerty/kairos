@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://sashayerty.github.io/Kairos/"><img src="./docs/img/kairos-flask.png" alt="Kairos"></a>
+  <a href="https://sashayerty.github.io/Kairos/"><img src="./docs/img/kairos-logo.png" alt="Kairos"></a>
 </p>
 <p align="center">
     <em>Kairos - веб-приложение для генерации курсов с помощью ИИ, написанное на flask</em>
