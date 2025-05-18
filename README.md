@@ -10,8 +10,13 @@
 [![FastAPI Version](https://img.shields.io/badge/FastAPI-Ver-009485.svg)](https://github.com/sashayerty/kairos-fastapi) [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) ![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker)[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Sashayerty/Kairos)
 [![Black](https://github.com/Sashayerty/Kairos/actions/workflows/black.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/black.yml)[![Flake8](https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml)[![Tests](https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml)
 
+---
+**Документация:** [https://sashayerty.github.io/Kairos/](https://sashayerty.github.io/Kairos/)  
+**Исходный код:** [https://github.com/Sashayerty/Kairos](https://github.com/Sashayerty/Kairos)  
+**FastAPI версия:** [https://github.com/Sashayerty/kairos-fastapi](https://github.com/Sashayerty/kairos-fastapi)
 
-Простой проект для создания индивидуального курса/плана обучения с помощью ИИ. [Документация](https://sashayerty.github.io/Kairos/)
+---
+
 <!-- Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов. -->
 
 ## Содержание
