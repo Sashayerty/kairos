@@ -1,4 +1,13 @@
-# Kairos [![FastAPI Version](https://img.shields.io/badge/FastAPI-Ver-009485.svg)](https://github.com/sashayerty/kairos-fastapi) [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) ![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker)[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Sashayerty/Kairos)
+<p align="center">
+  <a href="https://sashayerty.github.io/Kairos/"><img src="./docs/img/kairos-flask.png" alt="Kairos"></a>
+</p>
+<p align="center">
+    <em>Kairos - веб-приложение для генерации курсов с помощью ИИ, написанное на flask</em>
+</p>
+<p align="center">
+</p>
+
+[![FastAPI Version](https://img.shields.io/badge/FastAPI-Ver-009485.svg)](https://github.com/sashayerty/kairos-fastapi) [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) ![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker)[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Sashayerty/Kairos)
 [![Black](https://github.com/Sashayerty/Kairos/actions/workflows/black.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/black.yml)[![Flake8](https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml)[![Tests](https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml)
 
 
@@ -113,19 +122,19 @@ uv run run.py
 
 ### Список агентов
 
-|В схеме|Функция|Назначение агента|Работает|
-| :-: | --- | --- | :-: |
-|1|check|Агент для цензуры темы и пожеланий пользователя.|:white_check_mark:|
-|2|gen_prompt|Агент для создания промпта по теме, пожеланиям и описанию пользователя.|:white_check_mark:|
-|3|searcher|Агент для составления поискового запроса по промпту.|:white_check_mark:|
-|4|check_is_need_test|Агент для проверки нужности тестов в курсе.|:bricks:|
-|5|gen_plan|Агент для составления плана курса по промпту.|:white_check_mark:|
-|6|analyze|Агент для анализа данных из интернета на нужность по плану.|:white_check_mark:|
-|7|test|Агент для создания тестов для курсов.|:bricks:|
-|8|summarizer|Агент для сжатия статей из интернета.|:white_check_mark:|
-|9|gen_course|Агент для генерации итогового результата.|:white_check_mark:|
-|*|edit_course|Агент для изменения курса по корректировкам пользователя|:white_check_mark:|
-|*|create_course|Агент для итеративной генерации курса.|:white_check_mark:|
+| В схеме | Функция            | Назначение агента                                                       |      Работает      |
+| :-----: | ------------------ | ----------------------------------------------------------------------- | :----------------: |
+|    1    | check              | Агент для цензуры темы и пожеланий пользователя.                        | :white_check_mark: |
+|    2    | gen_prompt         | Агент для создания промпта по теме, пожеланиям и описанию пользователя. | :white_check_mark: |
+|    3    | searcher           | Агент для составления поискового запроса по промпту.                    | :white_check_mark: |
+|    4    | check_is_need_test | Агент для проверки нужности тестов в курсе.                             |      :bricks:      |
+|    5    | gen_plan           | Агент для составления плана курса по промпту.                           | :white_check_mark: |
+|    6    | analyze            | Агент для анализа данных из интернета на нужность по плану.             | :white_check_mark: |
+|    7    | test               | Агент для создания тестов для курсов.                                   |      :bricks:      |
+|    8    | summarizer         | Агент для сжатия статей из интернета.                                   | :white_check_mark: |
+|    9    | gen_course         | Агент для генерации итогового результата.                               | :white_check_mark: |
+|    *    | edit_course        | Агент для изменения курса по корректировкам пользователя                | :white_check_mark: |
+|    *    | create_course      | Агент для итеративной генерации курса.                                  | :white_check_mark: |
 
 `*` - вспомогательный агент
 
