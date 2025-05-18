@@ -60,19 +60,19 @@ from .kairos_agent import kairos_agent_useful_function
 
 ### Список агентов
 
-|Функция|Назначение агента|Работает|
-| --- | --- | :-: |
-|analyze|Агент для анализа данных из интернета на нужность по плану.|:white_check_mark:|
-|check|Агент для цензуры темы и пожеланий пользователя.|:white_check_mark:|
-|check_is_need_test|Агент для проверки нужности тестов в курсе.|:bricks:|
-|gen_course|Агент для генерации итогового результата.|:white_check_mark:|
-|edit_course|Агент для изменения курса по корректировкам пользователя|:white_check_mark:|
-|create_course|Агент для итеративной генерации курса.|:white_check_mark:|
-|gen_plan|Агент для составления плана курса по промпту.|:white_check_mark:|
-|gen_prompt|Агент для создания промпта по теме, пожеланиям и описанию пользователя.|:white_check_mark:|
-|searcher|Агент для составления поискового запроса по промпту.|:white_check_mark:|
-|summarizer|Агент для сжатия статей из интернета.|:white_check_mark:|
-|test|Агент для создания тестов для курсов.|:bricks:|
+| Функция            | Назначение агента                                                       |      Работает      |
+| ------------------ | ----------------------------------------------------------------------- | :----------------: |
+| analyze            | Агент для анализа данных из интернета на нужность по плану.             | :white_check_mark: |
+| check              | Агент для цензуры темы и пожеланий пользователя.                        | :white_check_mark: |
+| check_is_need_test | Агент для проверки нужности тестов в курсе.                             |      :bricks:      |
+| gen_course         | Агент для генерации итогового результата.                               | :white_check_mark: |
+| edit_course        | Агент для изменения курса по корректировкам пользователя                | :white_check_mark: |
+| create_course      | Агент для итеративной генерации курса.                                  | :white_check_mark: |
+| gen_plan           | Агент для составления плана курса по промпту.                           | :white_check_mark: |
+| gen_prompt         | Агент для создания промпта по теме, пожеланиям и описанию пользователя. | :white_check_mark: |
+| searcher           | Агент для составления поискового запроса по промпту.                    | :white_check_mark: |
+| summarizer         | Агент для сжатия статей из интернета.                                   | :white_check_mark: |
+| test               | Агент для создания тестов для курсов.                                   |      :bricks:      |
 
 Взаимодействие с агентами реализовано в виде функций. Одна функция - один агент. Для каждого агента прописана документация в соответствующих `.py` файлах. Для того, чтобы импортировать агента из `app.agents` пишем:
 
@@ -121,7 +121,7 @@ course = gen_course(
 
 print(course)
 
-> {"1": {"data": "...", "title": "Python Basics"}, "2": {"data": "...", "title": "Python in Web"}
+> {"1": {"content": "...", "title": "Python Basics"}, "2": {"content": "...", "title": "Python in Web"}
 ```
 
 ### `edit_course`
@@ -217,6 +217,22 @@ data = scraper(
 )
 
 print(data)
+```
+
+## convert_course_to_html
+
+`convert_course_to_html` - функция для конвертации курса из md в html. Естественно, получая готовый курс от llm, мы увидим, что он написан в md, а нам надо в html.
+
+```python
+from app.ai_couch.functions import convert_course_to_html
+
+print(
+    convert_course_to_html(
+        course={"1": {"title": "Азы python", "content": "`python`"}}
+    )
+)
+
+> {'1': {'title': 'Азы python', 'content': '<p><code>python</code></p>'}}
 ```
 
 ## ModifiedMistral (deprecated)

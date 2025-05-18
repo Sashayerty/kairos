@@ -50,11 +50,9 @@ class GenerateCourse(Resource):
             description_of_user=description_of_user,
         )
         plan_of_course: dict = json.loads(gen_plan(prompt=prompt_from_llm))
-        course = json.loads(
-            gen_course(
-                prompt=prompt_from_llm,
-                plan=plan_of_course,
-            )
+        course = gen_course(
+            prompt=prompt_from_llm,
+            plan=plan_of_course,
         )
         return {
             "theme": users_theme,

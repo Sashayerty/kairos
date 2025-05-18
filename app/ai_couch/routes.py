@@ -97,7 +97,14 @@ def create_course():
             ),
             use_local_models=use_local_models,
         )
-        print(pretty_log(prompt_from_llm, style="yellow"))
+        print(
+            pretty_log(
+                prompt_from_llm,
+                style="yellow",
+                title="Промпт",
+                title_align="left",
+            )
+        )
         time.sleep(1)
         plan_of_course: dict = json.loads(
             gen_plan(
@@ -244,7 +251,7 @@ def profile():
     db_session = create_session()
     if request.method == "POST":
         new_users_data = dict(request.form.items())
-        if (
+        if current_user.name != new_users_data["name"] and (
             db_session.query(UsersModel)
             .filter_by(name=new_users_data["name"])
             .first()
@@ -333,11 +340,19 @@ def edit_course_view(course_id: int):
     db_session = create_session()
     course = db_session.query(CourseModel).filter_by(id=course_id).first()
     user_edits = request.form.get("user_edits")
-    print(f" * Правки: {user_edits}")
+    print(
+        pretty_log(
+            f" * Правки: {user_edits}",
+            style="yellow",
+            title="Правки",
+            title_align="left",
+        )
+    )
     course.course = edit_course(
         course=course.course,
         user_edits=user_edits,
     )
+    print_json(course.course)
     db_session.commit()
     return redirect(f"/course/{course_id}")
 

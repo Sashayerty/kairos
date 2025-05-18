@@ -1,12 +1,12 @@
 [data-md-color-scheme="dracula"] {
-    /* // Primary color shades */
+    /* Primary color shades */
     --md-primary-fg-color: #2e2c3d;
     --md-primary-fg-color--light: #7e73ce;
     --md-primary-fg-color--dark: #7e73ce;
     --md-primary-bg-color: rgba(255, 255, 255, 0.795);
     --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.61);
 
-    /* // Accent color shades */
+    /* Accent color shades */
     --md-accent-fg-color: #7e73ce;
     --md-accent-fg-color--transparent: #282640;
     --md-accent-bg-color: hsla(0, 0%, 100%, 1);
@@ -20,63 +20,63 @@
     --md-default-bg-color--lighter: hsla(var(--md-hue), 15%, 14%, 0.26);
     --md-default-bg-color--lightest: hsla(var(--md-hue), 15%, 14%, 0.07);
 
-    /* // Code color shades */
+    /* Code color shades */
     --md-code-fg-color: hsla(var(--md-hue), 18%, 86%, 0.82);
     --md-code-bg-color: hsla(var(--md-hue), 15%, 18%, 1);
 
-    /* // Code highlighting color shades */
+    /* Code highlighting color shades */
     --md-code-hl-color: hsla(#{hex2hsl($clr-blue-a400)}, 1);
     --md-code-hl-color--light: hsla(#{hex2hsl($clr-blue-a400)}, 0.1);
 
-    /* // Code highlighting syntax color shades */
+    /* Code highlighting syntax color shades */
     --md-code-hl-number-color: hsla(6, 74%, 63%, 1);
     --md-code-hl-special-color: hsla(340, 83%, 66%, 1);
-    --md-code-hl-function-color: hsla(291, 57%, 65%, 1);
-    --md-code-hl-constant-color: hsla(250, 62%, 70%, 1);
-    --md-code-hl-keyword-color: hsla(219, 66%, 64%, 1);
-    --md-code-hl-string-color: rgb(37, 134, 86);
+    --md-code-hl-function-color: #50fa7b;
+    --md-code-hl-constant-color: #bd93f9;
+    --md-code-hl-keyword-color: #ff79c6;
+    --md-code-hl-string-color: #ecf589;
     --md-code-hl-name-color: var(--md-code-fg-color);
-    --md-code-hl-operator-color: var(--md-default-fg-color--light);
-    --md-code-hl-punctuation-color: var(--md-default-fg-color--light);
+    --md-code-hl-operator-color: #ff79c6;
+    --md-code-hl-punctuation-color: #8be9fd;
     --md-code-hl-comment-color: var(--md-default-fg-color--light);
     --md-code-hl-generic-color: var(--md-default-fg-color--light);
-    --md-code-hl-variable-color: var(--md-default-fg-color--light);
+    --md-code-hl-variable-color: #50fa7b;
 
-    /* // Typeset color shades */
+    /* Typeset color shades */
     --md-typeset-color: var(--md-default-fg-color);
 
-    /* // Typeset `a` color shades */
+    /* Typeset `a` color shades */
     --md-typeset-a-color: #937ab4;
 
-    /* // Typeset `kbd` color shades */
+    /* Typeset `kbd` color shades */
     --md-typeset-kbd-color: hsla(var(--md-hue), 15%, 90%, 0.12);
     --md-typeset-kbd-accent-color: hsla(var(--md-hue), 15%, 90%, 0.2);
     --md-typeset-kbd-border-color: hsla(var(--md-hue), 15%, 14%, 1);
 
-    /* // Typeset `mark` color shades */
+    /* Typeset `mark` color shades */
     --md-typeset-mark-color: hsla(#{hex2hsl($clr-blue-a200)}, 0.3);
 
-    /* // Typeset `table` color shades */
+    /* Typeset `table` color shades */
     --md-typeset-table-color: hsla(var(--md-hue), 15%, 95%, 0.12);
     --md-typeset-table-color--light: hsla(var(--md-hue), 15%, 95%, 0.035);
 
-    /* // Admonition color shades */
+    /* Admonition color shades */
     --md-admonition-fg-color: var(--md-default-fg-color);
     --md-admonition-bg-color: var(--md-default-bg-color);
 
-    /* // Footer color shades */
+    /* Footer color shades */
     --md-footer-bg-color: hsla(var(--md-hue), 15%, 10%, 0.87);
     --md-footer-bg-color--dark: hsla(var(--md-hue), 15%, 8%, 1);
 
-    /* // Shadow depth 1 */
+    /* Shadow depth 1 */
     --md-shadow-z1: 0 #{px2rem(4px)} #{px2rem(10px)} hsla(0, 0%, 0%, 0.05),
     0 0 #{px2rem(1px)} hsla(0, 0%, 0%, 0.1);
 
-    /* // Shadow depth 2 */
+    /* Shadow depth 2 */
     --md-shadow-z2: 0 #{px2rem(4px)} #{px2rem(10px)} hsla(0, 0%, 0%, 0.25),
     0 0 #{px2rem(1px)} hsla(0, 0%, 0%, 0.25);
 
-    /* // Shadow depth 3 */
+    /* Shadow depth 3 */
     --md-shadow-z3: 0 #{px2rem(4px)} #{px2rem(10px)} hsla(0, 0%, 0%, 0.4),
     0 0 #{px2rem(1px)} hsla(0, 0%, 0%, 0.35);
 }

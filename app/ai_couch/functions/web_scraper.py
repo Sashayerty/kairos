@@ -1,8 +1,8 @@
 from time import sleep
 
-import colorama
 import requests
 from bs4 import BeautifulSoup
+from rich import print
 
 from app.agents import analyze, summarizer
 from app.config import config
@@ -37,9 +37,7 @@ def scraper(list_of_links: list[str], prompt: str, plan: str) -> list[str]:
             "lxml",
         )
         data = bs4.find_all(name=BS4_CLASS)
-        print(
-            colorama.Fore.YELLOW + f" * Data from {link} parsed successfully!"
-        )
+        print(f"[yellow] * Data from {link} parsed successfully![/yellow]")
         return data
 
     list_of_processed_data = []
@@ -63,15 +61,13 @@ def scraper(list_of_links: list[str], prompt: str, plan: str) -> list[str]:
                     )
                 )
                 print(
-                    colorama.Fore.GREEN
-                    + f" * Data from {link} summarized successfully!"
+                    f"[green] * Data from {link} summarized successfully![/green]"
                 )
             else:
-                print(colorama.Fore.CYAN + f" * {link} skipped.")
+                print(f"[cyan] * {link} skipped.[cyan]")
         except Exception as e:
             print(
-                colorama.Fore.RED
-                + f" * Во время парсинга данных с {link} была вызвана ошибка: {e}"
+                f"[red] * Во время парсинга данных с {link} была вызвана ошибка: {e}[/red]"
             )
-    print(colorama.Fore.GREEN + " * All data is scraped successfully!")
+    print("[green] * All data is scraped successfully![/green]")
     return list_of_processed_data
