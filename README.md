@@ -5,10 +5,37 @@
     <em>Kairos - веб-приложение для генерации курсов с помощью ИИ, написанное на flask</em>
 </p>
 <p align="center">
+<a href="https://github.com/sashayerty/kairos-fastapi" target="_blank>
+  <img src="https://img.shields.io/badge/FastAPI-Ver-009485.svg" alt="FastAPI Version">
+</a>
+<a href="https://flask.palletsprojects.com/en/stable/" target="_blank>
+  <img src="https://img.shields.io/badge/Made%20with-Flask-orange.svg" alt="Made with Flask">
+</a>
+<a href="./LICENSE" target="_blank>
+  <img src="https://img.shields.io/badge/license-MIT-orange.svg" alt="GitHub License MIT">
+</a>
+<a href="https://github.com/Sashayerty/commit_maker" target="_blank>
+  <img src="https://shields.io/badge/Powered_by-Commit_Maker-orange" alt="Powered by Commit Maker">
+</a>
+<a href="https://github.com/Sashayerty/Kairos/actions/workflows/black.yml" target="_blank>
+  <img src="https://github.com/Sashayerty/Kairos/actions/workflows/black.yml/badge.svg?branch=master&event=push" alt="Black">
+</a>
+<a href="https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml" target="_blank>
+  <img src="https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml/badge.svg?branch=master&event=push" alt="Flake8">
+</a>
+<a href="https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml" target="_blank>
+  <img src="https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml/badge.svg?branch=master&event=push" alt="Tests">
+</a>
+<a href="" target="_blank>
+  <img src="" alt="">
+</a>
+<a href="" target="_blank>
+  <img src="" alt="">
+</a>
+<a href="" target="_blank>
+  <img src="" alt="">
+</a>
 </p>
-
-[![FastAPI Version](https://img.shields.io/badge/FastAPI-Ver-009485.svg)](https://github.com/sashayerty/kairos-fastapi) [![made-with-python](https://img.shields.io/badge/Made%20with-Flask-orange.svg)](https://flask.palletsprojects.com/en/stable/) ![GitHub License MIT](https://img.shields.io/badge/license-MIT-orange.svg) [![Powered by Commit Maker](https://shields.io/badge/Powered_by-Commit_Maker-orange)](https://github.com/Sashayerty/commit_maker)[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Sashayerty/Kairos)
-[![Black](https://github.com/Sashayerty/Kairos/actions/workflows/black.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/black.yml)[![Flake8](https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/flake8.yml)[![Tests](https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/Sashayerty/Kairos/actions/workflows/tests.yml)
 
 ---
 **Документация:** [https://sashayerty.github.io/Kairos/](https://sashayerty.github.io/Kairos/)  
