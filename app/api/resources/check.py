@@ -9,6 +9,7 @@ parser = reqparse.RequestParser()
 
 class Check(Resource):
     def post(self):
+        """Проверка темы и пожеланий курса на наличие нецензурного содержания. Подробнее ../docs/restapi.md"""
         parser.add_argument(
             name="theme",
             type=str,

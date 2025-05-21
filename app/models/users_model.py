@@ -6,11 +6,7 @@ from app.models.db_session import SqlAlchemyBase
 
 
 class UsersModel(SqlAlchemyBase, UserMixin):
-    """Модель пользователя
-    Args:
-        name (str): Имя пользователя.
-        description (str, optional): Описание пользователя, человек может не вводить его.
-    """
+    """Модель пользователя"""
 
     __tablename__ = "users"
 

@@ -5,7 +5,7 @@ from app.models.users_model import UsersModel
 
 
 class CourseModel(SqlAlchemyBase):
-    """Модель курса, в ней хранится курс."""
+    """Модель курса"""
 
     __tablename__ = "courses"
 

@@ -6,3 +6,4 @@ test.py
 *chroma
 /app/ollama
 /site
+.coverage
