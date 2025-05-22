@@ -29,7 +29,7 @@
 <a href="https://deepwiki.com/Sashayerty/Kairos">
   <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki">
 </a>
-
+</p>
 
 ---
 **Документация:** [https://sashayerty.github.io/Kairos/](https://sashayerty.github.io/Kairos/)  
@@ -38,23 +38,9 @@
 
 ---
 
-<!-- Упор идет на то, что данные будут парситься из СТАТЕЙ. Это прописано в большинстве промптов. -->
+## Обязательные учетные данные
 
-## Содержание
-
-1. [Required credentials](#required-credentials)
-2. [Пример .env-файла](#пример-env-файла)
-3. [Установка](#установка)
-    * [pip](#с-помощью-pip)
-    * [uv](#с-помощью-uv-рекомендуемое)
-4. [API](#api)
-5. [Схема логики приложения со стороны агентов](#схема-логики-приложения-со-стороны-агентов)
-6. [База данных проекта](#база-данных-проекта)
-7. [License](#license)
-
-## Required credentials
-
-#### 1. Google Custom Search API (сделана только функция, без интеграции)
+#### 1. Google Custom Search API (optional)
 
 Начнем с поиска данных в интернете. Для работы поиска нам понадобится CSE id и Google Search API Key. [Инструкция](https://developers.google.com/custom-search/v1/overview?hl=ru) по получению. При создании API ключа стоит учитывать, что вы можете указать список сайтов, которые будут парситься при API, что делает поиск более конкретным, узконаправленным и специфичным. Создать поисковый сервис в Google [тут](https://programmablesearchengine.google.com/controlpanel/all).
 
@@ -62,9 +48,20 @@
 
 Теперь, главная составляющая проекта - ИИ. Получить API ключ можно на официальном [сайте Mistral](https://console.mistral.ai/api-keys/).
 
-## Пример .env-файла
+#### 3. Secret Key
 
-.env-файл должен лежать в корне проекта.
+Секретный ключ для wtforms. Необходим для корректной работы wtforms. Нужно его создать **собственноручно**. Лучше всего для ключа подойдет `uuid4`. Сгенерировать можно или через python библиотеку `uuid`, или на [сайте](https://www.uuidgenerator.net/version4).  
+P.S. В документации Flask [рекомендуется](https://flask.palletsprojects.com/en/stable/config/#SECRET_KEY) использовать рандомный набор байтов. Ниже **пример**:
+
+```bash
+python -c 'import secrets; print(secrets.token_hex())'
+
+> 192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf
+```
+
+## Пример `.env` файла
+
+`.env` файл должен лежать в корне проекта.
 
 ```.env
 MISTRAL_AI_API_KEY=mistral-ai-api-key
@@ -78,7 +75,7 @@ SECRET_KEY=secret-key
 ### Клонируем
 
 ```bash
-git clone https://github.com/sashayerty/Kairos --depth 1 # --depth 1 - клонируем последний коммит
+git clone https://github.com/sashayerty/Kairos
 cd ./Kairos
 ```
 
@@ -87,36 +84,36 @@ cd ./Kairos
 #### 1. Создаем виртуальное окружение python
 
 ```bash
-#Windows
+# Windows
 python -m venv venv
-#Linux/MacOS
+# Linux/MacOS
 python3 -m venv venv
 ```
 
 #### 2. Активируем виртуальное окружение
 
 ```bash
-#Windows
+# Windows
 venv/Scripts/activate
-#Linux/MacOS
+# Linux/MacOS
 source venv/bin/activate
 ```
 
 #### 3. Устанавливаем зависимости проекта
 
 ```bash
-#Windows
+# Windows
 pip install -r ./requirements.txt
-#Linux/MacOS
+# Linux/MacOS
 pip3 install -r ./requirements.txt
 ```
 
 #### 4. Запускаем локальный сервер flask
 
 ```bash
-#Windows
+# Windows
 python run.py
-#Linux/MacOS
+# Linux/MacOS
 python3 run.py
 ```
 
@@ -136,15 +133,15 @@ uv run run.py
 
 ### Переходим на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
-## API
+## Взаимодействие с кодом
 
-### [Конфиг](./app/config.py)
+### ModifiedMistral (deprecated)
 
-Файл конфига. В нем хранятся настройки проекта, которые можно менять и Вам, в зависимости от Ваших нужд.
+Это кастомный класс **Mistral**. Был он создан для того, чтобы при взаимодействии с ИИ убрать лишнюю рутинную работу. Код [тут](https://github.com/Sashayerty/Kairos/blob/master/app/mistral_ai_initializer/mistral_custom_class.py).
 
-### [ModifiedMistral](./app/mistral_ai_initializer/mistral_custom_class.py)
+### ModifiedOpenAI
 
-Это кастомный класс **Mistral**. Был он создан для того, чтобы убрать лишнюю рутинную работу. Подробнее - [тут](./app/mistral_ai_initializer/mistral_custom_class.py)
+Пришел на смену **Mistral**. Код [тут](https://github.com/Sashayerty/Kairos/blob/master/app/ai_initializer/modified_openai.py).
 
 ### Список агентов
 
@@ -164,9 +161,9 @@ uv run run.py
 
 `*` - вспомогательный агент
 
-### [google_search](./app/google_custom_search/search_function.py)
+### [google_search](https://github.com/Sashayerty/Kairos/blob/master/app/google_custom_search/search_function.py)
 
-Функция для поиска в Google Custom Search. Подробнее [тут](#1-google-custom-search-api-сделана-только-функция-без-интеграции)
+Функция для поиска в Google Custom Search. Подробнее [тут](#1-google-custom-search-api-optional)
 
 ## Схема логики приложения со стороны агентов
 
@@ -178,4 +175,4 @@ uv run run.py
 
 ## License
 
-Kairos лицензирован [MIT](./LICENSE)
+Kairos лицензирован [MIT](https://github.com/Sashayerty/Kairos/blob/master/LICENSE)
