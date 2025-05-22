@@ -9,7 +9,7 @@ def google_search(
     cse_id: str,
     num_results: int,
 ) -> list:
-    """Функция для поиска ссылок в гугл по query
+    """Функция для поиска ссылок в Google по query
 
     Args:
         query (str): Тема поиска

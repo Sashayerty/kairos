@@ -9,6 +9,7 @@ parser = reqparse.RequestParser()
 
 class GenerateCourse(Resource):
     def post(self):
+        """Генерация курса. Подробнее ../docs/restapi.md"""
         parser.add_argument(
             name="theme",
             type=str,

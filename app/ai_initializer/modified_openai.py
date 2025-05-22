@@ -6,12 +6,13 @@ class ModifiedOpenai(openai.OpenAI):
 
     def message(
         self,
-        messages: list,
+        messages: list[dict[str, str]],
         model: str,
         response_format: dict[str, str] | openai.NotGiven = openai.NOT_GIVEN,
         timeout: float | openai.NotGiven = openai.NOT_GIVEN,
         temperature: float | openai.NotGiven = 0.7,
     ) -> str:
+        """Функция для взаимодействия с моделью через текст."""
         result = self.chat.completions.create(
             model=model,
             response_format=response_format,

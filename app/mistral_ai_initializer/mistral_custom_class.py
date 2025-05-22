@@ -1,3 +1,4 @@
+# Deprecated
 from mistralai import Mistral
 
 
