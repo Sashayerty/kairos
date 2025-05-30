@@ -352,7 +352,7 @@ def edit_course_view(course_id: int):
         course=course.course,
         user_edits=user_edits,
     )
-    print_json(course.course)
+    print_json(data=json.dumps(course.course))
     db_session.commit()
     return redirect(f"/course/{course_id}")
 
