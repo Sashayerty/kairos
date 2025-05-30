@@ -34,7 +34,8 @@
 ---
 **Документация:** [https://sashayerty.github.io/Kairos/](https://sashayerty.github.io/Kairos/)  
 **Исходный код:** [https://github.com/Sashayerty/Kairos](https://github.com/Sashayerty/Kairos)  
-**FastAPI версия:** [https://github.com/Sashayerty/kairos-fastapi](https://github.com/Sashayerty/kairos-fastapi)
+**FastAPI версия:** [https://github.com/Sashayerty/kairos-fastapi](https://github.com/Sashayerty/kairos-fastapi)  
+**Демонстрация:** [https://disk.yandex.ru/i/xtsrACTVPR5HrA](https://disk.yandex.ru/i/xtsrACTVPR5HrA)
 
 ---
 

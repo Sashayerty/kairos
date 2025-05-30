@@ -34,7 +34,8 @@
 ---
 **Документация:** [https://sashayerty.github.io/Kairos/](https://sashayerty.github.io/Kairos/)  
 **Исходный код:** [https://github.com/Sashayerty/Kairos](https://github.com/Sashayerty/Kairos)  
-**FastAPI версия:** [https://github.com/Sashayerty/kairos-fastapi](https://github.com/Sashayerty/kairos-fastapi)
+**FastAPI версия:** [https://github.com/Sashayerty/kairos-fastapi](https://github.com/Sashayerty/kairos-fastapi)  
+**Демонстрация:** [https://disk.yandex.ru/i/xtsrACTVPR5HrA](https://disk.yandex.ru/i/xtsrACTVPR5HrA)
 
 ---
 
@@ -131,7 +132,7 @@ uv sync # .venv создается автоматически
 uv run run.py
 ```
 
-### Переходим на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+### В обоих случаях переходим на [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 ## Взаимодействие с кодом
 
