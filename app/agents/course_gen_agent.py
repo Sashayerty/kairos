@@ -51,7 +51,7 @@ def gen_course(
     Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!"""
     result = client.message(
         model=(
-            config.MISTRAL_MODEL_NAME
+            "mistral-large-latest"
             if not use_local_models
             else config.OLLAMA_MODEL_NAME
         ),

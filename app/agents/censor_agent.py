@@ -28,6 +28,7 @@ def check(
         "reason": "причина отказа"
     }
     """
+    system_prompt = f""""""
     prompt_to_llm = f"""Привет! Ты агент-цензор. Твоя задача проверять тему пользователя и его пожелания. Тема и
     пожелания не должны быть
     связана с 18+ контентом, правительством, религией, межнациональной рознью, опасными для жизни
@@ -38,7 +39,7 @@ def check(
     client = get_ai_client(use_local_models)
     response = client.message(
         model=(
-            config.MISTRAL_MODEL_NAME
+            "mistral-medium"
             if not use_local_models
             else config.OLLAMA_MODEL_NAME
         ),

@@ -35,7 +35,7 @@ def gen_plan(
     client = get_ai_client(use_local_models)
     result = client.message(
         model=(
-            config.MISTRAL_MODEL_NAME
+            "mistral-large-latest"
             if not use_local_models
             else config.OLLAMA_MODEL_NAME
         ),
