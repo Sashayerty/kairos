@@ -116,13 +116,12 @@ def create_course():
         print("[green] * Plan of course created successfully![/green]")
         time.sleep(1)
         print(" * Course function invoked successfully!")
-        course = convert_course_to_html(
-            gen_course(
-                prompt=prompt_from_llm,
-                plan=plan_of_course,
-                use_local_models=use_local_models,
-            )
+        course_in_md = gen_course(
+            prompt=prompt_from_llm,
+            plan=plan_of_course,
+            use_local_models=use_local_models,
         )
+        course = convert_course_to_html(course_in_md)
         if course:
             print("[green] * Course created successfully![/green]")
         if current_user.is_authenticated:

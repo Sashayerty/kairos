@@ -46,9 +46,10 @@ def gen_course(
     }
     """
     client = get_ai_client(use_local_models)
-    prompt_to_llm = f"""{prompt}.
-    План курса: {plan}. Теория: {theory}. Пример твоего ответа: {json_example}. Учти, что ты должен научить человека.
-    Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!"""
+    system_prompt = f"""{prompt} Учти, что ты должен научить
+    человека. Это значит, что тебе нужно раскрыть каждый пункт плана как можно подробнее!
+    Пример твоего ответа: {json_example}"""
+    prompt_to_llm = f"""План курса: {plan}. Теория: {theory}."""
     result = client.message(
         model=(
             "mistral-large-latest"
@@ -57,9 +58,13 @@ def gen_course(
         ),
         messages=[
             {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
                 "role": "user",
                 "content": prompt_to_llm,
-            }
+            },
         ],
         temperature=0.2,
         response_format={"type": "json_object"},

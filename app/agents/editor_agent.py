@@ -32,13 +32,16 @@ def edit_course(
             },
     }
     """
-    prompt_to_llm = f"""Привет! Ты редактор курсов по пожеланию пользователя. Твоя задача сделать с курсом именно то,
-    что просит пользователь. Курс: {json.dumps(course)} Правки пользователя: {user_edits}. Вернуть нужно такой же по
-    структуре курс, но с правками пользователя. Пример структуры курса: {json_example}"""
+    system_prompt = f"""Привет! Ты редактор курсов по пожеланию пользователя. Твоя задача сделать с курсом именно то,
+    что просит пользователь. Вернуть нужно такой же по структуре курс, но с правками пользователя. Пример структуры
+    курса: {json_example}"""
+    prompt_to_llm = (
+        f"""Курс: {json.dumps(course)} Правки пользователя: {user_edits}."""
+    )
     client = get_ai_client(use_local_models)
     response = client.message(
         model=(
-            config.MISTRAL_MODEL_NAME
+            "mistral-large-latest"
             if not use_local_models
             else config.OLLAMA_MODEL_NAME
         ),
@@ -48,7 +51,7 @@ def edit_course(
                 "content": prompt_to_llm,
             }
         ],
-        temperature=0.1,
+        temperature=0.2,
         response_format={
             "type": "json_object",
         },
