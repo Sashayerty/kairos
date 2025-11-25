@@ -47,6 +47,10 @@ def edit_course(
         ),
         messages=[
             {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
                 "role": "user",
                 "content": prompt_to_llm,
             }
