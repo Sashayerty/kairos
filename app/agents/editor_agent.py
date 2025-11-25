@@ -53,7 +53,7 @@ def edit_course(
             {
                 "role": "user",
                 "content": prompt_to_llm,
-            }
+            },
         ],
         temperature=0.2,
         response_format={
