@@ -32,7 +32,7 @@
 </p>
 
 ---
-**Документация:** [https://sashayerty.github.io/Kairos/](https://sashayerty.github.io/Kairos/)  
+**Документация:** [https://sashayerty.github.io/kairos/](https://sashayerty.github.io/kairos/)  
 **Исходный код:** [https://github.com/Sashayerty/Kairos](https://github.com/Sashayerty/Kairos)  
 **FastAPI версия:** [https://github.com/Sashayerty/kairos-fastapi](https://github.com/Sashayerty/kairos-fastapi)  
 **Демонстрация:** [https://disk.yandex.ru/i/xtsrACTVPR5HrA](https://disk.yandex.ru/i/xtsrACTVPR5HrA)
